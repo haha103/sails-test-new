@@ -1,0 +1,57 @@
+<div class='haha-maincontent'>
+  <h3>所有<%= title %></h3>
+  <hr/>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>查看/更新</th>
+        <th>编号</th>
+        <th>申请人</th>
+        <th>申请金额</th>
+        <th>还款日期</th>
+        <th>当前状态</th>
+        <th>进度</th>
+        <th>下一步</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(apps, function(app) { %>
+      <tr data-id='<%= app.id %>' data-model='application'>
+        <td>
+          <a href="/application/update/<%= app.id %>" class="btn btn-primary btn-xs" role="button">查看/更新</a>
+        </td>
+        <td><%= app.id %></td>
+        <td>
+          <% Client.findOne({ id: app.id }).done(function clientFound(err, client) { %>
+          <%   ClientType.findOne(client.type).done(function(err, ctype) { %>
+          <%= ctype.name %> - <%= client.name %>
+          <%   }); %>
+          <% }); %>
+        </td>
+        <td><%= app.amount %></td>
+        <td><%= app.due %></td>
+        <td>
+          <%= WorkflowHelper.getAllStates()[app.state].name %> 
+        </td>
+        <td style="width: 15%;">
+          <% var progress = WorkflowHelper.getProgress(app.workflow, app.state); %>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= progress %>%;">
+              <span><%= progress %>%</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <% Workflow.findOne({ id: app.workflow }).done(function foundWorkflow(err, wf) { %>
+          <%   var def = wf.definition; %>
+          <%   var next_states = def[app.state].next_states; %>
+          <%   for (var i = 0; i < next_states.length; ++i) { %>
+          <a href="/application/transition?app=<%= app.id %>&next_state=<%= next_states[i] %>" class="btn btn-warning btn-xs" role="button"><%= WorkflowHelper.getAllStates()[next_states[i]].name %></a>
+          <%   } %>
+          <% }) %>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

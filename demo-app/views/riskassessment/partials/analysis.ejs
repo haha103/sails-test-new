@@ -1,0 +1,57 @@
+<% 
+var currval = "";
+var disabled = (curr_action == "show") ? "disabled" : "";
+%>
+<div class="panel panel-default">
+  <div class="panel-heading">综合审核及判断</div>
+  <div class="panel-body">
+    <div class='form-group'>
+      <label class='control-label' for="analysis_purpose_and_amount"><%= display_name["analysis_purpose_and_amount"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.analysis_purpose_and_amount; }
+      %>
+      <textarea class='form-control' name='analysis_purpose_and_amount' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="analysis_repay_src"><%= display_name["analysis_repay_src"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.analysis_repay_src; }
+      %>
+      <textarea class='form-control' name='analysis_repay_src' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="analysis_risk_items"><%= display_name["analysis_risk_items"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.analysis_risk_items; }
+      %>
+      <textarea class='form-control' name='analysis_risk_items' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="analysis_guarantee"><%= display_name["analysis_guarantee"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.analysis_guarantee; }
+      %>
+      <textarea class='form-control' name='analysis_guarantee' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="analysis_risk_control"><%= display_name["analysis_risk_control"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.analysis_risk_control; }
+      %>
+      <textarea class='form-control' name='analysis_risk_control' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="analysis_materials"><%= display_name["analysis_materials"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.analysis_materials; }
+      %>
+      <textarea class='form-control' name='analysis_materials' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+  </div>
+</div>

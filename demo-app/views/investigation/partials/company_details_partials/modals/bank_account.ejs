@@ -1,0 +1,39 @@
+<div id="new-bank_account-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">添加银行帐号</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="basic_account" class="col-sm-3 control-label">基本账户</label>
+            <div class="col-sm-9">
+              <select name="bank_account-basic_account" id="bank_account-basic_account" class="form-control">
+                <option value="true">是</option>
+                <option value="false">否</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bank_account-bank" class="col-sm-3 control-label">开户行</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="bank_account-bank" name="bank_account-bank" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bank_account-account" class="col-sm-3 control-label">帐号</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="bank_account-account" name="bank_account-account" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="bank_account-modal-save">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

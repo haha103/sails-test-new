@@ -1,0 +1,25 @@
+<div class="panel panel-default hide" company>
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-2">股权结构</div>
+      <div class="col-md-2 col-md-offset-8">
+        <button type="button" class="btn btn-primary btn-block btn-xs" data-toggle="modal" data-target="#new-shareholder-modal">添加股东信息</button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <%- partial('modals/shareholder') %>
+    <table class="table table-condensed table-hover" id="shareholders">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>出资额</th>
+          <th>出资方式</th>
+          <th>股权比例</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

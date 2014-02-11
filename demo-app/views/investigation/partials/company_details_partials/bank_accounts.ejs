@@ -1,0 +1,49 @@
+<% 
+var currval = "";
+var disabled = (curr_action == "show") ? "disabled" : "";
+var accs = [];
+var accs_details = [];
+if (curr_action == "show" && investigation_info) {
+  accs = investigation_info.bank_accounts;
+  accs.map(function(id) {
+    ClientBankAccount.findOne({ id: id }).done(function(err, acc) {
+      if (err) { return; }
+      accs_details.push(acc);
+    });
+  });
+}
+%>
+<div class="row">
+  <div class="col-md-2">开户情况</div>
+  <div class="col-md-2 col-md-offset-8">
+    <button type="button" class="btn btn-primary btn-block btn-xs" data-toggle="modal" data-target="#new-bank_account-modal" <%= disabled %> >添加帐号</button>
+  </div>
+</div>
+<hr class="haha-hr-compact"/>
+<%- partial('modals/bank_account') %>
+<table class="table table-condensed table-hover" id="bank_accounts">
+  <thead>
+    <tr>
+      <th style="width: 20%;">是否为基本账户</th>
+      <th>开户行</th>
+      <th>帐号</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (var i = 0; i < accs_details.length; ++i) { %>
+    <tr>
+      <td><%= accs_details[i].basic_account ? "是" : "否" %></td>
+      <td><%= accs_details[i].bank %></td>
+      <td><%= accs_details[i].account %></td>
+      <td style="width:7%;">
+        <button type="button" id="toggle-disabled" class="btn btn-warning btn-block btn-xs" data-toggle="modal" data-target="#new-bank_account-modal" <%= disabled %> >修改</button>
+      </td>
+      <td style="width:7%;">
+        <button type="button" id="toggle-disabled" class="btn btn-danger btn-block btn-xs" <%= disabled %> >删除</button>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>

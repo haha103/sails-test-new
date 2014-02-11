@@ -1,0 +1,60 @@
+<div id="new-loan-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">添加贷款信息</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="form" class="col-sm-2 control-label">贷款方式</label>
+            <div class="col-sm-10">
+              <select name="form" id="form" class="form-control">
+                <% LoanForm.find({}).done(function(err, vals) { %>
+                <%   for (var i = 0; i < vals.length; ++i) { %>
+                <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+                <%   } %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="loaner" class="col-sm-2 control-label">出资机构</label>
+            <div class="col-sm-10">
+              <select name="loaner" id="loaner" class="form-control">
+                <% Loaner.find({}).done(function(err, vals) { %>
+                <%   for (var i = 0; i < vals.length; ++i) { %>
+                <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+                <%   } %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="amount" class="col-sm-2 control-label">贷款金额</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="amount" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="start" class="col-sm-2 control-label">开始时间</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="start" datepicker/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="end" class="col-sm-2 control-label">结束时间</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="end" datepicker/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="loan-modal-save">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

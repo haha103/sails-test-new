@@ -1,0 +1,67 @@
+<br/>
+<div class='container'>
+	<div class='panel panel-primary'>
+		<div class='panel-heading'>
+			User Administration
+		</div>
+		<div class='panel-body'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th></th>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Title</th>
+						<th>Email</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% _.each(users, function(user) { %>
+					<tr data-id='<%= user.id %>' data-model='user'>
+            <td style="width:50px;">
+              <% if (user.online) { %>
+              <span class="glyphicon glyphicon-plus-sign"></span>
+              <% } else { %>
+              <span class="glyphicon glyphicon-minus-sign"></span>
+              <% } %>
+            </td>
+						<td><%= user.id %></td>
+						<td><%= user.name %></td>
+						<td><%= user.title %></td>
+						<td><%= user.email %></td>
+            <td style="width:50px;">
+              <% if (user.admin) { %>
+              <span class="glyphicon glyphicon-tower"></span>
+              <% } else { %>
+              <span class="glyphicon glyphicon-user"></span>
+              <% } %>
+            </td>
+            <td style='width:50px;'>
+              <a href='/user/show/<%= user.id %>' class='btn btn-sm btn-primary btn-block'>
+                <% 
+                var show_icon = "glyphicon-info-sign";
+                if (session.User.admin) {
+                  show_icon = "glyphicon-wrench";
+                }
+                %>
+                <span class="glyphicon <%= show_icon %>"></span>
+              </a>
+            </td>
+            <td style='width:50px;'>
+              <form action="/user/destroy/<%= user.id %>" method="POST">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit" class="btn btn-sm btn-danger btn-block">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+              </form>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

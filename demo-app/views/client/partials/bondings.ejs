@@ -1,0 +1,27 @@
+<div class="panel panel-default hide" company>
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-2">对外担保情况</div>
+      <div class="col-md-2 col-md-offset-8">
+        <button type="button" class="btn btn-primary btn-block btn-xs" data-toggle="modal" data-target="#new-bonding-modal">添加担保信息</button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <%- partial('modals/bonding') %>
+    <table class="table table-condensed table-hover" id="bondings">
+      <thead>
+        <tr>
+          <th>类型</th>
+          <th>被担保人</th>
+          <th>出资机构</th>
+          <th>担保金额</th>
+          <th>开始时间</th>
+          <th>结束时间</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

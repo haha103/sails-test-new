@@ -1,0 +1,59 @@
+<% 
+var currval = "";
+var disabled = (curr_action == "show") ? "disabled" : "";
+%>
+<div class="panel panel-default">
+  <div class="panel-heading">调查概况</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <label class='control-label' for="blacklisted"><%= display_name["blacklisted"] %></label>
+        <div class='form-group'>
+          <select name="blacklisted" id="blacklisted" class="form-control input-sm" multiple <%=  disabled %> >
+            <% Blacklist.find({}).done(function(err, vals) { %>
+            <%   for (var i = 0; i < vals.length; ++i) { %>
+            <%
+                   currval = "";
+                   if (curr_action == "show" && investigation_info && _.contains(investigation_info.blacklisted, vals[i].id)) { currval = "selected"; }
+            %>
+            <option value="<%= vals[i].id %>" <%= currval %> ><%= vals[i].name %></option>
+            <%   } %>
+            <% }); %>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="credit_rating"><%= display_name["credit_rating"] %></label>
+          <select name="credit_rating" id="credit_rating" class="form-control input-sm" <%=  disabled %> >
+            <% for (var i = 1; i <= 5; ++i) { %>
+            <%
+                 currval = "";
+                 if (curr_action == "show" && investigation_info && investigation_info.credit_rating == i) { currval = "selected"; }
+            %>
+            <option value="<%= i %>" <%= currval %>  ><%= i %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="avg_score"><%= display_name["avg_score"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && investigation_info) { currval = investigation_info.avg_score; }
+          %>
+          <input type='text' class='form-control input-sm' name='avg_score' placeholder="<%= currval %>" <%=  disabled %> />
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="case_summary"><%= display_name["case_summary"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && investigation_info) { currval = investigation_info.case_summary; }
+      %>
+      <textarea class='form-control' name='case_summary' rows="5" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+  </div>
+</div>

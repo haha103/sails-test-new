@@ -1,0 +1,132 @@
+<% 
+var currval = "";
+var disabled = (curr_action == "show") ? "disabled" : "";
+%>
+<div class="panel panel-default">
+  <div class="panel-heading">评审会议记录</div>
+  <div class="panel-body">
+    <div class='form-group'>
+      <label class='control-label' for="topics"><%= display_name["topics"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && review_info) { currval = review_info.topics; }
+      %>
+      <input type='text' class='form-control input-sm' name='topics' placeholder="<%= currval %>" <%=  disabled %> />
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="date"><%= display_name["date"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.date; }
+          %>
+          <input type='text' class='form-control input-sm' name='date' placeholder="<%= currval %>" <%=  disabled %> datepicker/>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="host"><%= display_name["host"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.host; }
+          %>
+          <input type='text' class='form-control input-sm' name='host' placeholder="<%= currval %>" <%=  disabled %> />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="recorder"><%= display_name["recorder"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.recorder; }
+          %>
+          <input type='text' class='form-control input-sm' name='recorder' placeholder="<%= currval %>" <%=  disabled %> />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class='form-group'>
+          <label class='control-label' for="account_mgr"><%= display_name["account_mgr"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.account_mgr; }
+          %>
+          <input type='text' class='form-control input-sm' name='account_mgr' placeholder="<%= currval %>" <%=  disabled %> />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class='form-group'>
+          <label class='control-label' for="risk_mgr"><%= display_name["risk_mgr"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.risk_mgr; }
+          %>
+          <input type='text' class='form-control input-sm' name='risk_mgr' placeholder="<%= currval %>" <%=  disabled %> />
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="attendees"><%= display_name["attendees"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && review_info) { currval = review_info.attendees; }
+      %>
+      <input type='text' class='form-control input-sm' name='attendees' placeholder="<%= currval %>" <%=  disabled %> />
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="reviewed_amount"><%= display_name["reviewed_amount"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.reviewed_amount; }
+          %>
+          <input type='text' class='form-control input-sm' name='reviewed_amount' placeholder="<%= currval %>" <%=  disabled %> />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="reviewed_due"><%= display_name["reviewed_due"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.reviewed_due; }
+          %>
+          <input type='text' class='form-control input-sm' name='reviewed_due' placeholder="<%= currval %>" <%=  disabled %> datepicker/>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class='control-label' for="reviewed_interest_rate"><%= display_name["reviewed_interest_rate"] %></label>
+          <%
+          currval = "";
+          if (curr_action == "show" && review_info) { currval = review_info.reviewed_interest_rate; }
+          %>
+          <input type='text' class='form-control input-sm' name='reviewed_interest_rate' placeholder="<%= currval %>" <%=  disabled %> />
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="summary"><%= display_name["summary"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && review_info) { currval = review_info.summary; }
+      %>
+      <textarea class='form-control' name='summary' rows="5" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="review_result"><%= display_name["review_result"] %></label>
+      <select name="review_result" id="review_result" class="form-control input-sm" <%=  disabled %> >
+        <% var result_names = ['同意', '反对', '再议']; %>
+        <% for (var i = 1; i <= 3; ++i) { %>
+        <%
+        currval = "";
+        if (curr_action == "show" && review_info && review_info.review_result == i) { currval = "selected";  }
+        %>
+        <option value="<%= i %>" <%= currval %>  ><%= result_names[i - 1] %></option>
+        <% } %>
+      </select>
+    </div>
+  </div>
+</div>

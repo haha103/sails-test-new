@@ -1,0 +1,17 @@
+<% 
+var currval = "";
+var disabled = (curr_action == "show") ? "disabled" : "";
+%>
+<div class="panel panel-default">
+  <div class="panel-heading">项目综合意见</div>
+  <div class="panel-body">
+    <div class='form-group'>
+      <!-- <label class='control-label' for="overall_comment"><%= display_name["overall_comment"] %></label> -->
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.overall_comment; }
+      %>
+      <textarea class='form-control' name='overall_comment' rows="5" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+  </div>
+</div>

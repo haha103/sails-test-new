@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-2">申请概要</div>
+      <div class="col-md-2 col-md-offset-4 haha-compact-col">
+        <a href="/application/show/<%= app_info.id %>" role="button" class="btn btn-info btn-block btn-xs">申请详细信息</a>
+      </div>
+      <div class="col-md-2 haha-compact-col">
+        <a href="/investigation/show/<%= investigation_info.id %>?app=<%= app_info.id %>" role="button" class="btn btn-info btn-block btn-xs">调查报告</a>
+      </div>
+      <div class="col-md-2 haha-compact-col">
+        <a href="/riskassessment/show/<%= riskassessment_info.id %>?app=<%= app_info.id %>" role="button" class="btn btn-info btn-block btn-xs">风险报告</a>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <dl class="dl-horizontal">
+          <dt class="haha-dt">申请者</dt>
+          <dd class="haha-dd"><%= app_info.applicant %></dd>
+          <dt class="haha-dt">申请类型</dt>
+          <dd class="haha-dd"><%= app_info.type %></dd>
+          <dt class="haha-dt">申请金额</dt>
+          <dd class="haha-dd"><%= app_info.amount %></dd>
+          <dt class="haha-dt">还款日</dt>
+          <dd class="haha-dd"><%= app_info.due %></dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <dl class="dl-horizontal">
+          <dt class="haha-dt">授信类型</dt>
+          <dd class="haha-dd"><%= app_info.credit_types.join(", ") %></dd>
+          <dt class="haha-dt">授信目的</dt>
+          <dd class="haha-dd"><%= app_info.credit_purposes.join(", ") %></dd>
+          <dt class="haha-dt">申请者行业</dt>
+          <dd class="haha-dd"><%= app_info.applicant_domains.join(", ") %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<input class='hidden' name='application' value='<%= app_info.id %>' />

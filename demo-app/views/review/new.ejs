@@ -1,0 +1,15 @@
+<div class='haha-maincontent'>
+  <form role='form' action="/<%= model %>/create" method="POST" class="haha-form-signup">
+    <h3>新建<%= title %></h3>
+    <hr/>
+    <%- partial("partials/application_summary.ejs") %>
+    <%- partial("partials/review_minutes.ejs") %>
+    <hr/>
+    <div class="row">
+      <div class="col-md-2">
+        <button type='submit' class='btn btn-primary btn-block'>创建</button>
+      </div>
+    </div>
+    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+  </form>
+</div>

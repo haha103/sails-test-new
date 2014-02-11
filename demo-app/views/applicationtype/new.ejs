@@ -1,0 +1,31 @@
+<div class='container'>
+  <form role='form' action="/applicationtype/create" method="POST" class="haha-form-signup">
+		<div class="panel panel-default haha-signup-panel haha-panel-md">
+			<div class="panel-heading">
+        <h4>新建申请类型</h4>
+			</div>
+			<div class="panel-body">
+				<% if (flash && flash.err) { %>
+				<div class="alert alert-danger">					
+					<% Object.keys(flash.err).forEach(function(error) { %>
+						<%= error %>: <%= JSON.stringify(flash.err[error]) %>
+					<% }) %>
+				</div>
+				<% } %>
+        <% 
+          for (var attr in ApplicationType.attributes) {
+        %>
+				<div class='form-group'>
+          <label class='control-label' for="<%= attr %>"><%= display_name[attr] %></label>
+          <input type='text' class='form-control' name='<%= attr %>'/>
+				</div>
+        <% } %>
+			</div>
+			<div class="panel-footer">
+				<button type='submit' class='btn btn-primary btn-block'>创建</button>
+			</div>
+		</div>
+		<input class='hidden' name='_csrf' value='<%= _csrf %>' />
+	</form>
+</div>
+

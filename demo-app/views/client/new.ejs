@@ -1,0 +1,210 @@
+<div class='haha-maincontent'>
+  <form role='form' action="/client/create" method="POST" class="haha-form-signup">
+    <h3>新建<%= title %></h3>
+    <hr/>
+    <div class="row">
+      <div class="col-md-4">
+        <div class='form-group'>
+          <select name="type" id="client-type" class="form-control input-sm">
+            <% ClientType.find({}).done(function(err, vals) { %>
+            <%   for (var i = 0; i < vals.length; ++i) { %>
+            <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+            <%   } %>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+    </div>
+		<div class="panel panel-default">
+			<div class="panel-heading">客户基本资料</div>
+			<div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label class='control-label' for="name" individual>姓名</label>
+              <label class='control-label hide' for="name" company>公司名称</label>
+              <input type='text' class='form-control input-sm' name='name'/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label class='control-label' for="pid" individual>身份证号码</label>
+              <label class='control-label hide' for="pid" company>企业编号</label>
+              <input type='text' class='form-control input-sm' name='pid'/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label class='control-label' for="domains"><%= display_name["domains"] %></label>
+              <select name="domains" class="form-control input-sm" multiple>
+                <% Domain.find({}).done(function(err, vals) { %>
+                <%   for (var i = 0; i < vals.length; ++i) { %>
+                <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+                <%   } %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class='form-group'>
+              <label class='control-label' for="email"><%= display_name["email"] %></label>
+              <input type='text' class='form-control input-sm' name='email'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group'>
+              <label class='control-label' for="phone"><%= display_name["phone"] %></label>
+              <input type='text' class='form-control input-sm' name='phone'/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class='form-group'>
+              <label class='control-label' for="address"><%= display_name["address"] %></label>
+              <input type='text' class='form-control input-sm' name='address'/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class='form-group' individual>
+              <label class='control-label' for="employer"><%= display_name["employer"] %></label>
+              <input type='text' class='form-control input-sm' name='employer'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group' individual>
+              <label class='control-label' for="education"><%= display_name["education"] %></label>
+              <input type='text' class='form-control input-sm' name='education'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group' individual>
+              <label class='control-label' for="title"><%= display_name["title"] %></label>
+              <input type='text' class='form-control input-sm' name='title'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group' individual>
+              <label class='control-label' for="yearly_income"><%= display_name["yearly_income"] %></label>
+              <input type='text' class='form-control input-sm' name='yearly_income'/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="legal_person"><%= display_name["legal_person"] %></label>
+              <input type='text' class='form-control input-sm' name='legal_person'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="contact"><%= display_name["contact"] %></label>
+              <input type='text' class='form-control input-sm' name='contact'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="contact_phone"><%= display_name["contact_phone"] %></label>
+              <input type='text' class='form-control input-sm' name='contact_phone'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="founded"><%= display_name["founded"] %></label>
+              <input type='text' class='form-control input-sm' name='founded' datepicker/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class='form-group hide' company>
+              <label class='control-label' for="products"><%= display_name["products"] %></label>
+              <input type='text' class='form-control input-sm' name='products'/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class='form-group hide' company>
+              <label class='control-label' for="registered_capital"><%= display_name["registered_capital"] %></label>
+              <input type='text' class='form-control input-sm' name='registered_capital'/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group hide' company>
+              <label class='control-label' for="total_asset"><%= display_name["total_asset"] %></label>
+              <input type='text' class='form-control input-sm' name='total_asset'/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group hide' company>
+              <label class='control-label' for="net_asset"><%= display_name["net_asset"] %></label>
+              <input type='text' class='form-control input-sm' name='net_asset'/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class='form-group hide' company>
+              <label class='control-label' for="asset_liability_ratio"><%= display_name["asset_liability_ratio"] %></label>
+              <input type='text' class='form-control input-sm' name='asset_liability_ratio'/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group hide' company>
+              <label class='control-label' for="current_ratio"><%= display_name["current_ratio"] %></label>
+              <input type='text' class='form-control input-sm' name='current_ratio'/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group hide' company>
+              <label class='control-label' for="quick_ratio"><%= display_name["quick_ratio"] %></label>
+              <input type='text' class='form-control input-sm' name='quick_ratio'/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="sales_income_last_year"><%= display_name["sales_income_last_year"] %></label>
+              <input type='text' class='form-control input-sm' name='sales_income_last_year'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="sales_income_curr_year"><%= display_name["sales_income_curr_year"] %></label>
+              <input type='text' class='form-control input-sm' name='sales_income_curr_year'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="profit_last_year"><%= display_name["profit_last_year"] %></label>
+              <input type='text' class='form-control input-sm' name='profit_last_year'/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class='form-group hide' company>
+              <label class='control-label' for="profit_curr_year"><%= display_name["profit_curr_year"] %></label>
+              <input type='text' class='form-control input-sm' name='profit_curr_year'/>
+            </div>
+          </div>
+        </div>
+			</div>
+		</div>
+
+    <%- partial('partials/shareholders') %>
+    <%- partial('partials/loans') %>
+    <%- partial('partials/bondings') %>
+
+    <hr/>
+    <div class="row">
+      <div class="col-md-2">
+        <button type='submit' class='btn btn-primary btn-block'>创建</button>
+      </div>
+    </div>
+    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+	</form>
+</div>

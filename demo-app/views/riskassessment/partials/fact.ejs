@@ -1,0 +1,41 @@
+<% 
+var currval = "";
+var disabled = (curr_action == "show") ? "disabled" : "";
+%>
+<div class="panel panel-default">
+  <div class="panel-heading">事实分析</div>
+  <div class="panel-body">
+    <div class='form-group'>
+      <label class='control-label' for="fact_basics"><%= display_name["fact_basics"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.fact_basics; }
+      %>
+      <textarea class='form-control' name='fact_basics' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="fact_finance"><%= display_name["fact_finance"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.fact_finance; }
+      %>
+      <textarea class='form-control' name='fact_finance' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="fact_background"><%= display_name["fact_background"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.fact_background; }
+      %>
+      <textarea class='form-control' name='fact_background' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+    <div class='form-group'>
+      <label class='control-label' for="fact_misc"><%= display_name["fact_misc"] %></label>
+      <%
+      currval = "";
+      if (curr_action == "show" && riskassessment_info) { currval = riskassessment_info.fact_misc; }
+      %>
+      <textarea class='form-control' name='fact_misc' rows="3" <%=  disabled %> ><%= currval %></textarea>
+    </div>
+  </div>
+</div>

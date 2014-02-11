@@ -1,0 +1,122 @@
+<div class='haha-maincontent'>
+  <form role='form' action="/application/create" method="POST" class="haha-form-signup">
+    <h3>新建<%= title %></h3>
+    <hr/>
+    <div class="row">
+      <div class="col-md-4">
+        <div class='form-group'>
+          <select name="type" id="type" class="form-control input-sm">
+            <% ApplicationType.find({}).done(function(err, vals) { %>
+            <%   for (var i = 0; i < vals.length; ++i) { %>
+            <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+            <%   } %>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <div class='form-group'>
+          <select name="workflow" id="workflow" class="form-control input-sm">
+            <% Workflow.find({}).done(function(err, vals) { %>
+            <%   for (var i = 0; i < vals.length; ++i) { %>
+            <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+            <%   } %>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+    </div>
+		<div class="panel panel-default">
+			<div class="panel-heading">基本情况</div>
+			<div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label class='control-label' for="applicant"><%= display_name["applicant"] %></label>
+            <div class='form-group'>
+              <select name="applicant" id="applicant" class="form-control input-sm">
+                <% Client.find({}).done(function(err, vals) { %>
+                <%   for (var i = 0; i < vals.length; ++i) { %>
+                <%     ClientType.findOne(vals[i].type).done(function(err, ctype) { %>
+                <option value="<%= vals[i].id %>">
+                  <%= ctype.name%> - <%= vals[i].name %>
+                </option>
+                <%     }); %>
+                <%   } %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class='form-group'>
+              <label class='control-label' for="partners"><%= display_name["partners"] %></label>
+              <select name="partners" id="partners" class="form-control input-sm" multiple>
+                <% Partner.find({}).done(function(err, vals) { %>
+                <%   for (var i = 0; i < vals.length; ++i) { %>
+                <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+                <%   } %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label class='control-label' for="amount"><%= display_name["amount"] %></label>
+              <input type='text' class='form-control input-sm' name='amount'/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label class='control-label' for="due"><%= display_name["due"] %></label>
+              <input type='text' class='form-control input-sm' name='due' datepicker/>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class='form-group'>
+              <label class='control-label' for="payment_source"><%= display_name["payment_source"] %></label>
+              <input type='text' class='form-control input-sm' name='payment_source'/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class='form-group'>
+              <label class='control-label' for="credit_types"><%= display_name["credit_types"] %></label>
+              <select name="credit_types" class="form-control input-sm" multiple>
+                <% CreditType.find({}).done(function(err, vals) { %>
+                <%   for (var i = 0; i < vals.length; ++i) { %>
+                <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+                <%   } %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class='form-group'>
+              <label class='control-label' for="credit_purposes"><%= display_name["credit_purposes"] %></label>
+              <select name="credit_purposes" class="form-control input-sm" multiple>
+                <% CreditPurpose.find({}).done(function(err, vals) { %>
+                <%   for (var i = 0; i < vals.length; ++i) { %>
+                <option value="<%= vals[i].id %>"><%= vals[i].name %></option>
+                <%   } %>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+        </div>
+			</div>
+		</div>
+
+    <%- partial('partials/mortgages') %>
+    <%- partial('partials/guarantors') %>
+
+    <hr/>
+    <div class="row">
+      <div class="col-md-2">
+        <button type='submit' class='btn btn-primary btn-block'>创建</button>
+      </div>
+    </div>
+    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+	</form>
+</div>

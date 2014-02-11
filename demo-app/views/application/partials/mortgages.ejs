@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-2">抵押物</div>
+      <div class="col-md-2 col-md-offset-8">
+        <button type="button" class="btn btn-primary btn-block btn-xs" data-toggle="modal" data-target="#new-mortgage-modal">添加抵押物</button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <%- partial('modals/mortgage') %>
+    <table class="table table-condensed table-hover" id="mortgages">
+      <thead>
+        <tr>
+          <th>抵押类型</th>
+          <th>抵押物名称</th>
+          <th>抵押物净值</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>

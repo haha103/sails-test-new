@@ -1,0 +1,114 @@
+<% 
+var currval = "";
+var disabled = (curr_action == "show") ? "disabled" : "";
+var actual_owner = "";
+var actual_owner_phone = "";
+var actual_owner_addr = "";
+var national_tax_id = "";
+var local_tax_id = "";
+var legal_person_addr = "";
+var last_year_inspected = true;
+var licence = "";
+var bank_card = "";
+var require_certs = "";
+var has_certs = "";
+var registration_others = "";
+if (curr_action == "show" && investigation_info) {
+  actual_owner = investigation_info.actual_owner;
+  actual_owner_phone = investigation_info.actual_owner_phone;
+  actual_owner_addr = investigation_info.actual_owner_addr;
+  national_tax_id = investigation_info.national_tax_id;
+  local_tax_id = investigation_info.local_tax_id;
+  legal_person_addr = investigation_info.legal_person_addr;
+  last_year_inspected = investigation_info.last_year_inspected;
+  licence = investigation_info.licence;
+  bank_card = investigation_info.bank_card;
+  require_certs = investigation_info.require_certs;
+  has_certs = investigation_info.has_certs;
+  registration_others = investigation_info.registration_others;
+}
+%>
+注册情况补充
+<hr class="haha-hr-compact"/>
+<div class="row">
+  <div class="col-md-3">
+    <div class='form-group'>
+      <label class='control-label' for="actual_owner"><%= display_name["actual_owner"] %></label>
+      <input type='text' class='form-control input-sm' name='actual_owner' placeholder="<%= actual_owner %>" <%= disabled %> />
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class='form-group'>
+      <label class='control-label' for="actual_owner_phone"><%= display_name["actual_owner_phone"] %></label>
+      <input type='text' class='form-control input-sm' name='actual_owner_phone' placeholder="<%= actual_owner_phone %>" <%= disabled %> />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class='form-group'>
+      <label class='control-label' for="actual_owner_addr"><%= display_name["actual_owner_addr"] %></label>
+      <input type='text' class='form-control input-sm' name='actual_owner_addr' placeholder="<%= actual_owner_addr %>" <%= disabled %> />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class='form-group'>
+      <label class='control-label' for="national_tax_id"><%= display_name["national_tax_id"] %></label>
+      <input type='text' class='form-control input-sm' name='national_tax_id' placeholder="<%= national_tax_id %>" <%= disabled %> />
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class='form-group'>
+      <label class='control-label' for="local_tax_id"><%= display_name["local_tax_id"] %></label>
+      <input type='text' class='form-control input-sm' name='local_tax_id' placeholder="<%= local_tax_id %>" <%= disabled %> />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class='form-group'>
+      <label class='control-label' for="legal_person_addr"><%= display_name["legal_person_addr"] %></label>
+      <input type='text' class='form-control input-sm' name='legal_person_addr' placeholder="<%= legal_person_addr %>" <%= disabled %> />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class='form-group'>
+      <label class='control-label' for="last_year_inspected"><%= display_name["last_year_inspected"] %></label>
+      <select name="last_year_inspected" id="last_year_inspected" class="form-control input-sm" <%= disabled %> >
+        <option value="true" <%= last_year_inspected ? "selected" : "" %> >是</option>
+        <option value="false" <%= last_year_inspected ? "" : "selected" %> >否</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class='form-group'>
+      <label class='control-label' for="licence"><%= display_name["licence"] %></label>
+      <input type='text' class='form-control input-sm' name='licence' placeholder="<%= licence %>" <%= disabled %> />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class='form-group'>
+      <label class='control-label' for="bank_card"><%= display_name["bank_card"] %></label>
+      <input type='text' class='form-control input-sm' name='bank_card' placeholder="<%= bank_card %>" <%= disabled %> />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class='form-group'>
+      <label class='control-label' for="require_certs"><%= display_name["require_certs"] %></label>
+      <input type='text' class='form-control input-sm' name='require_certs' placeholder="<%= require_certs %>" <%= disabled %> />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class='form-group'>
+      <label class='control-label' for="has_certs"><%= display_name["has_certs"] %></label>
+      <input type='text' class='form-control input-sm' name='has_certs' placeholder="<%= has_certs %>" <%= disabled %> />
+    </div>
+  </div>
+</div>
+<div class='form-group'>
+  <label class='control-label' for="registration_others"><%= display_name["registration_others"] %></label>
+  <textarea class='form-control' name='registration_others' rows="3" <%= disabled %> ><%= registration_others %></textarea>
+</div>
+<br/>

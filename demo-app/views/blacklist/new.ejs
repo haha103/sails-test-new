@@ -1,0 +1,25 @@
+<div class='haha-maincontent'>
+  <form role='form' action="/<%= model %>/create" method="POST" class="haha-form-signup">
+    <h3>新建<%= title %></h3>
+    <hr/>
+    <% if (flash && flash.err) { %>
+    <div class="alert alert-danger">					
+      <% Object.keys(flash.err).forEach(function(error) { %>
+      <%= error %>: <%= JSON.stringify(flash.err[error]) %>
+      <% }) %>
+    </div>
+    <% } %>
+    <% 
+    for (var attr in Blacklist.attributes) {
+    %>
+    <div class='form-group'>
+      <label class='control-label' for="<%= attr %>"><%= display_name[attr] %></label>
+      <input type='text' class='form-control' name='<%= attr %>'/>
+    </div>
+    <% } %>
+    <hr/>
+    <button type='submit' class='btn btn-primary'>创建</button>
+    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+  </form>
+</div>
+
