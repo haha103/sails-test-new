@@ -14,6 +14,8 @@ module.exports = {
   	
   	name: { type: 'string', required: true },
 
+  	id_card: { type: 'string', required: true },
+
   	user_name: { type: 'string' },
 
   	email: { type: 'string', email: true, required: true, unique: true },

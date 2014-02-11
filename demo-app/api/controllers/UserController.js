@@ -17,6 +17,7 @@
 var display_name = {
   'user_name'              : '用户名',
   'name'                   : '姓名',
+  'id_card'                : '身份证号码',
   'email'                  : '电子邮箱',
   'password'               : '密码',
   'confirmation'           : '请再次输入密码',
