@@ -37,11 +37,31 @@ $(document).ready(function(){
     handle_bank_account_model();
   } else if (/^\/(investigation|riskassessment|review)\/show/.test(page)) {
     handle_edit_btn();
+  } else if (page == '/user/new') {
+    handle_input_tooltip();
+    handle_agreement_checkbox();
   } else {
 
   }
 
 });
+
+function handle_agreement_checkbox() {
+  $("button#submit").attr("disabled", "");
+  $('input[name="agreement_acknowledged"]').change(function() {
+    if(this.checked) {
+      $("button#submit").removeAttr("disabled");
+    } else {
+      $("button#submit").attr("disabled", "");
+    }
+  });
+}
+
+function handle_input_tooltip() {
+  $('input').tooltip({ 
+    delay: 200
+  });
+}
 
 function handle_edit_btn() {
   $("div#edit-btn-container").on('click', 'a#edit', function() {

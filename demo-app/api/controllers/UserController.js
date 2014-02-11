@@ -14,11 +14,19 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+var display_name = {
+  'user_name'              : '用户名',
+  'name'                   : '姓名',
+  'email'                  : '电子邮箱',
+  'password'               : '密码',
+  'confirmation'           : '请再次输入密码',
+  'agreement_acknowledged' : '已阅读并同意协议'
+};
 
 module.exports = {
     
 	'new': function (req, res) {
-		res.view();
+		res.view({ display_name: display_name });
 	},
 
 	'create': function (req, res, next) {
@@ -67,7 +75,7 @@ module.exports = {
 	'update': function(req, res, next) {
     var userObj = {
       name: req.param('name'),
-      title: req.param('title'),
+      user_name: req.param('user_name'),
       email: req.param('email'),
       password: req.param('password')
     };

@@ -17,29 +17,28 @@
 var bcrypt = require('bcrypt');
 
 module.exports = {
-    
   
   'new': function(req, res) {
     res.view('session/new');
   },
 
   'create': function(req, res, next) {
-    if (!req.param('email') || !req.param('password')) {
+    if (!req.param('user_name') || !req.param('password')) {
       var err = [{
-        name: 'username AND password required',
-        message: 'You must enter both username and password.'
+        name: '输入错误',
+        message: '请输入用户名和密码'
       }];
       req.session.flash = { err: err };
       res.redirect('/session/new');
       return;
     }
 
-    User.findOneByEmail(req.param('email'), function foundUser(err, user) {
+    User.findOne({ user_name: req.param("user_name") }, function foundUser(err, user) {
       if (err) return next(err);
       if (!user) {
         var err = [{
-          name: 'No such account',
-          message: 'The email address \'' + req.param('email') + '\' not found.'
+          name: '认证错误',
+          message: '用户名 \'' + req.param('user_name') + '\' 没找到。'
         }];
         req.session.flash = { err: err };
         res.redirect('/session/new');
@@ -50,8 +49,8 @@ module.exports = {
         if (err) return next(err);
         if (!valid) {
           var err = [{
-            name: 'Incorrect password',
-            message: 'Incorrect password for user \'' + req.param('email') + '\'.'
+            name: '认证错误',
+            message: '用户名密码不匹配'
           }];
           req.session.flash = { err: err };
           res.redirect('/session/new');
@@ -67,7 +66,7 @@ module.exports = {
             loggedIn: true, 
             id: user.id,
             name: user.name,
-            action: ' has logged in.'
+            action: ' 已登录'
           });
 
           if (user.admin) {
@@ -89,7 +88,7 @@ module.exports = {
             loggedIn: false, 
             id: user.id,
             name: user.name,
-            action: " has logged out."
+            action: " 已注销"
           });
           req.session.destroy();
           res.redirect('/session/new');
@@ -110,3 +109,4 @@ module.exports = {
 
   
 };
+        message: 'You must enter both username and password.'

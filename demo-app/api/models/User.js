@@ -12,36 +12,19 @@ module.exports = {
 
   attributes: {
   	
-  	name: {
-  		type: 'string',
-  		required: true
-  	},
+  	name: { type: 'string', required: true },
 
-  	title: {
-  		type: 'string'
-  	},
+  	user_name: { type: 'string' },
 
-  	email: {
-  		type: 'string',
-  		email: true,
-  		required: true,
-  		unique: true
-  	},
+  	email: { type: 'string', email: true, required: true, unique: true },
 
-    admin: {
-      type: 'boolean',
-      defaultsTo: false
-    },
+    admin: { type: 'boolean', defaultsTo: false },
 
-    online: {
-      type: 'boolean',
-      defaultsTo: false
-    },
+    online: { type: 'boolean', defaultsTo: false },
 
-    encryptedPassword: {
-    	type: 'string'
-    }/*,
-
+    encryptedPassword: { type: 'string' }
+    
+    /*
     toJSON: function() {
     	var obj = this.toObject();
     	delete obj.password;
@@ -65,7 +48,7 @@ module.exports = {
   beforeCreate: function(values, next) {
     // encrypt password
     if (!values.password || values.password != values.confirmation) {
-      return next({err: ["Password does not match password confirmation"]});
+      return next({ err: ["两次输入的密码不同"] });
     }
     require('bcrypt').hash(values.password, 10, function passwordEncrypted(err, encryptedPassword) {
       if (err) return next(err);
