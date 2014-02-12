@@ -47,12 +47,25 @@ module.exports = {
         if (err) return next(err);
         user.action = " has been created.";
         User.publishCreate(user);
-        res.redirect('/user/show/' + user.id);
+        res.redirect('/user/activation/' + user.id);
       });
       req.session.flash = {};
 		});
 	},
 
+  activation: function(req, res, next) {
+    console.log(req.params.all());
+    var user_info = {};
+    User.findOne({ id: req.param("id") }).done(function(err, val) {
+      if (err) return next(err);
+      user_info = val;
+    });
+    console.log(user_info);
+    res.view({ 
+      display_name: display_name,
+      user_info: user_info
+    });
+  },
 
 	'show': function (req, res, next) {
 		User.findOne(req.params['id'], function foundUser (err, user) {

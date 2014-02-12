@@ -46,13 +46,17 @@ $(document).ready(function(){
 
 });
 
+function handle_submit_btn() {
+  $("form#haha-form-signup")[0].submit();
+}
+
 function handle_agreement_checkbox() {
-  $("button#submit").attr("disabled", "");
+  $("button.haha-btn-toggle").attr("disabled", "");
   $('input[name="agreement_acknowledged"]').change(function() {
     if(this.checked) {
-      $("button#submit").removeAttr("disabled");
+      $("button.haha-btn-toggle").removeAttr("disabled");
     } else {
-      $("button#submit").attr("disabled", "");
+      $("button.haha-btn-toggle").attr("disabled", "");
     }
   });
 }
