@@ -20,6 +20,7 @@ module.exports.policies = {
 
   user: {
     'new': 'flash',
+    'cities': 'flash',
     'create': 'flash',
     'subscribe': ['flash', 'authenticated'],
     '*': ['flash', 'access']

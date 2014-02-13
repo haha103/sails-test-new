@@ -150,6 +150,11 @@ module.exports = {
     });
   },
 
+  cities: function(req, res) {
+    console.log(req.params.all());
+    res.json(cities[req.param("province")]);
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to UserController)
