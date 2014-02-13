@@ -1,45 +1,30 @@
 <div class='container'>
   <br/>
   <div class="progress">
-    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
       <span>1. 帐号注册</span>
     </div>
-    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-      <span>2. 发送激活邮件</span>
+    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+      <span>2. 用户激活</span>
     </div>
-    <div class="progress-bar progress-bar-gray" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-      <span>3. 用户激活</span>
+    <div class="progress-bar progress-bar-gray" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+      <span>3. 绑定银行信息</span>
     </div>
-    <div class="progress-bar progress-bar-gray" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-      <span>4. 绑定银行信息</span>
-    </div>
-    <div class="progress-bar progress-bar-gray" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-      <span>5. 注册成功</span>
+    <div class="progress-bar progress-bar-gray" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+      <span>4. 注册成功</span>
     </div>
   </div>
-  <form role='form' action="/user/activationconfirm/<%= user_info.id %>" method="POST" class="form-horizontal" id="haha-form-activation">
-    <div class="panel panel-default haha-activation-panel">
-      <div class="panel-heading">
-        <h4>激活邮件</h4>
-			</div>
-			<div class="panel-body">
-				<% if (flash && flash.err) { %>
-				<div class="alert alert-danger">					
-					<% Object.keys(flash.err).forEach(function(error) { %>
-						<%= error %>: <%= JSON.stringify(flash.err[error]) %>
-					<% }) %>
-				</div>
-				<% } %>
-        <br/>
-      </div>
-			<div class="panel-footer">
-        <div class='row'>
-          <div class="col-md-2 col-md-offset-2">
-            <button type="submit" class="btn btn-primary btn-block haha-btn-toggle" onclick="handle_submit_btn()">创建</button>
-          </div>
-        </div>
-      </div>
+  <h3>用户激活</h3>
+  <hr/>
+  <div class="alert alert-success">
+    <p class='text-center'>
+      激活链接已发到你的邮箱。请点击邮箱中的链接完成激活。没收到邮件？
+      <a href="/user/reactivation/<%= user_info.id %>">重发邮件</a>
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-10">
+      <a class="btn btn-success btn-block btn-sm" href="/user/bindbank/<%= user_info.id %>">下一步</a>
     </div>
-    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
-  </form>
+  </div>
 </div>

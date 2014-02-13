@@ -14,6 +14,9 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+
+var CityHelper = require("../libs/CityHelper");
+
 var display_name = {
   'user_name'              : '用户名',
   'name'                   : '姓名',
@@ -21,8 +24,13 @@ var display_name = {
   'email'                  : '电子邮箱',
   'password'               : '密码',
   'confirmation'           : '请再次输入密码',
-  'agreement_acknowledged' : '已阅读并同意协议'
+  'agreement_acknowledged' : '已阅读并同意协议',
+  'bank':'开户行',
+  'city':'城市',
+  'province': '省份'
 };
+
+var cities = CityHelper.get_cities();
 
 module.exports = {
     
@@ -53,14 +61,27 @@ module.exports = {
 		});
 	},
 
-  activation: function(req, res, next) {
-    console.log(req.params.all());
+  bindbank: function(req, res, next) {
     var user_info = {};
     User.findOne({ id: req.param("id") }).done(function(err, val) {
       if (err) return next(err);
       user_info = val;
     });
-    console.log(user_info);
+    res.view({ 
+      display_name: display_name,
+      user_info: user_info,
+      cities: cities
+    });
+  },
+
+  activation: function(req, res, next) {
+    //console.log(req.params.all());
+    var user_info = {};
+    User.findOne({ id: req.param("id") }).done(function(err, val) {
+      if (err) return next(err);
+      user_info = val;
+    });
+    //console.log(user_info);
     res.view({ 
       display_name: display_name,
       user_info: user_info
