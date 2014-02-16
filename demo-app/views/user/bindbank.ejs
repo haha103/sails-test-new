@@ -25,15 +25,10 @@
     </div>
     <% } %>
     <div class='form-group'>
-      <label class='control-label col-md-2' for="bank"><%= display_name["bank"] %></label>
+      <label class='control-label col-md-2' for="bank_province"><%= display_name["bank_province"] %></label>
       <div class="col-md-4">
-        <input type='text' class='form-control' name='bank' data-toggle="tooltip" data-placement="right" title="开户行全称"></input>
-      </div>
-    </div>
-    <div class='form-group'>
-      <label class='control-label col-md-2' for="province"><%= display_name["province"] %></label>
-      <div class="col-md-4">
-        <select name="province" id="province" class="form-control">
+        <select name="bank_province" id="bank_province" class="form-control province">
+          <option value="">&nbsp;</option>
           <% for (var p in cities) { %>
           <option value="<%= p %>"><%= p %></option>
           <% } %>
@@ -41,18 +36,31 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-md-2' for="city"><%= display_name["city"] %></label>
+      <label class='control-label col-md-2' for="bank_city"><%= display_name["bank_city"] %></label>
       <div class="col-md-4">
-        <select name="city" id="city" class="form-control">
+        <select name="bank_city" id="bank_city" class="form-control city">
         </select>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-md-2' for='bank_name'><%= display_name['bank_name'] %></label>
+      <div class="col-md-4">
+        <input type='text' class='form-control' name='bank_name' data-toggle="tooltip" data-placement="right" title="开户行全称"></input>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-md-2' for="bank_account"><%= display_name["bank_account"] %></label>
+      <div class="col-md-4">
+        <input type='text' class='form-control' id='bank_account' name='bank_account' data-toggle="tooltip" data-placement="right" title="账户户主必须为您注册时填写的真实姓名：<%= user_info.name %>"></input>
       </div>
     </div>
     <br/>
     <div class='row'>
       <div class="col-md-2 col-md-offset-2">
-        <button type="submit" class="btn btn-primary btn-block haha-btn-toggle" onclick="handle_submit_btn()">创建</button>
+        <button type="submit" class="btn btn-primary btn-block haha-btn-toggle" onclick="handle_submit_btn()">绑定</button>
       </div>
     </div>
     <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+    <input class='hidden' name='bank_binded' value='true' />
   </form>
 </div>

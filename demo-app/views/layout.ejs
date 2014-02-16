@@ -39,39 +39,21 @@
         <div class="navbar-collapse collapse haha-nav-container">
           <ul class="nav navbar-nav">
             <% if (session.authenticated) { %>
-            <li class='active'>
-              <a href="/user/show/<%= session.User.id %>">
-                <%= session.User.name %>
-              </a>
-            </li>
             <% if (session.User.admin) { %>
             <li><a href="/user">用户管理</a></li>
             <% }} %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">业务 <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/client/">客户</a></li>
-                <li><a href="/application/">申请</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">字典 <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="/clienttype/">客户类型</a></li>
-                <li><a href="/domain/">行业领域</a></li>
-                <li><a href="/loanform/">贷款方式</a></li>
-                <li><a href="/mortgatetype/">抵押类型</a></li>
-                <li><a href="/shareholderform/">股东出资方式</a></li>
-                <li><a href="/blacklist/">黑名单</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Placeholder</a></li>
-              </ul>
-            </li>
           </ul>
           <div class="navbar-right">
             <% if (session.authenticated) { %>
-            <a class="btn btn-default navbar-btn navbar-right" href="/session/destroy">
-              Sign-out
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="/user/show/<%= session.User.id %>">
+                  <%= session.User.user_name %> ( <%= session.User.name %> )
+                </a>
+              </li>
+            </ul>
+            <a class="btn btn-default btn-sm navbar-btn navbar-right" href="/session/destroy">
+              退出
             </a>
             <% } %>
           </div>

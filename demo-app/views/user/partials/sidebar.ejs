@@ -1,0 +1,9 @@
+<div class="hidden-print affix-top haha-sidebar" role="complementary" style="">
+  <ul class="nav">
+    <li class="<%= subpage == 'home' ? 'active' : '' %>"><a href="/user/show/<%= user.id %>?subpage=home">主页</a></li>
+    <li class="<%= subpage == 'accountinfo' ? 'active' : '' %>"><a href="/user/show/<%= user.id %>?subpage=accountinfo">账户信息</a></li>
+    <li class="<%= subpage == 'bankinfo' ? 'active' : '' %>"><a href="/user/show/<%= user.id %>?subpage=bankinfo">银行账户绑定</a></li>
+    <li class="<%= subpage == 'security' ? 'active' : '' %>"><a href="/user/show/<%= user.id %>?subpage=security">账户安全</a></li>
+    <li class="<%= subpage == 'balance' ? 'active' : '' %>"><a href="/user/show/<%= user.id %>?subpage=balance">账户余额</a></li>
+  </ul>
+</div>

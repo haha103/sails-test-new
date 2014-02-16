@@ -1,0 +1,80 @@
+<form role='form' action="/user/update/<%= user.id %>" method="POST" class="form-horizontal" id="haha-form-signup">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-target="#basic-info" href="#basic-info">
+            基本信息
+          </a>
+        </h4>
+      </div>
+      <div id="basic-info" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class='form-group'>
+            <label class='control-label col-md-2'>户主姓名</label>
+            <div class="col-md-4">
+              <p class="haha-form-label-field"><%= user.name %></p>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="bank_province"><%= display_name["bank_province"] %></label>
+            <div class="col-md-4">
+              <select name="bank_province" id="bank_province" class="form-control province">
+                <option value="">&nbsp;</option>
+                <% for (var p in cities) { 
+                var selected_bank_province = p == user.bank_province ? "selected" : "";
+                %>
+                <option value="<%= p %>" <%= selected_bank_province %> ><%= p %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="bank_city"><%= display_name["bank_city"] %></label>
+            <div class="col-md-4">
+              <select name="bank_city" id="bank_city" class="form-control city">
+                <% if (user.province) { %>
+                <%   for (var i = 0; i < cities[user.province].length; ++i) { %>
+                <%     var selected_bank_city = cities[user.province][i] == user.bank_city ? "selected" : ""; %>
+                <option value="<%= cities[user.province][i] %>" <%= selected_bank_city %> ><%= cities[user.province][i] %></option>
+                <% }} %>
+              </select>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="bank_name"><%= display_name["bank_name"] %></label>
+            <div class="col-md-4">
+              <input type='text' class='form-control' name='bank_name' placeholder="<%= user.bank_name %>" value="<%= user.bank_name %>"></input>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="bank_account"><%= display_name["bank_account"] %></label>
+            <div class="col-md-4">
+              <input type='text' class='form-control' name='bank_account' placeholder="<%= user.bank_account %>" value="<%= user.bank_account %>"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-target="#more-info" href="#more-info">
+            更多信息
+          </a>
+        </h4>
+      </div>
+      <div id="more-info" class="panel-collapse collapse">
+        <div class="panel-body">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class='row'>
+    <div class="col-md-2 col-md-offset-10">
+      <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn()">保存</button>
+    </div>
+    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+  </div>
+</form>

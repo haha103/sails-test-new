@@ -24,8 +24,21 @@ module.exports = {
 
     online: { type: 'boolean', defaultsTo: false },
 
-    encryptedPassword: { type: 'string' }
+    encryptedPassword: { type: 'string' },
+
+    activated: { type: 'boolean', defaultsTo: false },
+
+    bank_binded: { type: 'boolean', defaultsTo: false },
+  	bank_province: { type: 'string' },
+  	bank_city: { type: 'string' },
+  	bank_account: { type: 'string' },
+  	bank_name: { type: 'string' },
+    reg_completed: { type: 'boolean', defaultsTo: false },
     
+  	phone: { type: 'string' },
+  	city: { type: 'string' },
+  	province: { type: 'string' },
+  	address: { type: 'string' },
     /*
     toJSON: function() {
     	var obj = this.toObject();
@@ -39,6 +52,9 @@ module.exports = {
   },
 
   beforeValidation: function(values, next) {
+    if (values.bank_account) {
+      values.bank_account = values.bank_account.replace(/ /g, '');
+    }
     // admin
     if (values.admin && values.admin == 'on') {
       values.admin = true;

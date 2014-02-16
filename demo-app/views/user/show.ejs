@@ -1,63 +1,12 @@
 <div class='container'>
-	<form role='form' action="/user/update/<%= user.id %>" method="POST" class="haha-form-signin">
-		<div class="panel panel-default haha-show-user-panel haha-panel-md">
-			<div class="panel-heading">
-				<div class='row'>
-					<div class='col-md-9'>
-						<h4>User Details</h4>
-					</div>
-          <% if (session.User.admin || session.User.id == user.id) { %>
-					<div class='col-md-3' id='edit-btn-container'>
-						<a class='btn btn-primary btn-block' id='edit'>Edit</a>
-					</div>
-          <% } %>
-				</div>
-			</div>
-			<div class="panel-body">
-				<% if (flash && flash.err) { %>
-				<div class="alert alert-danger">					
-					<% Object.keys(flash.err).forEach(function(error) { %>
-						<%= error %>: <%= JSON.stringify(flash.err[error]) %>
-					<% }) %>
-				</div>
-				<% } %>
-				<div class='form-group'>
-					<label class='control-label' for="name">Name</label>
-					<input type='text' class='form-control' name='name' value='<%= user.name %>' disabled></input>
-				</div>
-				<div class='form-group'>
-					<label class='control-label' for="title">Title</label>
-					<input type='text' class='form-control' name='title' value='<%= user.title %>' disabled></input>
-				</div>
-				<div class='form-group'>
-					<label class='control-label' for="email">Email Address</label>
-					<input type='text' class='form-control' name='email' value='<%= user.email %>' disabled></input>
-				</div>
-        <div class="checkbox">
-          <label for="">
-            <% 
-              var admin_checked = "";
-              if (user.admin) {
-                admin_checked = "checked";
-              }
-            %>
-            <input type="checkbox" name="admin" disabled <%= admin_checked %>/> Admin?
-          </label>
-          <input type="hidden" name="is_admin" value="<%= session.User.admin %>" />
-        </div>
-				<div class='form-group hidden'>
-					<label class='control-label' for="password">Password</label>
-					<input type='password' class='form-control' name='password' id='password' value='<%= user.password %>'></input>
-				</div>
-				<div class='form-group hidden'>
-					<label class='control-label' for="confirmation">Password Confirmation</label>
-					<input type='password' class='form-control' name='confirmation' value='<%= user.password %>'></input>
-				</div>
-			</div>
-			<div class="panel-footer hidden">
-				<button type='submit' id='update' class='btn btn-primary btn-block'>Update</button>
-			</div>
-		</div>
-		<input class='hidden' name='_csrf' value='<%= _csrf %>' />
-	</form>
+  <h3>我的主页</h3>
+  <hr/>
+  <div class="row">
+    <div class="col-md-2">
+      <%- partial('partials/sidebar.ejs') %>
+    </div>
+    <div class="col-md-10">
+      <%- partial('partials/maincontent.ejs') %>
+    </div>
+  </div>
 </div>

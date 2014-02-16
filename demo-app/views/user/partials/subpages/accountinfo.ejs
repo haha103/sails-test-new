@@ -1,0 +1,98 @@
+<form role='form' action="/user/update/<%= user.id %>" method="POST" class="form-horizontal" id="haha-form-signup">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-target="#basic-info" href="#basic-info">
+            基本信息
+          </a>
+        </h4>
+      </div>
+      <div id="basic-info" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class='form-group'>
+            <label class='control-label col-md-2'><%= display_name["user_name"] %></label>
+            <div class="col-md-4">
+              <p class="haha-form-label-field"><%= user.user_name %></p>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="name"><%= display_name["name"] %></label>
+            <div class="col-md-4">
+              <input type='text' class='form-control' name='name' placeholder="<%= user.name %>" value="<%= user.name %>"></input>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="id_card"><%= display_name["id_card"] %></label>
+            <div class="col-md-4">
+              <input type='text' class='form-control' name='id_card' placeholder="<%= user.id_card %>" value="<%= user.id_card %>"></input>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="email"><%= display_name["email"] %></label>
+            <div class="col-md-4">
+              <input type='text' class='form-control' name='email' placeholder="<%= user.email %>" value="<%= user.email %>"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-target="#more-info" href="#more-info">
+            更多信息
+          </a>
+        </h4>
+      </div>
+      <div id="more-info" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="province"><%= display_name["province"] %></label>
+            <div class="col-md-4">
+              <select name="province" id="province" class="form-control province">
+                <option value="">&nbsp;</option>
+                <% for (var p in cities) { 
+                var selected_province = p == user.province ? "selected" : "";
+                %>
+                <option value="<%= p %>" <%= selected_province %> ><%= p %></option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="city"><%= display_name["city"] %></label>
+            <div class="col-md-4">
+              <select name="city" id="city" class="form-control city">
+                <% if (user.province) { %>
+                <%   for (var i = 0; i < cities[user.province].length; ++i) { %>
+                <%     var selected_city = cities[user.province][i] == user.city ? "selected" : ""; %>
+                <option value="<%= cities[user.province][i] %>" <%= selected_city %> ><%= cities[user.province][i] %></option>
+                <% }} %>
+              </select>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="address"><%= display_name["address"] %></label>
+            <div class="col-md-4">
+              <input type='text' class='form-control' name='address' value="<%= user.address ? user.address : '' %>"></input>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="phone"><%= display_name["phone"] %></label>
+            <div class="col-md-4">
+              <input type='text' class='form-control' name='phone' value="<%= user.phone ? user.phone : '' %>"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class='row'>
+    <div class="col-md-2 col-md-offset-10">
+      <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn()">保存</button>
+    </div>
+    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+  </div>
+</form>

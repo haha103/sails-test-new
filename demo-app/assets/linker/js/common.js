@@ -41,6 +41,10 @@ $(document).ready(function(){
     handle_input_tooltip();
     handle_agreement_checkbox();
   } else if (/^\/user\/bindbank/.test(page)) {
+    handle_input_tooltip();
+    handle_city_selection();
+    handle_auto_spacing();
+  } else if (/^\/user\/show/.test(page)) {
     handle_city_selection();
   } else {
 
@@ -48,8 +52,21 @@ $(document).ready(function(){
 
 });
 
+function handle_auto_spacing() {
+  $('input#bank_account').keyup(function(e) {
+    var val = this.value;
+    if (e.which != 8 && e.which != 46) {  // handle delete and backspace
+      if (val.replace(/\s/g, '').length % 4 == 0) {
+        $(this).val(val + ' ');
+      }
+    } else {
+      $(this).val(val);        
+    }
+  });
+}
+
 function handle_city_selection() {
-  $('select#province').change(function(e) {
+  $('select.province').change(function(e) {
     var elem = $("option:selected", this);
     var p = elem.val();
     $.ajax({
@@ -57,11 +74,11 @@ function handle_city_selection() {
       type: 'get',
       data: 'province=' + p,
       success: function(cities) {
-        $('select#city').empty();
+        $('select.city').empty();
         for (var i = 0; i < cities.length; ++i) {
-          $('select#city').append("<option value='" + cities[i] + "'>" + cities[i] + "</option>");
+          $('select.city').append("<option value='" + cities[i] + "'>" + cities[i] + "</option>");
         }
-        $('select#city').selectpicker('refresh');
+        $('select.city').selectpicker('refresh');
       },
       error: function(e) {
         console.log(e.message);
