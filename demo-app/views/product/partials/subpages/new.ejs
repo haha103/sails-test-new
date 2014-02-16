@@ -1,0 +1,87 @@
+<form role='form' action="/product/create" method="POST" class="form" id="haha-form-signup">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-target="#basic-info" href="#basic-info">
+            基本信息
+          </a>
+        </h4>
+      </div>
+      <div id="basic-info" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class='form-group'>
+                <label class='control-label' for="contract"><%= display_name["contract"] %></label>
+                <input type='text' class='form-control' name='contract'></input>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class='form-group'>
+                <label class='control-label' for="amount"><%= display_name["amount"] %></label>
+                <input type='text' class='form-control' name='amount'></input>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class='form-group'>
+                <label class='control-label' for="interest"><%= display_name["interest"] %></label>
+                <input type='text' class='form-control' name='interest'></input>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class='form-group'>
+                <label class='control-label' for="status"><%= display_name["status"] %></label>
+                <input type='text' class='form-control' name='status'></input>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class='form-group'>
+                <label class='control-label' for="duration_from"><%= display_name["duration_from"] %></label>
+                <input type='text' class='form-control' name='duration_from' datepicker></input>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class='form-group'>
+                <label class='control-label' for="duration_to"><%= display_name["duration_to"] %></label>
+                <input type='text' class='form-control' name='duration_to' datepicker></input>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class='form-group'>
+                <label class='control-label' for="invest_receiver"><%= display_name["invest_receiver"] %></label>
+                <input type='text' class='form-control' name='invest_receiver'></input>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class='form-group'>
+                <label class='control-label' for="payment_method"><%= display_name["payment_method"] %></label>
+                <input type='text' class='form-control' name='payment_method'></input>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class='form-group'>
+                <label class='control-label' for="invest_purpose"><%= display_name["invest_purpose"] %></label>
+                <input type='text' class='form-control' name='invest_purpose'></input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- partial('../guarantees') %>
+  </div>
+  <br/>
+  <div class='row'>
+    <div class="col-md-2 col-md-offset-10">
+      <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn()">保存</button>
+    </div>
+    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+  </div>
+</form>
