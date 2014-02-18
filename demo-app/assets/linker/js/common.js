@@ -46,11 +46,41 @@ $(document).ready(function(){
     handle_auto_spacing();
   } else if (/^\/user\/show/.test(page)) {
     handle_city_selection();
+  } else if (/^\/product\/admin/.test(page)) {
+    handle_guarantee_model();
+    handle_file_input();
   } else {
 
   }
 
 });
+
+function handle_file_input() {
+  $('.fileinput').fileinput({ width: '100%' });
+}
+
+function handle_guarantee_model() {
+  var count = 0;
+  $("button#guarantee-modal-save").on("click", function(e) {
+    var guarantee_company = $("#new-guarantee-modal .modal-body input#guarantee-company").val();
+    var guarantee_letter_code = $("#new-guarantee-modal .modal-body input#guarantee-letter_code").val();
+    var guarantee_letter_scan = $("#new-guarantee-modal .modal-body input#guarantee-letter_scan").val();
+    if (guarantee_company == "") {
+      alert("不能留空!");
+      return;
+    }
+    var new_row = JST['assets/linker/templates/add_row.ejs']({ 
+      vals: [ guarantee_company, guarantee_letter_code, guarantee_letter_scan ]
+    });
+    var new_row_obj = $(new_row).appendTo("table#guarantees tbody");
+    count++;
+    $('<input>').attr({ type: 'hidden', name: 'guarantee_company_' + count, value: guarantee_company}).appendTo("form");
+    $('<input>').attr({ type: 'hidden', name: 'guarantee_letter_scan_' + count, value: guarantee_letter_scan}).appendTo("form");
+    $('<input>').attr({ type: 'hidden', name: 'guarantee_letter_code_' + count, value: guarantee_letter_code}).appendTo("form");
+    $("#new-guarantee-modal .modal-body input").val('');
+    $("#new-guarantee-modal").modal("hide");
+  });
+}
 
 function handle_auto_spacing() {
   $('input#bank_account').keyup(function(e) {

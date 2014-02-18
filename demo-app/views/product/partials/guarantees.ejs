@@ -1,32 +1,37 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="row">
-      <div class="col-md-2">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-target="#more-info" href="#more-info">
-            担保信息
-          </a>
-        </h4>
-      </div>
-      <div class="col-md-2 col-md-offset-8">
-        <button type="button" class="btn btn-primary btn-block btn-xs" data-toggle="modal" data-target="#new-guarantee-modal">添加担保信息</button>
-      </div>
-    </div>
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-target="#more-info" href="#more-info">
+        担保信息
+      </a>
+    </h4>
   </div>
-  <div id="more-info" class="panel-collapse collapse">
+  <div id="more-info" class="panel-collapse collapse in">
     <div class="panel-body">
-      <%- partial('modals/guarantee') %>
-      <table class="table table-condensed table-hover" id="guarantees">
-        <thead>
-          <tr>
-            <th>担保公司</th>
-            <th>担保函编号</th>
-            <th>担保函</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <div class="row">
+        <div class="col-md-6">
+          <div class='form-group'>
+            <label class='control-label' for="guarantee_company"><%= display_name["guarantee_company"] %></label>
+            <input type='text' class='form-control' name='guarantee_company'></input>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class='form-group'>
+            <label class='control-label' for="guarantee_letter_code"><%= display_name["guarantee_letter_code"] %></label>
+            <input type='text' class='form-control' name='guarantee_letter_code'></input>
+          </div>
+        </div>
+      </div>
+      <div class='form-group fileinput fileinput-new' data-provides="fileinput">
+        <label class='control-label' for="guarantee_letter_scan"><%= display_name["guarantee_letter_scan"] %></label>
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+          <div class="input-group">
+            <div class="form-control uneditable-input span3" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+            <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">选择文件</span><span class="fileinput-exists">修改</span><input type="file" name="guarantee_letter_scan"/></span>
+            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">删除</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

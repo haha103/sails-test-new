@@ -26,6 +26,9 @@ var display_name = {
   'invest_receiver': '投资接受人',
   'invest_purpose': '项目用途',
   'payment_method': '兑付方式',
+  'guarantee_company': '担保公司',
+  'guarantee_letter_code': '担保函编号',
+  'guarantee_letter_scan': '担保函扫描件',
 };
 
 module.exports = {
