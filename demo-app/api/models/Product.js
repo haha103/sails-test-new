@@ -8,10 +8,13 @@
 
 module.exports = {
 
+  schema: true,
+
   attributes: {
 
     contract: { type: 'string' },
-    ammount: { type: 'integer' },
+    needed_amount: { type: 'integer' },
+    current_amount: { type: 'integer', defaultsTo: 0 },
     interest: { type: 'float' },
     duration_from: { type: 'date' },
     duration_to: { type: 'date' },

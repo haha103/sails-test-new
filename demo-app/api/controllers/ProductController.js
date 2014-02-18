@@ -23,7 +23,7 @@ var UPLOAD_PATH = 'public/files/products';
 
 var display_name = {
   'contract': '合同编号',
-  'amount': '需求金额',
+  'needed_amount': '需求金额',
   'interest': '年化利率',
   'duration_from': '开始',
   'duration_to': '截至',
@@ -49,16 +49,13 @@ module.exports = {
   
   create: function(req, res, next) {
     var file = req.files.guarantee_letter_scan;
-    console.log(path.resolve(process.cwd()));
-    console.log(file.path);
-    console.log(file.size);
-    var filename = UPLOAD_PATH + "/" + uuid.v1() + path.extname(file.name);
-    console.log(filename);
+    var upload_path = UPLOAD_PATH + "/guaranett_letter_scan/";
+    var filename = upload_path + uuid.v1() + path.extname(file.name);
     fs.readFile(file.path, function(err, data) {
       if (err) {
         res.json(err);
       } else {
-        mkdirp(UPLOAD_PATH, function(err) {
+        mkdirp(upload_path, function(err) {
           if (err) console.error(err);
           fs.writeFile(filename, data, function(err) {
             if (err) res.json(err);
@@ -66,7 +63,12 @@ module.exports = {
         });
       }
     });
-    res.redirect("/product/admin");
+    var product = req.params.all();
+    product.guarantee_letter_scan = filename;
+    Product.create(product, function(err, p) {
+      if (err) res.json(err);
+    });
+    res.redirect("/product/admin?subpage=index");
   },
 
   /**
