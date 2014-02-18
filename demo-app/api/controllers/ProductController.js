@@ -15,6 +15,12 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+var fs = require('fs');
+var path = require('path');
+var uuid = require('node-uuid');
+var mkdirp = require('mkdirp');
+var UPLOAD_PATH = 'public/files/products';
+
 var display_name = {
   'contract': '合同编号',
   'amount': '需求金额',
@@ -41,6 +47,28 @@ module.exports = {
     });
   },   
   
+  create: function(req, res, next) {
+    var file = req.files.guarantee_letter_scan;
+    console.log(path.resolve(process.cwd()));
+    console.log(file.path);
+    console.log(file.size);
+    var filename = UPLOAD_PATH + "/" + uuid.v1() + path.extname(file.name);
+    console.log(filename);
+    fs.readFile(file.path, function(err, data) {
+      if (err) {
+        res.json(err);
+      } else {
+        mkdirp(UPLOAD_PATH, function(err) {
+          if (err) console.error(err);
+          fs.writeFile(filename, data, function(err) {
+            if (err) res.json(err);
+          });
+        });
+      }
+    });
+    res.redirect("/product/admin");
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to ProductController)

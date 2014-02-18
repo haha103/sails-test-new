@@ -16,7 +16,9 @@ module.exports = {
     duration_from: { type: 'date' },
     duration_to: { type: 'date' },
     status: { type: 'string' },
-    guarantee: { type: 'integer' }, // ProductGuarantee
+    guarantee_company: { type: 'string' },
+    guarantee_letter_code: { type: 'string' },
+    guarantee_letter_scan: { type: 'string' },
     invest_receiver: { type: 'string' },
     invest_purpose: { type: 'string' },
     payment_method: { type: 'string' },
