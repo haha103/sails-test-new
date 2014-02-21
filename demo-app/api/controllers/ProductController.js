@@ -41,9 +41,23 @@ module.exports = {
 
   admin: function(req, res) {
     var subpage = req.param('subpage') ? req.param('subpage') : 'new';
+    var products = [];
+    Product.find({}).done(function (err, ps) {
+      if (!err) {
+        ps.map(function(p) {
+          p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
+          p.needed_amount = to_ten_thousand(p.needed_amount);
+          p.progress = p.current_amount / p.needed_amount * 100;
+          p.interest = (p.interest * 100).toString() + "%";
+          p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
+        });
+        products = ps;
+      }
+    });
     res.view({ 
       display_name : display_name ,
-      subpage: subpage
+      subpage: subpage,
+      products: products
     });
   },   
   
@@ -79,3 +93,14 @@ module.exports = {
 
   
 };
+
+function dayDiff(d1, d2)
+{
+  d1 = d1.getTime() / 86400000;
+  d2 = d2.getTime() / 86400000;
+  return new Number(d2 - d1).toFixed(0);
+}
+
+function to_ten_thousand(n) {
+  return n / 10000 + "万";
+}
