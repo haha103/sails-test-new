@@ -3,13 +3,23 @@
   <%   var p = products[i]; %>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-target="#basic-info" href="#basic-info">
-          [<%= p.guarantee_letter_code %>]<%= p.invest_purpose %>需求<%= p.needed_amount %>
-        </a>
-      </h4>
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-target="#basic-info-<%= i %>" href="#basic-info-<%= i %>">
+              [<%= p.guarantee_letter_code %>]<%= p.invest_purpose %>需求<%= p.needed_amount %>
+            </a>
+          </h4>
+        </div>
+        <div class="col-md-offset-4 col-md-1 haha-compact-col">
+          <a href="#" class="btn btn-xs btn-primary btn-block">详情</a>
+        </div>
+        <div class="col-md-1 haha-compact-col">
+          <a href="#" class="btn btn-xs btn-success btn-block">投资</a>
+        </div>
+      </div>
     </div>
-    <div id="basic-info" class="panel-collapse collapse in">
+    <div id="basic-info-<%= i %>" class="panel-collapse collapse in">
       <div class="panel-body">
         <table class="table table-condensed haha-table-compact">
           <thead>
@@ -27,21 +37,21 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= p.needed_amount %></td>
-              <td><%= p.interest %></td>
-              <td><%= p.duration_diff %>天</td>
-              <td><%= p.duration_from %></td>
-              <td><%= p.duration_to %></td>
-              <td><%= p.status %></td>
-              <td style="width:15%;">
-                <div class="progress haha-progress-compact">
+              <td style="width:8%;"><%= p.needed_amount %></td>
+              <td style="width:8%;"><%= p.interest %></td>
+              <td style="width:8%;"><%= p.duration_diff %>天</td>
+              <td style="width:10%;"><%= p.duration_from %></td>
+              <td style="width:10%;"><%= p.duration_to %></td>
+              <td style="width:8%;"><%= p.status %></td>
+              <td style="width:16%;">
+                <div class="progress haha-progress-compact haha-progress-center-span">
                   <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= p.progress %>%;">
-                    <span class="sr-only"><%= p.progress %>% Complete</span>
+                    <span><%= p.progress %>%</span>
                   </div>
                 </div>
               </td>
-              <td><%= p.remain_amount %></td>
-              <td style="width:15%;"><%= p.guarantee_company %></td>
+              <td style="width:10%;"><%= p.remain_amount %></td>
+              <td style="width:22%;"><%= p.guarantee_company %></td>
             </tr>
           </tbody>
         </table>

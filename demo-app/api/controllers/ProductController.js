@@ -45,22 +45,44 @@ module.exports = {
     Product.find({}).done(function (err, ps) {
       if (!err) {
         ps.map(function(p) {
+          p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
           p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
           p.needed_amount = to_ten_thousand(p.needed_amount);
-          p.progress = p.current_amount / p.needed_amount * 100;
           p.interest = (p.interest * 100).toString() + "%";
           p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
         });
         products = ps;
       }
     });
+    console.log(products);
     res.view({ 
       display_name : display_name ,
       subpage: subpage,
       products: products
     });
-  },   
+  },
   
+  index: function(req, res) {
+    var products = [];
+    Product.find({}).done(function (err, ps) {
+      if (!err) {
+        ps.map(function(p) {
+          p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
+          p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
+          p.needed_amount = to_ten_thousand(p.needed_amount);
+          p.interest = (p.interest * 100).toString() + "%";
+          p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
+        });
+        products = ps;
+      }
+    });
+    console.log(products);
+    res.view({ 
+      display_name : display_name,
+      products: products
+    });
+  },
+
   create: function(req, res, next) {
     var file = req.files.guarantee_letter_scan;
     var upload_path = UPLOAD_PATH + "/guaranett_letter_scan/";
@@ -102,5 +124,5 @@ function dayDiff(d1, d2)
 }
 
 function to_ten_thousand(n) {
-  return n / 10000 + "万";
+  return (n / 10000).toFixed(2) + "万";
 }
