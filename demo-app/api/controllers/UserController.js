@@ -16,6 +16,12 @@
  */
 
 var CityHelper = require("../libs/CityHelper");
+var captchagen = require('captchagen');
+var fs = require('fs');
+var path = require('path');
+var uuid = require('node-uuid');
+var mkdirp = require('mkdirp');
+var bcrypt = require('bcrypt');
 
 var display_name = {
   'user_name'              : '用户名',
@@ -33,6 +39,7 @@ var display_name = {
   'province'               : '居住地省份',
   'address'                : '居住地详细地址',
   'phone'                  : '联系电话',
+  'captcha'                : '验证码',
 };
 
 var cities = CityHelper.get_cities();
@@ -40,31 +47,61 @@ var cities = CityHelper.get_cities();
 module.exports = {
     
 	'new': function (req, res) {
-		res.view({ display_name: display_name });
-	},
+    var captcha = captchagen.create();
+    bcrypt.hash(captcha.text(), 10, function (err, out) {
+      if (err) {
+        return res.json(err);
+      }
+      captcha.generate();
+      console.log(captcha.text());
+      console.log(out);
+      req.session.Captcha = {
+        uri: captcha.uri(),
+        txt_encrypted: out
+      };
+      res.view({ 
+        display_name: display_name,
+      });
+    });
+  },
 
 	'create': function (req, res, next) {
     //console.log(req.params.all());
-		User.create(req.params.all(), function userCreated(err, user) {
-			if (err) {
-				console.log(err);
-				req.session.flash = {
-					err: err
-				}				
-				return res.redirect('/user/new');
-			}
-      req.session.authenticated = true;
-      req.session.User = user;
-      user.online = true;
-      user.save(function(err, user) {
-        if (err) return next(err);
-        user.action = " has been created.";
-        User.publishCreate(user);
-        res.redirect('/user/activation/' + user.id);
-      });
-      req.session.flash = {};
-		});
-	},
+    // check captcha first
+    console.log(req.param('captcha'));
+    console.log(req.session.Captcha);
+    bcrypt.compare(req.param('captcha'), req.session.Captcha.txt_encrypted, function(e, v) {
+      if (e || !v) {
+        req.session.flash = { err: [{
+          name: '验证码错误',
+          message: '请重新输入验证码'
+        }]};
+        res.redirect('/user/new');
+        req.session.Captcha = {};
+        return;
+      } else {
+        User.create(req.params.all(), function userCreated(err, user) {
+          if (err) {
+            console.log(err);
+            req.session.flash = {
+              err: err
+            }				
+            return res.redirect('/user/new');
+          }
+          req.session.authenticated = true;
+          req.session.User = user;
+          user.online = true;
+          user.save(function(err, user) {
+            if (err) return next(err);
+            user.action = " has been created.";
+            User.publishCreate(user);
+            res.redirect('/user/activation/' + user.id);
+          });
+          req.session.flash = {};
+        });
+      }
+    });
+  },
 
   bindbank: function(req, res, next) {
     var user_info = {};
