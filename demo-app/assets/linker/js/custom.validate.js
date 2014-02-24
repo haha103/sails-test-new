@@ -3,6 +3,10 @@ $(document).ready(function () {
     return this.optional(element) || validate_id_card(value);
   }, "非法身份证号码");
 
+  $.validator.addMethod("validCaptcha", function(value, element) {
+    return this.optional(element) || validate_captcha(value);
+  }, "验证码错误");
+
 	$('#haha-form-signup').validate({
     debug: true,
 		rules: {
@@ -26,6 +30,10 @@ $(document).ready(function () {
       id_card: {
         required: true,
         validIdCard: true
+      },
+      captcha: {
+        required: true,
+        validCaptcha: true
       }
 		},
     messages: {
@@ -60,4 +68,23 @@ $(document).ready(function () {
 
 function validate_id_card(s) {
   return /^(\d{6})(18|19|20)?(\d{2})([01]\d)([0123]\d)(\d{3})(\d|X|x)?$/.test(s);
+}
+
+function validate_captcha(s) {
+  var result = false;
+  $.ajax({
+    url: '/user/validatecaptcha',
+    type: 'get',
+    async: false,
+    data: 'captcha=' + s,
+    success: function(data) {
+      console.log(data);
+      result = data.result;
+    },
+    error: function(e) {
+      console.log(e.message);
+    }
+  });
+  console.log(result);
+  return result;
 }

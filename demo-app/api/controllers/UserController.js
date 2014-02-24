@@ -48,58 +48,44 @@ module.exports = {
     
 	'new': function (req, res) {
     var captcha = captchagen.create();
-    bcrypt.hash(captcha.text(), 10, function (err, out) {
-      if (err) {
-        return res.json(err);
-      }
-      captcha.generate();
-      console.log(captcha.text());
-      console.log(out);
-      req.session.Captcha = {
-        uri: captcha.uri(),
-        txt_encrypted: out
-      };
-      res.view({ 
-        display_name: display_name,
-      });
+    captcha.generate();
+    console.log(captcha.text());
+    req.session.Captcha = {
+      uri: captcha.uri(),
+      txt: captcha.text()
+    };
+    res.view({ 
+      display_name: display_name,
     });
   },
 
+  validatecaptcha: function(req, res) {
+    var data = { result: false };
+    if (req.param('captcha') ==  req.session.Captcha.txt) {
+      data.result = true;
+    }
+    res.json(data);
+  },
+
 	'create': function (req, res, next) {
-    //console.log(req.params.all());
-    // check captcha first
-    console.log(req.param('captcha'));
-    console.log(req.session.Captcha);
-    bcrypt.compare(req.param('captcha'), req.session.Captcha.txt_encrypted, function(e, v) {
-      if (e || !v) {
-        req.session.flash = { err: [{
-          name: '验证码错误',
-          message: '请重新输入验证码'
-        }]};
-        res.redirect('/user/new');
-        req.session.Captcha = {};
-        return;
-      } else {
-        User.create(req.params.all(), function userCreated(err, user) {
-          if (err) {
-            console.log(err);
-            req.session.flash = {
-              err: err
-            }				
-            return res.redirect('/user/new');
-          }
-          req.session.authenticated = true;
-          req.session.User = user;
-          user.online = true;
-          user.save(function(err, user) {
-            if (err) return next(err);
-            user.action = " has been created.";
-            User.publishCreate(user);
-            res.redirect('/user/activation/' + user.id);
-          });
-          req.session.flash = {};
-        });
+    User.create(req.params.all(), function userCreated(err, user) {
+      if (err) {
+        console.log(err);
+        req.session.flash = {
+          err: err
+        }				
+        return res.redirect('/user/new');
       }
+      req.session.authenticated = true;
+      req.session.User = user;
+      user.online = true;
+      user.save(function(err, user) {
+        if (err) return next(err);
+        user.action = " has been created.";
+        User.publishCreate(user);
+        res.redirect('/user/activation/' + user.id);
+      });
+      req.session.flash = {};
     });
   },
 
