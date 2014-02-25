@@ -52,14 +52,18 @@ $(document).ready(function () {
     unhighlight: function(element) {
       fg = $(element).closest('.form-group');
       fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
     },
     success: function(element) {
       fg = $(element).closest('.form-group');
 			fg.removeClass('has-error');
 			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
 		},
 		errorElement: 'span',
-		errorClass: 'help-block',
+		errorClass: 'haha-validate-error validate-message',
+		//errorClass: 'help-block validate-message',
+    //focusCleanup: true,
 		errorPlacement: function(error, element) {
 			error.insertAfter(element);
 		}

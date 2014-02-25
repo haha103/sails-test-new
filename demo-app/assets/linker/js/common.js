@@ -26,6 +26,8 @@ $(document).ready(function(){
     autoclose : true
   });
 
+  handle_preview_img();
+
   if (page == '/client/new') {
     handle_shareholder_modal();
     handle_loan_modal();
@@ -54,6 +56,17 @@ $(document).ready(function(){
   }
 
 });
+
+function handle_preview_img() {
+  $('.preview').popover({
+    html: true,
+    trigger: 'hover',
+    placement: 'right',
+    content: function () {
+      return '<img class="haha-img-round-corner" src="' + $(this)[0].src + '" />';
+    }
+  });
+}
 
 function handle_file_input() {
   $('.fileinput').fileinput({ width: '100%' });
