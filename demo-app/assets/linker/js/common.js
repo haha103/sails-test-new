@@ -58,6 +58,14 @@ $(document).ready(function(){
 });
 
 function handle_preview_img() {
+  $('.apreview').popover({
+    html: true,
+    trigger: 'hover',
+    placement: 'auto',
+    content: function () {
+      return '<img class="haha-img-round-corner" src="' + $(this)[0].href + '" />';
+    }
+  });
   $('.preview').popover({
     html: true,
     trigger: 'hover',

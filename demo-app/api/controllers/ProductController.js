@@ -19,7 +19,7 @@ var fs = require('fs');
 var path = require('path');
 var uuid = require('node-uuid');
 var mkdirp = require('mkdirp');
-var UPLOAD_PATH = 'public/files/products';
+var UPLOAD_PATH = 'assets/userdata/products';
 
 var display_name = {
   'contract': '合同编号',
@@ -124,5 +124,5 @@ function dayDiff(d1, d2)
 }
 
 function to_ten_thousand(n) {
-  return (n / 10000).toFixed(2) + "万";
+  return (n / 10000).toFixed(0) + "万";
 }

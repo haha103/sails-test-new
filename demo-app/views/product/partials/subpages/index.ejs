@@ -11,51 +11,50 @@
             </a>
           </h4>
         </div>
-        <div class="col-md-offset-4 col-md-1 haha-compact-col">
-          <a href="#" class="btn btn-xs btn-primary btn-block">详情</a>
-        </div>
-        <div class="col-md-1 haha-compact-col">
+        <div class="col-md-offset-5 col-md-1 haha-compact-col">
           <a href="#" class="btn btn-xs btn-success btn-block">投资</a>
         </div>
       </div>
     </div>
     <div id="basic-info-<%= i %>" class="panel-collapse collapse in">
-      <div class="panel-body">
-        <table class="table table-condensed haha-table-compact">
-          <thead>
-            <tr>
-              <th>需求</th>
-              <th>收益率</th>
-              <th>期限</th>
-              <th>投资开始</th>
-              <th>投资截至</th>
-              <th>状态</th>
-              <th>进度</th>
-              <th>还需</th>
-              <th>担保机构</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="width:8%;"><%= p.needed_amount %></td>
-              <td style="width:8%;"><%= p.interest %></td>
-              <td style="width:8%;"><%= p.duration_diff %>天</td>
-              <td style="width:10%;"><%= p.duration_from %></td>
-              <td style="width:10%;"><%= p.duration_to %></td>
-              <td style="width:8%;"><%= p.status %></td>
-              <td style="width:16%;">
-                <div class="progress haha-progress-compact haha-progress-center-span">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= p.progress %>%;">
-                    <span><%= p.progress %>%</span>
-                  </div>
+      <table class="table table-condensed haha-table-compact">
+        <thead>
+          <tr>
+            <th></th>
+            <th>需求</th>
+            <th>收益率</th>
+            <th>期限</th>
+            <th>投资开始</th>
+            <th>投资截至</th>
+            <th>状态</th>
+            <th>进度</th>
+            <th>还需</th>
+            <th>担保机构</th>
+            <th>担保函</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style=""></td>
+            <td style=""><%= p.needed_amount %></td>
+            <td style=""><%= p.interest %></td>
+            <td style=""><%= p.duration_diff %>天</td>
+            <td style=""><%= p.duration_from %></td>
+            <td style=""><%= p.duration_to %></td>
+            <td style=""><%= p.status %></td>
+            <td style="width:20%;">
+              <div class="progress haha-progress-compact haha-progress-center-span">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= p.progress %>%;">
+                  <span><%= p.progress %>%</span>
                 </div>
-              </td>
-              <td style="width:10%;"><%= p.remain_amount %></td>
-              <td style="width:22%;"><%= p.guarantee_company %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              </div>
+            </td>
+            <td style=""><%= p.remain_amount %></td>
+            <td style=""><%= p.guarantee_company %></td>
+            <td style=""><a href="<%= p.guarantee_letter_scan.replace(/^assets/, "") %>" class="apreview">查看</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <% } %>
