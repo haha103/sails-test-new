@@ -12,7 +12,50 @@
           </h4>
         </div>
         <div class="col-md-offset-5 col-md-1 haha-compact-col">
-          <a href="#" class="btn btn-xs btn-success btn-block">投资</a>
+          <button class="btn btn-success btn-xs btn-block" data-toggle="modal" data-target="#invest-<%= i %>">投资</button>
+          <div class="modal fade" id="invest-<%= i %>" tabindex="-1" role="dialog" aria-labelledby="invest-label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  投资
+                </div>
+                <form role='form' action="/invest/create?product=<%= p.id %>" method="POST" class="form-horizontal">
+                  <div class="modal-body">
+                    <div class='form-group'>
+                      <label class='control-label col-md-2' for="invest-amount">投资金额</label>
+                      <div class="col-md-10">
+                        <input type='text' class='form-control' name='invest-amount'></input>
+                      </div>
+                    </div>
+                    <div class='form-group'>
+                      <label class='control-label col-md-2' for="invest-amount-confirm">确认金额</label>
+                      <div class="col-md-10">
+                        <input type='text' class='form-control' name='invest-amount-confirm'></input>
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class="col-md-10 col-md-offset-2">
+                        <div class="checkbox">
+                          <label for="">
+                            <input type="checkbox" name="invest-contract-agreed" /> 同意投资协议
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer haha-modal-footer-compact">
+                    <div class='row'>
+                      <div class="col-md-2 col-md-offset-10">
+                        <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn()">确定</button>
+                      </div>
+                    </div>
+                  </div>
+                  <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -51,7 +94,24 @@
             </td>
             <td style=""><%= p.remain_amount %></td>
             <td style=""><%= p.guarantee_company %></td>
-            <td style=""><a href="<%= p.guarantee_letter_scan.replace(/^assets/, "") %>" class="apreview">查看</a></td>
+            <td style="">
+              <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#scan-<%= i %>">
+                查看
+              </button>
+              <div class="modal fade" id="scan-<%= i %>" tabindex="-1" role="dialog" aria-labelledby="scan-label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      担保函扫描件
+                    </div>
+                    <div class="modal-body">
+                      <img class="img-responsive" src="<%= p.guarantee_letter_scan.replace(/^assets/, "") %>"></img>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
