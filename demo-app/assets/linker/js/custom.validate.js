@@ -7,6 +7,114 @@ $(document).ready(function () {
     return this.optional(element) || validate_captcha(value);
   }, "验证码错误");
 
+  $("#haha-form-withdraw").validate({
+    debug: true,
+    rules: {
+      withdraw_amount: { required: true, digits: true },
+      withdraw_amount_confirm: { equalTo: "#withdraw_amount" },
+    },
+    messages: {
+      withdraw_amount: { required: "请输入提现金额", digits: "您的输入不是数字" },
+      withdraw_amount_confirm: { equalTo: "两次输入的提现金额不匹配" },
+    },
+    highlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-success');
+      fg.addClass('has-error');
+    },
+    unhighlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
+    },
+    success: function(element) {
+      fg = $(element).closest('.form-group');
+			fg.removeClass('has-error');
+			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
+		},
+		errorElement: 'span',
+		errorClass: 'haha-validate-error validate-message',
+		errorPlacement: function(error, element) {
+			error.insertAfter($(element).closest(".input-group"));
+		},
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+  $("#haha-form-recharge").validate({
+    debug: true,
+    rules: {
+      recharge_amount: { required: true, digits: true },
+      recharge_amount_confirm: { equalTo: "#recharge_amount" },
+    },
+    messages: {
+      recharge_amount: { required: "请输入充值金额", digits: "您的输入不是数字" },
+      recharge_amount_confirm: { equalTo: "两次输入的充值金额不匹配" },
+    },
+    highlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-success');
+      fg.addClass('has-error');
+    },
+    unhighlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
+    },
+    success: function(element) {
+      fg = $(element).closest('.form-group');
+			fg.removeClass('has-error');
+			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
+		},
+		errorElement: 'span',
+		errorClass: 'haha-validate-error validate-message',
+		errorPlacement: function(error, element) {
+			error.insertAfter($(element).closest(".input-group"));
+		},
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+  $("#haha-form-invest").validate({
+    debug: true,
+    rules: {
+      invest_amount: { required: true, digits: true },
+      invest_amount_confirm: { equalTo: "#invest_amount" },
+      invest_contract_agreed: { required: true }
+    },
+    messages: {
+      invest_amount: { required: "请输入投资金额", digits: "您的输入不是数字" },
+      invest_amount_confirm: { equalTo: "两次输入的投资金额不匹配" },
+      invest_contract_agreed: { required: "您还没有同意投资合同" }
+    },
+    highlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-success');
+      fg.addClass('has-error');
+    },
+    unhighlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
+    },
+    success: function(element) {
+      fg = $(element).closest('.form-group');
+			fg.removeClass('has-error');
+			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
+		},
+		errorElement: 'span',
+		errorClass: 'haha-validate-error validate-message',
+		errorPlacement: function(error, element) {
+			error.insertAfter($(element).closest(".input-group"));
+		},
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+
 	$('#haha-form-signup').validate({
     debug: true,
 		rules: {
@@ -67,6 +175,45 @@ $(document).ready(function () {
 		errorPlacement: function(error, element) {
 			error.insertAfter(element);
 		}
+	});
+
+	$('#haha-form-signin').validate({
+    debug: true,
+		rules: {
+      captcha: {
+        required: true,
+        validCaptcha: true
+      }
+		},
+    messages: {
+      captcha: { required: "请输入验证码", validCaptcha: '验证码输入错误' }
+    },
+    highlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-success');
+      fg.addClass('has-error');
+    },
+    unhighlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
+    },
+    success: function(element) {
+      fg = $(element).closest('.form-group');
+			fg.removeClass('has-error');
+			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
+		},
+		errorElement: 'span',
+		errorClass: 'haha-validate-error validate-message',
+		//errorClass: 'help-block validate-message',
+    //focusCleanup: true,
+		errorPlacement: function(error, element) {
+			error.insertAfter(element);
+		},
+    submitHandler: function(form) {
+      form.submit();
+    }
 	});
 });
 

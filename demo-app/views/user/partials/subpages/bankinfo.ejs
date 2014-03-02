@@ -33,10 +33,10 @@
             <label class='control-label col-md-2' for="bank_city"><%= display_name["bank_city"] %></label>
             <div class="col-md-4">
               <select name="bank_city" id="bank_city" class="form-control city">
-                <% if (user.province) { %>
-                <%   for (var i = 0; i < cities[user.province].length; ++i) { %>
-                <%     var selected_bank_city = cities[user.province][i] == user.bank_city ? "selected" : ""; %>
-                <option value="<%= cities[user.province][i] %>" <%= selected_bank_city %> ><%= cities[user.province][i] %></option>
+                <% if (user.bank_province) { %>
+                <%   for (var i = 0; i < cities[user.bank_province].length; ++i) { %>
+                <%     var selected_bank_city = cities[user.bank_province][i] == user.bank_city ? "selected" : ""; %>
+                <option value="<%= cities[user.bank_province][i] %>" <%= selected_bank_city %> ><%= cities[user.bank_province][i] %></option>
                 <% }} %>
               </select>
             </div>
@@ -73,7 +73,7 @@
   <br/>
   <div class='row'>
     <div class="col-md-2 col-md-offset-10">
-      <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn()">保存</button>
+      <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn(this)">保存</button>
     </div>
     <input class='hidden' name='_csrf' value='<%= _csrf %>' />
   </div>

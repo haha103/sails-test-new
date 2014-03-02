@@ -39,10 +39,15 @@
         </div>
         <div class="navbar-collapse collapse haha-nav-container">
           <ul class="nav navbar-nav">
-            <% if (session.authenticated) { %>
-            <% if (session.User.admin) { %>
+            <% if (session.User && session.User.admin) { %>
+            <li><a href="/product/admin">产品管理</a></li>
+            <% } %>
+            <li><a href="/product/">产品列表</a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <% if (session.User && session.User.admin) { %>
             <li><a href="/user">用户管理</a></li>
-            <% }} %>
+            <% } %>
           </ul>
           <div class="navbar-right">
             <% if (session.authenticated) { %>

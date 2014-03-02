@@ -15,11 +15,26 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 var bcrypt = require('bcrypt');
+var captchagen = require('captchagen');
 
 module.exports = {
   
   'new': function(req, res) {
-    res.view('session/new');
+    var captcha = captchagen.create();
+    captcha.generate();
+    req.session.Captcha = {
+      uri: captcha.uri(),
+      txt: captcha.text()
+    };
+    res.view();
+  },
+
+  validatecaptcha: function(req, res) {
+    var data = { result: false };
+    if (req.param('captcha') ==  req.session.Captcha.txt) {
+      data.result = true;
+    }
+    res.json(data);
   },
 
   'create': function(req, res, next) {
@@ -32,7 +47,15 @@ module.exports = {
       res.redirect('/session/new');
       return;
     }
-
+    if (req.session.Captcha && req.param('captcha') != req.session.Captcha.txt) {
+      var err = [{
+        name: '验证码错误',
+        message: '本站很脆弱，请不要尝试攻击本站'
+      }];
+      req.session.flash = { err: err };
+      res.redirect('/session/new');
+      return;
+    }
     User.findOne({ user_name: req.param("user_name") }, function foundUser(err, user) {
       if (err) return next(err);
       if (!user) {
@@ -70,7 +93,7 @@ module.exports = {
           });
 
           if (user.admin) {
-            res.redirect('/user');
+            res.redirect('/product');
             return;
           }
           res.redirect('/user/show/' + user.id);
@@ -91,11 +114,11 @@ module.exports = {
             action: " 已注销"
           });
           req.session.destroy();
-          res.redirect('/session/new');
+          res.redirect('/product');
         });
       } else {
         req.session.destroy();
-        res.redirect('/session/new');
+        res.redirect('/product');
       }
 
     });

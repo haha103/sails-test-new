@@ -17,6 +17,22 @@ module.exports.policies = {
   // Default policy for all controllers and actions
   // (`true` allows public access) 
   '*': ['flash'],
+
+  product: {
+    'admin': ['flash', 'product_access'],
+    '*': ['flash']
+  },
+
+  transaction: {
+    'create': ['flash', 'transaction_access'],
+    '*': ['flash']
+  },
+
+  user: {
+    'show': ['flash', 'user_access'],
+    '*': ['flash']
+  }
+
   /*
   user: {
     'new': 'flash',

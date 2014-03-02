@@ -138,8 +138,9 @@ function handle_city_selection() {
   });
 }
 
-function handle_submit_btn() {
-  $("form#haha-form-signup")[0].submit();
+function handle_submit_btn(elem) {
+  $(elem).closest("form")[0].submit();
+  //$("form#haha-form-signup")[0].submit();
 }
 
 function handle_agreement_checkbox() {

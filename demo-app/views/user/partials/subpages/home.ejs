@@ -1,98 +1,256 @@
-<form role='form' action="/user/update/<%= user.id %>" method="POST" class="form-horizontal" id="haha-form-signup">
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-target="#basic-info" href="#basic-info">
-            基本信息
-          </a>
-        </h4>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">账户余额</h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class='haha-no-vmargin'><small>&yen;</small> <%= session.User.balance %> <small>元</small></h1>
       </div>
-      <div id="basic-info" class="panel-collapse collapse in">
-        <div class="panel-body">
-          <div class='form-group'>
-            <label class='control-label col-md-2'><%= display_name["user_name"] %></label>
-            <div class="col-md-4">
-              <p class="haha-form-label-field"><%= user.user_name %></p>
-            </div>
-          </div>
-          <div class='form-group'>
-            <label class='control-label col-md-2' for="name"><%= display_name["name"] %></label>
-            <div class="col-md-4">
-              <input type='text' class='form-control' name='name' placeholder="<%= user.name %>" value="<%= user.name %>"></input>
-            </div>
-          </div>
-          <div class='form-group'>
-            <label class='control-label col-md-2' for="id_card"><%= display_name["id_card"] %></label>
-            <div class="col-md-4">
-              <input type='text' class='form-control' name='id_card' placeholder="<%= user.id_card %>" value="<%= user.id_card %>"></input>
-            </div>
-          </div>
-          <div class='form-group'>
-            <label class='control-label col-md-2' for="email"><%= display_name["email"] %></label>
-            <div class="col-md-4">
-              <input type='text' class='form-control' name='email' placeholder="<%= user.email %>" value="<%= user.email %>"></input>
+      <div class="col-md-1 col-md-offset-3 haha-compact-col haha-add-tmargin-xs">
+        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#recharge-modal">充值</button>
+        <div class="modal fade" id="recharge-modal" tabindex="-1" role="dialog" aria-labelledby="recharge-modal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form role='form' action="/transaction/create?type=recharge" method="POST" class="form-horizontal" id="haha-form-recharge">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  充值
+                </div>
+                <div class="modal-body">
+                  <div class='form-group'>
+                    <label class='control-label col-md-2' for="recharge_amount">充值金额</label>
+                    <div class="col-md-10">
+                      <div class="input-group">
+                        <span class="input-group-addon">&yen;</span>
+                        <input type='text' class='form-control' id='recharge_amount' name='recharge_amount'></input>
+                        <span class="input-group-addon">元</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='form-group'>
+                    <label class='control-label col-md-2' for="recharge_amount_confirm">确认金额</label>
+                    <div class="col-md-10">
+                      <div class="input-group">
+                        <span class="input-group-addon">&yen;</span>
+                        <input type='text' class='form-control' name='recharge_amount_confirm'></input>
+                        <span class="input-group-addon">元</span>
+                      </div>
+                    </div>
+                  </div>
+                  <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+                </div>
+                <div class="modal-footer haha-modal-footer-compact">
+                  <div class='row'>
+                    <div class="col-md-2 col-md-offset-10">
+                      <button type="submit" class="btn btn-primary btn-block btn-sm">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-target="#more-info" href="#more-info">
-            更多信息
-          </a>
-        </h4>
-      </div>
-      <div id="more-info" class="panel-collapse collapse">
-        <div class="panel-body">
-          <div class='form-group'>
-            <label class='control-label col-md-2' for="province"><%= display_name["province"] %></label>
-            <div class="col-md-4">
-              <select name="province" id="province" class="form-control province">
-                <option value="">&nbsp;</option>
-                <% for (var p in cities) { 
-                var selected_province = p == user.province ? "selected" : "";
-                %>
-                <option value="<%= p %>" <%= selected_province %> ><%= p %></option>
-                <% } %>
-              </select>
-            </div>
-          </div>
-          <div class='form-group'>
-            <label class='control-label col-md-2' for="city"><%= display_name["city"] %></label>
-            <div class="col-md-4">
-              <select name="city" id="city" class="form-control city">
-                <% if (user.province) { %>
-                <%   for (var i = 0; i < cities[user.province].length; ++i) { %>
-                <%     var selected_city = cities[user.province][i] == user.city ? "selected" : ""; %>
-                <option value="<%= cities[user.province][i] %>" <%= selected_city %> ><%= cities[user.province][i] %></option>
-                <% }} %>
-              </select>
-            </div>
-          </div>
-          <div class='form-group'>
-            <label class='control-label col-md-2' for="address"><%= display_name["address"] %></label>
-            <div class="col-md-4">
-              <input type='text' class='form-control' name='address' value="<%= user.address ? user.address : '' %>"></input>
-            </div>
-          </div>
-          <div class='form-group'>
-            <label class='control-label col-md-2' for="phone"><%= display_name["phone"] %></label>
-            <div class="col-md-4">
-              <input type='text' class='form-control' name='phone' value="<%= user.phone ? user.phone : '' %>"></input>
+      <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
+        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#withdraw-modal">提现</button>
+        <div class="modal fade" id="withdraw-modal" tabindex="-1" role="dialog" aria-labelledby="withdraw-modal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form role='form' action="/transaction/create?type=withdraw" method="POST" class="form-horizontal" id="haha-form-withdraw">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  提现
+                </div>
+                <div class="modal-body">
+                  <div class='form-group'>
+                    <label class='control-label col-md-2' for="withdraw_amount">提现金额</label>
+                    <div class="col-md-10">
+                      <div class="input-group">
+                        <span class="input-group-addon">&yen;</span>
+                        <input type='text' class='form-control' id='withdraw_amount' name='withdraw_amount'></input>
+                        <span class="input-group-addon">元</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='form-group'>
+                    <label class='control-label col-md-2' for="withdraw_amount_confirm">确认金额</label>
+                    <div class="col-md-10">
+                      <div class="input-group">
+                        <span class="input-group-addon">&yen;</span>
+                        <input type='text' class='form-control' name='withdraw_amount_confirm'></input>
+                        <span class="input-group-addon">元</span>
+                      </div>
+                    </div>
+                  </div>
+                  <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+                </div>
+                <div class="modal-footer haha-modal-footer-compact">
+                  <div class='row'>
+                    <div class="col-md-2 col-md-offset-10">
+                      <button type="submit" class="btn btn-primary btn-block btn-sm">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
+        <button class="btn btn-default btn-block">转账</button>
+      </div>
     </div>
   </div>
-  <br/>
-  <div class='row'>
-    <div class="col-md-2 col-md-offset-10">
-      <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn()">保存</button>
-    </div>
-    <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-target="#security-tasks" href="#security-tasks">
+        安全任务
+      </a>
+    </h4>
   </div>
-</form>
+  <div id="security-tasks" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <table class="table table-condensed haha-table-compact">
+        <tr>
+          <td style="border-top: none;"><span class="glyphicon glyphicon-ok"></span></td>
+          <td style="border-top: none;" class="fg-success fg-bold">保护中</td>
+          <td style="border-top: none;">支付密码</td>
+          <td style="border-top: none;width=50%;">付款或修改账户信息时输入，保护账户资金安全。</td>
+          <td style="border-top: none;">
+            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=paypass">
+              修改
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td style=""><span class="glyphicon glyphicon-ok"></span></td>
+          <td style="" class="fg-success fg-bold">保护中</td>
+          <td style="">邮箱绑定</td>
+          <td style="width=50%;">找回密码时重置的密码将发给绑定的邮箱。</td>
+          <td style="">
+            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=email">
+              修改
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td style=""><span class="glyphicon glyphicon-remove"></span></td>
+          <td style="" class="fg-danger fg-bold">未使用</td>
+          <td style="">短信校验服务</td>
+          <td style="width=50%;">付款时输入，每笔支付都需要校验手机短信。保护账户资金安全。</td>
+          <td style="">
+            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=sms">
+              修改
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td style=""><span class="glyphicon glyphicon-remove"></span></td>
+          <td style="" class="fg-danger fg-bold">未使用</td>
+          <td style="">强密码</td>
+          <td style="width=50%;">由大小写字母、数字、符号混合组成的帐号密码。可有效防止暴力破解，保护账户安全。</td>
+          <td style="">
+            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=complexpass">
+              修改
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-target="#transhist" href="#transhist">
+        历史交易记录
+      </a>
+    </h4>
+  </div>
+  <div id="transhist" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <table class="table table-condensed haha-table-compact">
+        <thead>
+          <tr>
+            <th>交易时间</th>
+            <th>交易类型</th>
+            <th>交易收支</th>
+            <th>交易状态</th>
+            <th>更多</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="">2014-03-02</td>
+            <td style="">提现</td>
+            <td style="" class="fg-danger fg-bold">- 53.00 万</td>
+            <td style="">成功</td>
+            <td style="">
+              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
+                详情
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="">2014-03-02</td>
+            <td style="">产品到期兑现</td>
+            <td style="" class="fg-success fg-bold">+ 53.43 万</td>
+            <td style="">成功</td>
+            <td style="">
+              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
+                详情
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="">2014-01-02</td>
+            <td style="">充值</td>
+            <td style="" class="fg-success fg-bold">+ 20.00 万</td>
+            <td style="">成功</td>
+            <td style="">
+              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
+                详情
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="">2013-12-23</td>
+            <td style="">购入产品</td>
+            <td style="" class="fg-danger fg-bold">- 50.00 万</td>
+            <td style="">成功</td>
+            <td style="">
+              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
+                详情
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="">2013-12-23</td>
+            <td style="">充值</td>
+            <td style="" class="fg-success fg-bold">+ 30.00 万</td>
+            <td style="">成功</td>
+            <td style="">
+              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
+                详情
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td style="">2013-12-20</td>
+            <td style="">充值</td>
+            <td style="" class="fg-success fg-bold">+ 20.00 万</td>
+            <td style="">成功</td>
+            <td style="">
+              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
+                详情
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

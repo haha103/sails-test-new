@@ -130,12 +130,28 @@ module.exports = {
     });
   },
 
+  recharge: function(req, res, next) {
+    res.view();
+  },
+
 	'show': function (req, res, next) {
     var subpage = req.param('subpage') ? req.param('subpage') : "home";
-		User.findOne(req.params['id'], function foundUser (err, user) {
-			if (err) return next(err);
-			if (!user) return next('User does not exist.');
-      if (!user.activated) {
+    var errs = [];
+		User.findOne(req.param('id'), function foundUser (err, user) {
+      if (err) {
+        console.log(err);
+        errs.push({
+          name: "查找用户失败",
+          message: "数据库查询错误"
+        });
+        return;
+      } else if (!user) {
+        errs.push({
+          name: "查找用户失败",
+          message: "未找到该用户"
+        });
+        return;
+      } else if (!user.activated) {
         res.redirect("/user/activation/" + user.id);
       } else if (!user.bank_binded) {
         res.redirect("/user/bindbank/" + user.id);
@@ -150,6 +166,10 @@ module.exports = {
         });
       }
 		});
+    if (errs.length > 0) {
+      req.session.flash = { err: errs};
+      res.redirect("/session/new");
+    }
 	},
 
   /*

@@ -39,6 +39,9 @@ module.exports = {
   	city: { type: 'string' },
   	province: { type: 'string' },
   	address: { type: 'string' },
+
+    balance: { type: 'float', defaultsTo: 0 },
+
     /*
     toJSON: function() {
     	var obj = this.toObject();
