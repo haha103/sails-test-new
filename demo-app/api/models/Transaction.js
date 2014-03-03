@@ -18,6 +18,7 @@ module.exports = {
 
     recharge_from_bank_account: { type: 'string' },
     invest_product: { type: 'integer' },
+    invest_bank_account: { type: 'integer' },
     withdraw_bank_account: { type: 'string' },
     transfer_to_user_id: { type: 'integer' },
     transfer_to_bank_account: { type: 'string' },

@@ -72,8 +72,57 @@ module.exports = {
         res.redirect("/user/show/" + user.id);
       } else if (type == "transfer") {
 
+      } else if (type == "invest") {
+				if (!user.balance) {
+          user["balance"] = 0;
+        } 
+        if (user.balance < req.param("invest_amount")) {
+          var err = { name: '交易失败', message: '余额不够' };
+          errs.push(err);
+          req.session.flash = { err: errs };
+          res.redirect("/user/show/" + user.id);
+          return;
+        }
+				var product = req.param("product");
+				var amount = parseInt(req.param("invest_amount"));
+				Product.findOne({ id: product }).done(function(err, p) {
+					console.log(p);
+					if (err) { errs.push(err); return; }
+					if (p.current_amount + amount > p.needed_amount) {
+						console.log("current_amount: " + p.current_amount);
+						console.log("invest_amount: " + amount);
+						console.log("needed_amount: " + p.needed_amount);
+						var err = { name: '交易失败', message: '投资超过上限' };
+						errs.push(err);
+						req.session.flash = { err: errs };
+						res.redirect("/product/");
+						return;
+					}
+					var trans = {
+						user_id: user.id,
+						type: type,
+						amount: amount,
+						invest_product: product,
+						invest_bank_account: user.bank_account
+					}; 
+					Transaction.create(trans, function (err, trans) {
+						if (err) { errs.push(err); return; }
+						user.balance -= trans.amount;
+						console.log(user);
+						user.save(function(err, u) {
+							if (err) { errs.push(err); return; }
+							req.session.User = u;
+						});
+						p.current_amount += amount;
+						p.save(function(err, pp) {
+							if (err) { errs.push(err); return; }
+						});
+					});
+				});
+				console.log(errs);
+				res.redirect("/product/");
       } else {
-
+				
       }
     });
     return;

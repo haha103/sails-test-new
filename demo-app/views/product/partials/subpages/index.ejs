@@ -20,8 +20,20 @@
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   投资
                 </div>
-                <form role='form' id="haha-form-invest" action="/invest/create?product=<%= p.id %>" method="POST" class="form-horizontal">
+                <form role='form' id="haha-form-invest" action="/transaction/create?type=invest&product=<%= p.id %>" method="POST" class="form-horizontal">
                   <div class="modal-body">
+										<div class='form-group'>
+                      <label class='control-label col-md-2'>银行名称</label>
+                      <div class="col-md-10">
+                        <p class="form-control-static"><%= session.User.bank_name %></p>
+                      </div>
+                    </div>
+										<div class='form-group'>
+                      <label class='control-label col-md-2'>银行账户</label>
+                      <div class="col-md-10">
+                        <p class="form-control-static"><%= session.User.bank_account %></p>
+                      </div>
+                    </div>
                     <div class='form-group'>
                       <label class='control-label col-md-2' for="invest_amount">投资金额</label>
                       <div class="col-md-10">
