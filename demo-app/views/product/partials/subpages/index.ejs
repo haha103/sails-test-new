@@ -12,7 +12,7 @@
           </h4>
         </div>
         <div class="col-md-offset-5 col-md-1 haha-compact-col">
-          <button class="btn btn-success btn-xs btn-block" data-toggle="modal" data-target="#invest-<%= i %>">投资</button>
+          <button class="btn btn-success btn-xs btn-block invest-btn" modal-index="<%= i %>">投资</button>
           <div class="modal fade" id="invest-<%= i %>" tabindex="-1" role="dialog" aria-labelledby="invest-label" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -25,13 +25,19 @@
 										<div class='form-group'>
                       <label class='control-label col-md-2'>银行名称</label>
                       <div class="col-md-10">
-                        <p class="form-control-static"><%= session.User.bank_name %></p>
+                        <p class="form-control-static"><%= session.User ? session.User.bank_name : "&nbsp;" %></p>
                       </div>
                     </div>
 										<div class='form-group'>
                       <label class='control-label col-md-2'>银行账户</label>
                       <div class="col-md-10">
-                        <p class="form-control-static"><%= session.User.bank_account %></p>
+                        <p class="form-control-static"><%= session.User ? session.User.bank_account : "&nbsp;" %></p>
+                      </div>
+                    </div>
+										<div class='form-group'>
+                      <label class='control-label col-md-2'>账户余额</label>
+                      <div class="col-md-10">
+                        <p class="form-control-static"><%= session.User ? session.User.balance : "&nbsp;" %></p>
                       </div>
                     </div>
                     <div class='form-group'>

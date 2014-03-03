@@ -51,11 +51,36 @@ $(document).ready(function(){
   } else if (/^\/product\/admin/.test(page)) {
     handle_guarantee_model();
     handle_file_input();
+	} else if (/^\/product(\/index)?/.test(page)) {
+		handle_invest();
   } else {
 
   }
-
 });
+
+function handle_invest() {
+	$(".invest-btn").click(function() {
+		var idx = $(this).attr("modal-index");
+		var modal_selector = "#invest-" + idx;
+		var result = false;
+		$.ajax({
+			url: '/session/authenticated',
+			type: 'get',
+			async: false,
+			success: function(data) {
+				result = data.result;
+			},
+			error: function(e) {
+				console.log(e.message);
+			}
+		});
+		if (!result) {
+			window.location = "/session/new";
+			return;
+		}
+		$(modal_selector).modal('show');
+	});
+}
 
 function handle_preview_img() {
   $('.apreview').popover({

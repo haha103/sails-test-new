@@ -29,6 +29,12 @@ module.exports = {
     res.view();
   },
 
+	authenticated: function(req, res) {
+    var data = { result: false };
+		if (req.session.User) { data.result = true; }
+    res.json(data);
+  },
+	
   validatecaptcha: function(req, res) {
     var data = { result: false };
     if (req.param('captcha') ==  req.session.Captcha.txt) {
