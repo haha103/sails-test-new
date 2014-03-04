@@ -5,7 +5,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-6">
-        <h1 class='haha-no-vmargin'><small>&yen;</small> <%= session.User.balance %> <small>元</small></h1>
+        <h1 class='haha-no-vmargin'><small>&yen;</small> <%= commait.commaIt(session.User.balance, { thousandSeperator: ',' }) %> <small>元</small></h1>
       </div>
       <div class="col-md-1 col-md-offset-3 haha-compact-col haha-add-tmargin-xs">
         <button class="btn btn-default btn-block" data-toggle="modal" data-target="#recharge-modal">充值</button>
@@ -172,83 +172,42 @@
   </div>
   <div id="transhist" class="panel-collapse collapse in">
     <div class="panel-body">
-      <table class="table table-condensed haha-table-compact">
+      <table class="table table-hover table-condensed haha-table-compact">
         <thead>
           <tr>
             <th>交易时间</th>
             <th>交易类型</th>
             <th>交易收支</th>
-            <th>交易状态</th>
             <th>更多</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td style="">2014-03-02</td>
-            <td style="">提现</td>
-            <td style="" class="fg-danger fg-bold">- 53.00 万</td>
-            <td style="">成功</td>
-            <td style="">
-              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
-                详情
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td style="">2014-03-02</td>
-            <td style="">产品到期兑现</td>
-            <td style="" class="fg-success fg-bold">+ 53.43 万</td>
-            <td style="">成功</td>
-            <td style="">
-              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
-                详情
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td style="">2014-01-02</td>
-            <td style="">充值</td>
-            <td style="" class="fg-success fg-bold">+ 20.00 万</td>
-            <td style="">成功</td>
-            <td style="">
-              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
-                详情
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td style="">2013-12-23</td>
-            <td style="">购入产品</td>
-            <td style="" class="fg-danger fg-bold">- 50.00 万</td>
-            <td style="">成功</td>
-            <td style="">
-              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
-                详情
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td style="">2013-12-23</td>
-            <td style="">充值</td>
-            <td style="" class="fg-success fg-bold">+ 30.00 万</td>
-            <td style="">成功</td>
-            <td style="">
-              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
-                详情
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td style="">2013-12-20</td>
-            <td style="">充值</td>
-            <td style="" class="fg-success fg-bold">+ 20.00 万</td>
-            <td style="">成功</td>
-            <td style="">
-              <a class="btn btn-default btn-xs" href="/transaction/show/3244">
-                详情
-              </a>
-            </td>
-          </tr>
+					<% Transaction.find({ user_id: user.id}).done(function(err, trans) { %>
+						<%
+							if (err) { console.log(err); return; }
+							if (!trans) { console.log("该用户没有交易"); return; }
+							for (var i = 0; i < trans.length; ++i) {
+								var amount = trans[i].amount;
+								var amount_str = amount < 10000 ? commait.commaIt(amount, { thousandSeperator: ','}) + " 元" : commait.commaIt((amount / 10000).toFixed(2)) + "万 元";
+								var sign = "+";
+								var type = trans[i].type;
+								if (type == "invest" || type == "transfer" || type == "withdraw") {
+									sign = "-";
+								}
+						%>
+							<tr>
+								<td style=""><%= trans[i].createdAt %></td>
+								<td style=""><%= trans_disp_name[trans[i].type] %></td>
+								<td style="" class="<%= sign == "-" ? "fg-danger" : "fg-success" %> fg-bold"><%= sign %> <%= amount_str %></td>
+								<td style="">
+									<a class="btn btn-default btn-xs" href="/transaction/show/<%= trans[i].id %>">
+										详情
+									</a>
+								</td>
+							</tr>
+						<% } %>
+							
+					<% }); %>
         </tbody>
       </table>
     </div>

@@ -22,6 +22,9 @@ var path = require('path');
 var uuid = require('node-uuid');
 var mkdirp = require('mkdirp');
 var bcrypt = require('bcrypt');
+var commait = require('comma-it');
+var moment = require('moment');
+moment.lang("zh-cn");
 
 var display_name = {
   'user_name'              : '用户名',
@@ -40,6 +43,13 @@ var display_name = {
   'address'                : '居住地详细地址',
   'phone'                  : '联系电话',
   'captcha'                : '验证码',
+};
+
+var trans_disp_name = {
+	'recharge': '充值',
+	'withdraw': '取现',
+	'invest': '购买产品',
+	'transfer': '转账'
 };
 
 var cities = CityHelper.get_cities();
@@ -162,7 +172,10 @@ module.exports = {
           user: user,
           subpage: subpage,
           display_name: display_name,
-          cities: cities
+					trans_disp_name: trans_disp_name,
+          cities: cities,
+					commait: commait,
+					moment: moment
         });
       }
 		});

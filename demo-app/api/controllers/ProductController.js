@@ -19,6 +19,7 @@ var fs = require('fs');
 var path = require('path');
 var uuid = require('node-uuid');
 var mkdirp = require('mkdirp');
+var commait = require('comma-it');
 var UPLOAD_PATH = 'assets/userdata/products';
 
 var display_name = {
@@ -58,7 +59,8 @@ module.exports = {
     res.view({ 
       display_name : display_name ,
       subpage: subpage,
-      products: products
+      products: products,
+			commait: commait
     });
   },
   
@@ -79,7 +81,8 @@ module.exports = {
     console.log(products);
     res.view({ 
       display_name : display_name,
-      products: products
+      products: products,
+			commait: commait
     });
   },
 
