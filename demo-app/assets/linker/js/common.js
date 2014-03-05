@@ -51,6 +51,7 @@ $(document).ready(function(){
   } else if (/^\/product\/admin/.test(page)) {
     handle_guarantee_model();
     handle_file_input();
+		handle_invest();
 	} else if (/^\/product(\/index)?/.test(page)) {
 		handle_invest();
   } else {

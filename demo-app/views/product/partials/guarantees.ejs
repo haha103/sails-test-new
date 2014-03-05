@@ -12,13 +12,21 @@
         <div class="col-md-6">
           <div class='form-group'>
             <label class='control-label' for="guarantee_company"><%= display_name["guarantee_company"] %></label>
-            <input type='text' class='form-control' name='guarantee_company'></input>
+						<% if (product) { %>
+							<input type='text' class='form-control' name='guarantee_company' placeholder="<%= product.guarantee_company %>"></input>
+						<% } else { %>
+							<input type='text' class='form-control' name='guarantee_company'></input>
+						<% } %>
           </div>
         </div>
         <div class="col-md-6">
           <div class='form-group'>
             <label class='control-label' for="guarantee_letter_code"><%= display_name["guarantee_letter_code"] %></label>
-            <input type='text' class='form-control' name='guarantee_letter_code'></input>
+						<% if (product) { %>
+							<input type='text' class='form-control' name='guarantee_letter_code' placeholder="<%= product.guarantee_letter_code %>"></input>
+						<% } else { %>
+							<input type='text' class='form-control' name='guarantee_letter_code'></input>
+						<% } %>
           </div>
         </div>
       </div>

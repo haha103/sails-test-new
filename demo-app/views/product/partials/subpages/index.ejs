@@ -11,123 +11,25 @@
             </a>
           </h4>
         </div>
-				<div class="col-md-offset-4 col-md-1 haha-compact-col">
+				<%
+					var offset = 4;
+					if (session.User && session.User.admin) {
+						offset = 3;
+					}																			 
+				%>
+				<div class="col-md-offset-<%= offset %> col-md-1 haha-compact-col">
           <button class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#trans-<%= i %>">交易详情</button>
-					<div class="modal fade" id="trans-<%= i %>" tabindex="-1" role="dialog" aria-labelledby="trans-label" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-body">
-									<table class="table table-hover table-condensed haha-table-compact">
-										<thead>
-											<tr>
-												<th>交易时间</th>
-												<th>投资人帐号</th>
-												<th>投资人姓名</th>
-												<th>投资人身份证</th>
-												<th>交易收支</th>
-											</tr>
-										</thead>
-										<tbody>
-											<% Transaction.find({ type: "invest", invest_product: p.id }).done(function(err, trans) { %>
-												<%
-													if (err) { console.log(err); return; }
-													if (!trans) { console.log("该产品没有交易"); return; }
-													for (var i = 0; i < trans.length; ++i) {
-													  var amount = trans[i].amount;
-														var amount_str = amount < 10000 ? commait.commaIt(amount, { thousandSeperator: ','}) + " 元" : commait.commaIt((amount / 10000).toFixed(2)) + "万 元";
-														User.findOne({ id: trans[i].user_id }).done(function(err, user) {
-															if (err) { console.log(err); return; }
-															if (!user) { console.log("没有找到用户"); return; }
-												%>
-													<tr>
-														<td style=""><%= trans[i].createdAt %></td>
-														<td style=""><%= user.user_name %></td>
-														<td style=""><%= user.name %></td>
-														<td style=""><%= user.id_card %></td>
-														<td style="" class="<%= amount >= "20000" ? "fg-danger" : "" %> fg-bold"><%= amount_str %></td>
-													</tr>
-													<% }); %>
-												<% } %>
-											<% }); %>
-										</tbody>
-									</table>
-								</div>
-              </div>
-            </div>
-          </div>
+					<%- partial("../modals/transhist", { i: i, p: p }) %>
 				</div>
         <div class="col-md-1 haha-compact-col">
           <button class="btn btn-success btn-xs btn-block invest-btn" modal-index="<%= i %>">投资</button>
-          <div class="modal fade" id="invest-<%= i %>" tabindex="-1" role="dialog" aria-labelledby="invest-label" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  投资
-                </div>
-                <form role='form' id="haha-form-invest" action="/transaction/create?type=invest&product=<%= p.id %>" method="POST" class="form-horizontal">
-                  <div class="modal-body">
-										<div class='form-group'>
-                      <label class='control-label col-md-2'>银行名称</label>
-                      <div class="col-md-10">
-                        <p class="form-control-static"><%= session.User ? session.User.bank_name : "&nbsp;" %></p>
-                      </div>
-                    </div>
-										<div class='form-group'>
-                      <label class='control-label col-md-2'>银行账户</label>
-                      <div class="col-md-10">
-                        <p class="form-control-static"><%= session.User ? session.User.bank_account : "&nbsp;" %></p>
-                      </div>
-                    </div>
-										<div class='form-group'>
-                      <label class='control-label col-md-2'>账户余额</label>
-                      <div class="col-md-10">
-                        <p class="form-control-static"><%= session.User ? session.User.balance : "&nbsp;" %></p>
-                      </div>
-                    </div>
-                    <div class='form-group'>
-                      <label class='control-label col-md-2' for="invest_amount">投资金额</label>
-                      <div class="col-md-10">
-                        <div class="input-group">
-                          <span class="input-group-addon">&yen;</span>
-                          <input type='text' class='form-control' id='invest_amount' name='invest_amount'></input>
-                          <span class="input-group-addon">元</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class='form-group'>
-                      <label class='control-label col-md-2' for="invest_amount_confirm">确认金额</label>
-                      <div class="col-md-10">
-                        <div class="input-group">
-                          <span class="input-group-addon">&yen;</span>
-                          <input type='text' class='form-control' name='invest_amount_confirm'></input>
-                          <span class="input-group-addon">元</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class='row'>
-                      <div class="col-md-10 col-md-offset-2">
-                        <div class="checkbox">
-                          <label for="">
-                            <input type="checkbox" name="invest_contract_agreed" /> 同意投资协议
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer haha-modal-footer-compact">
-                    <div class='row'>
-                      <div class="col-md-2 col-md-offset-10">
-                        <button type="submit" class="btn btn-primary btn-block btn-sm">确定</button>
-                      </div>
-                    </div>
-                  </div>
-                  <input class='hidden' name='_csrf' value='<%= _csrf %>' />
-                </form>
-              </div>
-            </div>
-          </div>
+          <%- partial("../modals/invest", { i: i, p: p }) %>
         </div>
+				<% if (session.User && session.User.admin) { %>
+				<div class="col-md-1 haha-compact-col">
+          <a class="btn btn-danger btn-xs btn-block" href="/product/admin?subpage=update&product=<%= p.id %>">更新产品</a>
+        </div>
+				<% } %>
       </div>
     </div>
     <div id="basic-info-<%= i %>" class="panel-collapse collapse in">

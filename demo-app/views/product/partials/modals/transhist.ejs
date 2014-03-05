@@ -1,0 +1,42 @@
+<div class="modal fade" id="trans-<%= i %>" tabindex="-1" role="dialog" aria-labelledby="trans-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+				<table class="table table-hover table-condensed haha-table-compact">
+					<thead>
+						<tr>
+							<th>交易时间</th>
+							<th>投资人帐号</th>
+							<th>投资人姓名</th>
+							<th>投资人身份证</th>
+							<th>交易收支</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% Transaction.find({ type: "invest", invest_product: p.id }).done(function(err, trans) { %>
+							<%
+								if (err) { console.log(err); return; }
+								if (!trans) { console.log("该产品没有交易"); return; }
+								for (var i = 0; i < trans.length; ++i) {
+									var amount = trans[i].amount;
+									var amount_str = amount < 10000 ? commait.commaIt(amount, { thousandSeperator: ','}) + " 元" : commait.commaIt((amount / 10000).toFixed(2)) + "万 元";
+									User.findOne({ id: trans[i].user_id }).done(function(err, user) {
+										if (err) { console.log(err); return; }
+										if (!user) { console.log("没有找到用户"); return; }
+							%>
+								<tr>
+									<td style=""><%= trans[i].createdAt %></td>
+									<td style=""><%= user.user_name %></td>
+									<td style=""><%= user.name %></td>
+									<td style=""><%= user.id_card %></td>
+									<td style="" class="<%= amount >= "20000" ? "fg-danger" : "" %> fg-bold"><%= amount_str %></td>
+								</tr>
+							<% }); %>
+						<% } %>
+					<% }); %>
+					</tbody>
+				</table>
+			</div>
+    </div>
+  </div>
+</div>

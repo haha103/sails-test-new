@@ -42,7 +42,14 @@ module.exports = {
 
   admin: function(req, res) {
     var subpage = req.param('subpage') ? req.param('subpage') : 'new';
-    var products = [];
+    var products = []; // for index
+		var product = null; // for update
+		if (req.param('product')) {
+			Product.findOne({ id: req.param('product') }).done(function(err, p) {
+				if (!err)
+					product = p;
+			});
+		}
     Product.find({}).done(function (err, ps) {
       if (!err) {
         ps.map(function(p) {
@@ -60,6 +67,7 @@ module.exports = {
       display_name : display_name ,
       subpage: subpage,
       products: products,
+			product: product,
 			commait: commait
     });
   },
