@@ -9,93 +9,11 @@
       </div>
       <div class="col-md-1 col-md-offset-3 haha-compact-col haha-add-tmargin-xs">
         <button class="btn btn-default btn-block" data-toggle="modal" data-target="#recharge-modal">充值</button>
-        <div class="modal fade" id="recharge-modal" tabindex="-1" role="dialog" aria-labelledby="recharge-modal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form role='form' action="/transaction/create?type=recharge" method="POST" class="form-horizontal" id="haha-form-recharge">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  充值
-                </div>
-                <div class="modal-body">
-                  <div class='form-group'>
-                    <label class='control-label col-md-2' for="recharge_amount">充值金额</label>
-                    <div class="col-md-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">&yen;</span>
-                        <input type='text' class='form-control' id='recharge_amount' name='recharge_amount'></input>
-                        <span class="input-group-addon">元</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class='form-group'>
-                    <label class='control-label col-md-2' for="recharge_amount_confirm">确认金额</label>
-                    <div class="col-md-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">&yen;</span>
-                        <input type='text' class='form-control' name='recharge_amount_confirm'></input>
-                        <span class="input-group-addon">元</span>
-                      </div>
-                    </div>
-                  </div>
-                  <input class='hidden' name='_csrf' value='<%= _csrf %>' />
-                </div>
-                <div class="modal-footer haha-modal-footer-compact">
-                  <div class='row'>
-                    <div class="col-md-2 col-md-offset-10">
-                      <button type="submit" class="btn btn-primary btn-block btn-sm">确定</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+				<%- partial("../modals/recharge") %>
       </div>
       <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
         <button class="btn btn-default btn-block" data-toggle="modal" data-target="#withdraw-modal">提现</button>
-        <div class="modal fade" id="withdraw-modal" tabindex="-1" role="dialog" aria-labelledby="withdraw-modal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form role='form' action="/transaction/create?type=withdraw" method="POST" class="form-horizontal" id="haha-form-withdraw">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  提现
-                </div>
-                <div class="modal-body">
-                  <div class='form-group'>
-                    <label class='control-label col-md-2' for="withdraw_amount">提现金额</label>
-                    <div class="col-md-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">&yen;</span>
-                        <input type='text' class='form-control' id='withdraw_amount' name='withdraw_amount'></input>
-                        <span class="input-group-addon">元</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class='form-group'>
-                    <label class='control-label col-md-2' for="withdraw_amount_confirm">确认金额</label>
-                    <div class="col-md-10">
-                      <div class="input-group">
-                        <span class="input-group-addon">&yen;</span>
-                        <input type='text' class='form-control' name='withdraw_amount_confirm'></input>
-                        <span class="input-group-addon">元</span>
-                      </div>
-                    </div>
-                  </div>
-                  <input class='hidden' name='_csrf' value='<%= _csrf %>' />
-                </div>
-                <div class="modal-footer haha-modal-footer-compact">
-                  <div class='row'>
-                    <div class="col-md-2 col-md-offset-10">
-                      <button type="submit" class="btn btn-primary btn-block btn-sm">确定</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+				<%- partial("../modals/withdraw") %>
       </div>
       <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
         <button class="btn btn-default btn-block">转账</button>
@@ -115,14 +33,14 @@
     <div class="panel-body">
       <table class="table table-condensed haha-table-compact">
         <tr>
-          <td style="border-top: none;"><span class="glyphicon glyphicon-ok"></span></td>
-          <td style="border-top: none;" class="fg-success fg-bold">保护中</td>
+					<% var paypass_ok = (session.User && session.User.encryptedPaypass); %>
+          <td style="border-top: none;"><span class="glyphicon glyphicon-<%= paypass_ok ? "ok" : "remove" %>"></span></td>
+          <td style="border-top: none;" class="fg-<%= paypass_ok ? "success" : "danger" %> fg-bold"><%= paypass_ok ? "保护中" : "未使用" %></td>
           <td style="border-top: none;">支付密码</td>
           <td style="border-top: none;width=50%;">付款或修改账户信息时输入，保护账户资金安全。</td>
           <td style="border-top: none;">
-            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=paypass">
-              修改
-            </a>
+						<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#paypass-update-modal">修改</button>
+						<%- partial("../modals/paypass.ejs") %>
           </td>
         </tr>
         <tr>
@@ -196,7 +114,7 @@
 								}
 						%>
 							<tr>
-								<td style=""><%= trans[i].createdAt %></td>
+								<td style=""><%= trans[i].createdAt.replace(/T/, ' ').replace(/\..+/, ' ') %></td>
 								<td style=""><%= trans_disp_name[trans[i].type] %></td>
 								<td style="" class="<%= sign == "-" ? "fg-danger" : "fg-success" %> fg-bold"><%= sign %> <%= amount_str %></td>
 								<td style="">

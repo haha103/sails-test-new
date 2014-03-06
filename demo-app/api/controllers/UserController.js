@@ -197,22 +197,34 @@ module.exports = {
   */
 
 	'update': function(req, res, next) {
-    var userObj = { };
-    [
-      'name', 'user_name', 'email', 'password', 
-      'bank_name', 'bank_account', 'bank_city', 'bank_province',
-      'city', 'province', 'address', 'phone'
-    ].map(function(field) {
-      if (req.param(field)) userObj[field] = req.param(field);
-    });
-    if (req.param('bank_binded') == 'true') userObj.bank_binded = true;
-    if (req.param('reg_completed') == 'true') userObj.reg_completed = true;
-    console.log(userObj);
-		User.update(req.param('id'), userObj, function userUpdated(err) {
-			if (err) {
-				return res.json(err);
+		var userid = req.param("id");
+		if (!userid && req.session.User) {
+			userid = req.session.User.id;
+		}
+		User.findOne({ id: userid}).done(function(err, user) {
+			if (err) { return res.json(err); }
+			if (user.encryptedPaypass) { // paypass update -> check if user entered the correct old paypass
+				if (!bcrypt.compareSync(req.param("old_paypass"), user.encryptedPaypass)) {
+					req.session.flash = { err: [{ name: "认证错误", message: "旧密码错误" }] };
+					return res.redirect("/user/show/" + user.id);
+				}
+				var userObj = { };
+				[
+					'name', 'user_name', 'email', 'password', 'confirmation',
+					'bank_name', 'bank_account', 'bank_city', 'bank_province',
+					'city', 'province', 'address', 'phone',
+					'paypass', 'paypass_confirm'
+				].map(function(field) {
+					if (req.param(field)) userObj[field] = req.param(field);
+				});
+				if (req.param('bank_binded') == 'true') userObj.bank_binded = true;
+				if (req.param('reg_completed') == 'true') userObj.reg_completed = true;
+				console.log(userObj);
+				User.update(userid, userObj, function userUpdated(err) {
+					if (err) { return res.json(err); }
+					res.redirect('/user/show/' + userid);
+				});		
 			}
-			res.redirect('/user/show/' + req.param('id'));
 		});
 	},
 

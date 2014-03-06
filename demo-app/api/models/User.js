@@ -5,6 +5,7 @@
  * @description :: A short summary of how this model works and what it represents.
  * @docs		:: http://sailsjs.org/#!documentation/models
  */
+var bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -25,7 +26,8 @@ module.exports = {
     online: { type: 'boolean', defaultsTo: false },
 
     encryptedPassword: { type: 'string' },
-
+		encryptedPaypass: { type: 'string' },
+		
     activated: { type: 'boolean', defaultsTo: false },
 
     bank_binded: { type: 'boolean', defaultsTo: false },
@@ -71,11 +73,36 @@ module.exports = {
     if (!values.password || values.password != values.confirmation) {
       return next({ err: ["两次输入的密码不同"] });
     }
-    require('bcrypt').hash(values.password, 10, function passwordEncrypted(err, encryptedPassword) {
-      if (err) return next(err);
-      values.encryptedPassword = encryptedPassword;
-      next();
-    });
+    values.encryptedPassword = bcrypt.hashSync(values.password, 10);
+		// encrypt paypass
+		if (values.paypass) {
+			if (values.paypass != values.paypass_confirm) {
+				return next({ err: ["两次输入的密码不同"] });
+			}
+			values.encryptedPaypass = bcrypt.hashSync(values.paypass, 10);
+		}
+		console.log(values);
+		next();
+  },
+
+	beforeUpdate: function(values, next) {
+		console.log(values);
+    // encrypt password
+		if (values.password) {
+			if (values.password != values.confirmation) {
+				return next({ err: ["两次输入的密码不同"] });
+			}
+			values.encryptedPassword = bcrypt.hashSync(values.password, 10);
+		}
+		// encrypt paypass
+		if (values.paypass) {
+			if (values.paypass != values.paypass_confirm) {
+				return next({ err: ["两次输入的密码不同"] });
+			}
+			values.encryptedPaypass = bcrypt.hashSync(values.paypass, 10);
+		}
+		console.log(values);
+		next();
   }
 
 };

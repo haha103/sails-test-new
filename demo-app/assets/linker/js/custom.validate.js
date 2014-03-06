@@ -7,6 +7,44 @@ $(document).ready(function () {
     return this.optional(element) || validate_captcha(value);
   }, "验证码错误");
 
+	$("#haha-form-paypass-update").validate({
+    debug: true,
+    rules: {
+      paypass: { required: true },
+      paypass_confirm: { equalTo: "#paypass" },
+    },
+    messages: {
+      paypass: { required: "请输入密码" },
+      paypass_confirm: { equalTo: "两次输入的密码不匹配" },
+    },
+    highlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-success');
+      fg.addClass('has-error');
+    },
+    unhighlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
+    },
+    success: function(element) {
+      fg = $(element).closest('.form-group');
+			fg.removeClass('has-error');
+			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
+		},
+		errorElement: 'span',
+		errorClass: 'haha-validate-error validate-message',
+		/*
+		errorPlacement: function(error, element) {
+			error.insertAfter($(element).closest(".input-group"));
+		},
+		*/
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+
   $("#haha-form-withdraw").validate({
     debug: true,
     rules: {

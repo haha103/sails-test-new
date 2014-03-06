@@ -1,4 +1,12 @@
 <div class='container'>
+	<% if (flash && flash.err) { %>
+  <br/>
+  <div class="alert alert-danger">					
+    <% Object.keys(flash.err).forEach(function(error) { %>
+    <%= error %>: <%= flash.err[error].name %> - <%= JSON.stringify(flash.err[error].message) %>
+    <% }) %>
+  </div>
+  <% } %>
   <h3>我的主页</h3>
   <hr/>
   <div class="row">

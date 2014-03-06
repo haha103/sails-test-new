@@ -16,7 +16,8 @@
     "mkdirp": "~0.3.5",
     "node-uuid": "^1.4.1",
     "captchagen": "^1.1.0",
-    "comma-it": "0.0.5"
+    "comma-it": "0.0.5",
+    "async": "^0.2.10"
   },
   "scripts": {
     "start": "node app.js",
