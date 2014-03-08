@@ -7,13 +7,19 @@ $(document).ready(function () {
     return this.optional(element) || validate_captcha(value);
   }, "验证码错误");
 
+	$.validator.addMethod("validPaypass", function(value, element) {
+    return this.optional(element) || ajax_validate("user", "paypass", value);
+  }, "支付密码错误");
+
 	$("#haha-form-paypass-update").validate({
     debug: true,
     rules: {
+			old_paypass: { required: true, validPaypass: true },
       paypass: { required: true },
       paypass_confirm: { equalTo: "#paypass" },
     },
     messages: {
+			old_paypass: { required: "请输入旧支付密码", validPaypass: "旧支付密码输入错误" },
       paypass: { required: "请输入密码" },
       paypass_confirm: { equalTo: "两次输入的密码不匹配" },
     },
@@ -120,11 +126,13 @@ $(document).ready(function () {
     rules: {
       invest_amount: { required: true, digits: true },
       invest_amount_confirm: { equalTo: "#invest_amount" },
+			paypass: { required: true, validPaypass: true },
       invest_contract_agreed: { required: true }
     },
     messages: {
       invest_amount: { required: "请输入投资金额", digits: "您的输入不是数字" },
       invest_amount_confirm: { equalTo: "两次输入的投资金额不匹配" },
+			paypass: { required: "请输入支付密码", validPaypass: "支付密码输入错误" },
       invest_contract_agreed: { required: "您还没有同意投资合同" }
     },
     highlight: function(element) {
@@ -146,7 +154,11 @@ $(document).ready(function () {
 		errorElement: 'span',
 		errorClass: 'haha-validate-error validate-message',
 		errorPlacement: function(error, element) {
-			error.insertAfter($(element).closest(".input-group"));
+			if ($(element).parent().attr("class") == "input-group") {
+				error.insertAfter($(element).closest(".input-group"));
+			} else {
+				error.insertAfter($(element));
+			}
 		},
     submitHandler: function(form) {
       form.submit();
@@ -266,6 +278,25 @@ function validate_captcha(s) {
     type: 'get',
     async: false,
     data: 'captcha=' + s,
+    success: function(data) {
+      console.log(data);
+      result = data.result;
+    },
+    error: function(e) {
+      console.log(e.message);
+    }
+  });
+  console.log(result);
+  return result;
+}
+
+function ajax_validate(controller, key, value) {
+	var result = false;
+  $.ajax({
+    url: '/' + controller + '/validate' + key,
+    type: 'get',
+    async: false,
+    data: key + '=' + value,
     success: function(data) {
       console.log(data);
       result = data.result;

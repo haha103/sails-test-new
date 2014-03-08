@@ -8,15 +8,15 @@
         <h1 class='haha-no-vmargin'><small>&yen;</small> <%= commait.commaIt(session.User.balance, { thousandSeperator: ',' }) %> <small>元</small></h1>
       </div>
       <div class="col-md-1 col-md-offset-3 haha-compact-col haha-add-tmargin-xs">
-        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#recharge-modal">充值</button>
+        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#recharge-modal">充值</button>
 				<%- partial("../modals/recharge") %>
       </div>
       <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
-        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#withdraw-modal">提现</button>
+        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#withdraw-modal">提现</button>
 				<%- partial("../modals/withdraw") %>
       </div>
       <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
-        <button class="btn btn-default btn-block">转账</button>
+        <button class="btn btn-primary btn-block">转账</button>
       </div>
     </div>
   </div>
@@ -34,44 +34,44 @@
       <table class="table table-condensed haha-table-compact">
         <tr>
 					<% var paypass_ok = (session.User && session.User.encryptedPaypass); %>
-          <td style="border-top: none;"><span class="glyphicon glyphicon-<%= paypass_ok ? "ok" : "remove" %>"></span></td>
-          <td style="border-top: none;" class="fg-<%= paypass_ok ? "success" : "danger" %> fg-bold"><%= paypass_ok ? "保护中" : "未使用" %></td>
-          <td style="border-top: none;">支付密码</td>
-          <td style="border-top: none;width=50%;">付款或修改账户信息时输入，保护账户资金安全。</td>
-          <td style="border-top: none;">
-						<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#paypass-update-modal">修改</button>
+          <td style="border-top: none; width:30px;"><span class="glyphicon glyphicon-<%= paypass_ok ? "ok" : "remove" %>"></span></td>
+          <td style="border-top: none; width:50px;" class="fg-<%= paypass_ok ? "success" : "danger" %> fg-bold"><%= paypass_ok ? "保护中" : "未使用" %></td>
+          <td style="border-top: none; width:100px;">支付密码</td>
+          <td style="border-top: none;">付款或修改账户信息时输入，保护账户资金安全。</td>
+          <td style="border-top: none; width:50px;">
+						<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#paypass-update-modal"><%= paypass_ok? "修改" : "添加" %></button>
 						<%- partial("../modals/paypass.ejs") %>
           </td>
         </tr>
         <tr>
-          <td style=""><span class="glyphicon glyphicon-ok"></span></td>
-          <td style="" class="fg-success fg-bold">保护中</td>
-          <td style="">邮箱绑定</td>
-          <td style="width=50%;">找回密码时重置的密码将发给绑定的邮箱。</td>
-          <td style="">
-            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=email">
+          <td style="width:30px;"><span class="glyphicon glyphicon-ok"></span></td>
+          <td style="width:50px;" class="fg-success fg-bold">保护中</td>
+          <td style="width:100px;">邮箱绑定</td>
+          <td style="">找回密码时重置的密码将发给绑定的邮箱。</td>
+          <td style="width:50px;">
+            <a class="btn btn-primary btn-xs" href="/user/securityupdate?type=email">
               修改
             </a>
           </td>
         </tr>
         <tr>
-          <td style=""><span class="glyphicon glyphicon-remove"></span></td>
-          <td style="" class="fg-danger fg-bold">未使用</td>
-          <td style="">短信校验服务</td>
-          <td style="width=50%;">付款时输入，每笔支付都需要校验手机短信。保护账户资金安全。</td>
-          <td style="">
-            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=sms">
+          <td style="width:30px;"><span class="glyphicon glyphicon-remove"></span></td>
+          <td style="width:50px;" class="fg-danger fg-bold">未使用</td>
+          <td style="width:100px;">短信校验服务</td>
+          <td style="">付款时输入，每笔支付都需要校验手机短信。保护账户资金安全。</td>
+          <td style="width:50px;">
+            <a class="btn btn-primary btn-xs" href="/user/securityupdate?type=sms">
               修改
             </a>
           </td>
         </tr>
         <tr>
-          <td style=""><span class="glyphicon glyphicon-remove"></span></td>
-          <td style="" class="fg-danger fg-bold">未使用</td>
-          <td style="">强密码</td>
-          <td style="width=50%;">由大小写字母、数字、符号混合组成的帐号密码。可有效防止暴力破解，保护账户安全。</td>
-          <td style="">
-            <a class="btn btn-default btn-xs" href="/user/securityupdate?type=complexpass">
+          <td style="width:30px;"><span class="glyphicon glyphicon-remove"></span></td>
+          <td style="width:50px;" class="fg-danger fg-bold">未使用</td>
+          <td style="width:100px;">强密码</td>
+          <td style="">由大小写字母、数字、符号混合组成的帐号密码。可有效防止暴力破解，保护账户安全。</td>
+          <td style="width:50px;">
+            <a class="btn btn-primary btn-xs" href="/user/securityupdate?type=complexpass">
               修改
             </a>
           </td>
@@ -117,8 +117,8 @@
 								<td style=""><%= trans[i].createdAt.replace(/T/, ' ').replace(/\..+/, ' ') %></td>
 								<td style=""><%= trans_disp_name[trans[i].type] %></td>
 								<td style="" class="<%= sign == "-" ? "fg-danger" : "fg-success" %> fg-bold"><%= sign %> <%= amount_str %></td>
-								<td style="">
-									<a class="btn btn-default btn-xs" href="/transaction/show/<%= trans[i].id %>">
+								<td style="width:50px;">
+									<a class="btn btn-primary btn-xs" href="/transaction/show/<%= trans[i].id %>">
 										详情
 									</a>
 								</td>

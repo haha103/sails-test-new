@@ -89,7 +89,7 @@ function handle_preview_img() {
     trigger: 'hover',
     placement: 'auto',
     content: function () {
-      return '<img class="haha-img-round-corner" src="' + $(this)[0].href + '" />';
+      return '<img src="' + $(this)[0].href + '" />';
     }
   });
   $('.preview').popover({
@@ -97,7 +97,7 @@ function handle_preview_img() {
     trigger: 'hover',
     placement: 'right',
     content: function () {
-      return '<img class="haha-img-round-corner" src="' + $(this)[0].src + '" />';
+      return '<img src="' + $(this)[0].src + '" />';
     }
   });
 }

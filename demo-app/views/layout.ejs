@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <!--STYLES-->
-    <link rel="stylesheet" href="/linker/styles/bootstrap-datetimepicker.css">
-    <link rel="stylesheet" href="/linker/styles/bootstrap-select.css">
-    <link rel="stylesheet" href="/linker/styles/bootstrap-theme.css">
     <link rel="stylesheet" href="/linker/styles/bootstrap.css">
+    <link rel="stylesheet" href="/linker/styles/jasny-bootstrap.css">
+    <link rel="stylesheet" href="/linker/styles/bootstrap-select.css">
+    <link rel="stylesheet" href="/linker/styles/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="/linker/styles/custom.css">
     <!--STYLES END-->
     <script type="text/javascript">
@@ -22,7 +22,7 @@
   </head>
 
   <body>
-    <nav class='navbar navbar-inverse navbar-fixed-top haha-nav' role='navigation'>
+    <nav class='navbar navbar-default navbar-fixed-top haha-nav' role='navigation'>
       <div class='container'>
         <div class="navbar-header">
           <button type='button' class="navbar-toggle" data-toggle='collapse' data-target='.navbar-collapse'>
@@ -33,48 +33,41 @@
           </button>
           <div class='haha-logo-container'>
             <a href="/">
-              <img src='/images/logo.svg' />
+              <img class="haha-nav-logo-img" src='/images/logo.svg' />
             </a>
           </div>
         </div>
         <div class="navbar-collapse collapse haha-nav-container">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav haha-navbar-nav-vpad-ext">
             <% if (session.User && session.User.admin) { %>
             <li><a href="/product/admin">产品管理</a></li>
             <% } %>
             <li><a href="/product/">产品列表</a></li>
           </ul>
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav haha-navbar-nav-vpad-ext">
             <% if (session.User && session.User.admin) { %>
             <li><a href="/user">用户管理</a></li>
             <% } %>
           </ul>
           <div class="navbar-right">
-            <% if (session.authenticated) { %>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav haha-navbar-nav-vpad-ext">
+							<% if (session.authenticated) { %>
               <li>
                 <a href="/user/show/<%= session.User.id %>">
                   <%= session.User.user_name %> ( <%= session.User.name %> )
                 </a>
               </li>
+              <li>
+								<a href="/session/destroy">
+									退出
+								</a>
+							</li>
+						  <% } else { %>
+							<li><a href="/session/new">登录</a></li>
+							<li><a href="/user/new">注册</a></li>
+							<% } %>
             </ul>
-            <a class="btn btn-default btn-sm navbar-btn navbar-right" href="/session/destroy">
-              退出
-            </a>
-            <% } %>
           </div>
-          <% if (!session.authenticated) { %>
-          <form class="navbar-form navbar-right haha-navbar-form-sm" action="/session/create">
-            <div class="form-group haha-form-group-sm">
-              <input type="text" class="form-control input-sm" placeholder="帐号" name="user_name"/>
-            </div>
-            <div class="form-group haha-form-group-sm">
-              <input type="password" class="form-control input-sm" placeholder="密码" name="password"/>
-            </div>
-            <button type="submit" class="btn btn-success btn-sm">登录</button>
-            <input type="hidden" name="_csrf" value="<%= _csrf %>"/>
-          </form>
-          <% } %>
         </div>
       </div>
     </nav>
@@ -101,15 +94,7 @@
     <% } else { %>
     <%- body %>
     <% } %>
-    <div class='container'>
-      <hr/>
-      <footer class='footer'>
-        <div class='pull-right'>
-          <a href="http://sailsjs.com">sails.js</a>
-          <div>Sails Tutorial</div>
-        </div>  
-      </footer>
-    </div>
+    <%- partial("footer") %>
 
 
 
@@ -168,8 +153,10 @@
     <script src="/linker/js/jquery.js"></script>
     <script src="/linker/js/jquery.validate.min.js"></script>
     <script src="/linker/js/bootstrap.js"></script>
+    <script src="/linker/js/jasny-bootstrap.js"></script>
     <script src="/linker/js/bootstrap-select.js"></script>
     <script src="/linker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/linker/js/bootstrap.min.js"></script>
     <script src="/linker/js/common.js"></script>
     <script src="/linker/js/custom.validate.js"></script>
     <script src="/linker/js/underscore.js"></script>

@@ -1,4 +1,4 @@
-<form role='form' action="/user/update/<%= user.id %>" method="POST" class="form-horizontal" id="haha-form-signup">
+<form role='form' action="/user/update/<%= user.id %>" method="POST" class="form-horizontal" id="haha-form-accountinfo">
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -19,19 +19,19 @@
           <div class='form-group'>
             <label class='control-label col-md-2' for="name"><%= display_name["name"] %></label>
             <div class="col-md-4">
-              <input type='text' class='form-control' name='name' placeholder="<%= user.name %>" value="<%= user.name %>"></input>
+              <input type='text' class='form-control' name='name' placeholder="<%= user.name %>"></input>
             </div>
           </div>
           <div class='form-group'>
             <label class='control-label col-md-2' for="id_card"><%= display_name["id_card"] %></label>
             <div class="col-md-4">
-              <input type='text' class='form-control' name='id_card' placeholder="<%= user.id_card %>" value="<%= user.id_card %>"></input>
+              <input type='text' class='form-control' name='id_card' placeholder="<%= user.id_card %>"></input>
             </div>
           </div>
           <div class='form-group'>
             <label class='control-label col-md-2' for="email"><%= display_name["email"] %></label>
             <div class="col-md-4">
-              <input type='text' class='form-control' name='email' placeholder="<%= user.email %>" value="<%= user.email %>"></input>
+              <input type='text' class='form-control' name='email' placeholder="<%= user.email %>"></input>
             </div>
           </div>
         </div>

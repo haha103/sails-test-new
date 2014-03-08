@@ -8,29 +8,43 @@
 @blue: #428BCA;
 @darkGray: rgb(34, 34, 34);
 @darkGray2: #999999;
+@darkGray3: rgb(72, 85, 99);
+@darkGray4: rgb(100, 115, 130);
 @lightGray: rgb(153, 153, 153);
 @lightGray2: rgb(238, 238, 238);
 @lightGray3: #F5F5F5;
+@lightGray4: rgb(235, 235, 235);
 @red: #c7254e;
+@red2: #d9534f;
 
 body {
 	padding-top: 55px;
 	padding-bottom: 40px;
 }
 
+.haha-nav-logo-img {
+	height: 30px;
+}
+
 .haha-nav-container {
   padding-top: 0px;
   padding-bottom: 0px;
   padding-right: 0px;
+	padding-left: 15px;
+}
+
+.haha-navbar-nav-vpad-ext > li > a {
+	padding-top: 19.5px;
+	padding-bottom: 19.5px;
 }
 
 .haha-logo-container {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .haha-nav {
-  height: 46px;
+  height: 60px;
 }
 
 .haha-panel-md {
@@ -142,7 +156,7 @@ body {
 }
 
 .haha-form-control-img {
-  height: 34px;
+  height: 39px;
 }
 
 .tooltip-inner {
@@ -191,11 +205,12 @@ body {
     position: absolute;
     display: block;
     width: 100%;
-    color: black;
+    //color: @lightGray4;
+		font-size: 12px;
  }
 
-.haha-img-round-corner {
-  border-radius: 4px;
+.input-group-addon {
+	background-color: @darkGray4;
 }
 
 .haha-validate-error {
@@ -216,12 +231,21 @@ body {
   margin-top: 0px;
 }
 
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+	line-height: 21px;
+}
+
 .fg-success {
-  color: @green;
+  color: @green2;
 }
 
 .fg-danger {
-  color: @red;
+  color: @red2;
 }
 
 .fg-bold {
@@ -230,4 +254,26 @@ body {
 
 .modal-lg {
   width: 900px;
+}
+
+.haha-vcompact-p {
+	margin-top: 0px;
+	margin-bottom: 2px;
+}
+
+.haha-vcompact-jumbotron {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+table a, .table a {
+	text-decoration: none;
+}
+
+.form-horizontal .control-label, .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+	padding-top: 11px;
+}
+
+.fileinput-new .input-group .btn-file {
+	border-radius: 0px;
 }
