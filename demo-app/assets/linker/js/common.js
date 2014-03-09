@@ -3,10 +3,12 @@ $(document).ready(function(){
   var page = document.location.pathname;
   page = page.replace(/(\/)$/, '');
 
+	/*
   $('select').selectpicker({
     style: 'btn btn-default',
     title: ''
   });
+	*/
   
   $('select#client-type').on("change", function(e) {
     var selected_type = $('option:selected', this);
@@ -176,7 +178,7 @@ function handle_city_selection() {
         for (var i = 0; i < cities.length; ++i) {
           $('select.city').append("<option value='" + cities[i] + "'>" + cities[i] + "</option>");
         }
-        $('select.city').selectpicker('refresh');
+        //$('select.city').selectpicker('refresh');
       },
       error: function(e) {
         console.log(e.message);
@@ -218,7 +220,7 @@ function handle_edit_btn() {
     });
     $(this).text("取消修改");
     $(this).attr('id', "cancel-edit");
-    $('select').selectpicker('refresh');
+    //$('select').selectpicker('refresh');
   });
   $("div#edit-btn-container").on('click', 'a#cancel-edit', function() {
     ["div.form-group input", "div.form-group select", "div.form-group textarea", "button#toggle-disabled"].map(function(elem) {
@@ -230,7 +232,7 @@ function handle_edit_btn() {
     });
     $(this).text("修改");
     $(this).attr('id', "edit");
-    $('select').selectpicker('refresh');
+    //$('select').selectpicker('refresh');
   });
 }
 

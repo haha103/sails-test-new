@@ -30,9 +30,9 @@ module.exports = function (grunt) {
 
   var cssFilesToInject = [
 		'linker/styles/bootstrap.css',
-		'linker/styles/jasny-bootstrap.css',
 		'linker/styles/bootstrap-select.css',
 		'linker/styles/bootstrap-datetimepicker.css',
+		'linker/styles/jasny-bootstrap.css',
     'linker/**/*.css',
   ];
 
@@ -64,8 +64,8 @@ module.exports = function (grunt) {
     'linker/js/jquery.js',
     'linker/js/jquery.validate.min.js',
     'linker/js/bootstrap.js',
+		'linker/js/bootstrap-select.js',
 		'linker/js/jasny-bootstrap.js',
-    'linker/js/bootstrap-select.js',
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js',
