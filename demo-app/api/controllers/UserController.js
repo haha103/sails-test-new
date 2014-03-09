@@ -69,6 +69,18 @@ module.exports = {
     });
   },
 
+	refreshcaptcha: function(req, res) {
+		var data = { uri: null };
+		var captcha = captchagen.create();
+		captcha.generate();
+		req.session.Captcha = {
+			uri: captcha.uri(),
+			txt: captcha.text()
+		};
+		data.uri = captcha.uri();
+		res.json(data);
+	},
+
   validatecaptcha: function(req, res) {
     var data = { result: false };
     if (req.param('captcha') ==  req.session.Captcha.txt) {

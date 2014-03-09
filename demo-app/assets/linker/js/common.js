@@ -27,6 +27,7 @@ $(document).ready(function(){
   });
 
   handle_preview_img();
+	handle_captcha_refresh();
 
   if (page == '/client/new') {
     handle_shareholder_modal();
@@ -80,6 +81,26 @@ function handle_invest() {
 			return;
 		}
 		$(modal_selector).modal('show');
+	});
+}
+
+function handle_captcha_refresh() {
+	$(".refreshable-captcha").click(function() {
+		var uri = null;
+		$.ajax({
+			url: '/user/refreshcaptcha',
+			type: 'get',
+			async: false,
+			success: function(data) {
+				console.log(data);
+				uri = data.uri;
+			},
+			error: function(e) {
+				console.log(e.message);
+			}
+		});
+		console.log(uri);
+		$(this).attr("src", uri);
 	});
 }
 
