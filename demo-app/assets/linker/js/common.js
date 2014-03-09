@@ -396,5 +396,4 @@ function handle_bonding_modal() {
   });
 }
 
-
 /* internal */

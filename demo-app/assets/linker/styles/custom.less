@@ -8,7 +8,7 @@
 @blue: #428BCA;
 @darkGray: rgb(34, 34, 34);
 @darkGray2: #999999;
-@darkGray3: rgb(72, 85, 99);
+@darkGray3: #485563;
 @darkGray4: rgb(100, 115, 130);
 @lightGray: rgb(153, 153, 153);
 @lightGray2: rgb(238, 238, 238);
@@ -16,6 +16,7 @@
 @lightGray4: rgb(235, 235, 235);
 @red: #c7254e;
 @red2: #d9534f;
+@primary: #df691a;
 
 body {
 	padding-top: 55px;
@@ -66,13 +67,34 @@ body {
 
 .haha-sidebar .nav > .active > a {
   font-weight: bold;
-  color: @blue;
-  border-right: 2px solid @blue;
+  color: @primary;
+  border-right: 2px solid @primary;
 }
 
 .haha-sidebar .nav > li > a {
   color: @lightGray;
+	font-size: 16px;
   padding: 4px 20px;
+}
+
+.haha-sidebar .nav .nav > .active > a {
+  font-weight: bold;
+  color: @primary;
+  border-right: 2px solid @primary;
+}
+
+.haha-sidebar .nav .nav > li > a {
+  color: @lightGray;
+	font-size: 12px;
+  padding: 2px 30px;
+}
+
+.haha-sidebar .nav .active ul li {
+	display: block;
+}
+
+.haha-sidebar .nav .nav > li {
+	display: none;
 }
 
 .haha-monospace-control {
@@ -261,8 +283,8 @@ body {
 	margin-bottom: 2px;
 }
 
-.haha-vcompact-jumbotron {
-	margin-top: 0px;
+.haha-jumbotron {
+	margin-top: 25px;
 	margin-bottom: 0px;
 }
 
