@@ -89,6 +89,14 @@ module.exports = {
     res.json(data);
   },
 
+	validatebalance: function(req, res) {
+    var data = { result: false };
+    if (req.param('balance') <=  req.session.User.balance) {
+      data.result = true;
+    }
+    res.json(data);
+  },
+
 	validatepaypass: function(req, res) {
 		var data = { result: false };
 		if (req.session.User) {

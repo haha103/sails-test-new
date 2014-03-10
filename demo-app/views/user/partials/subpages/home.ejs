@@ -114,7 +114,7 @@
 								}
 						%>
 							<tr>
-								<td style=""><%= trans[i].createdAt.replace(/T/, ' ').replace(/\..+/, ' ') %></td>
+								<td style=""><%= trans[i].createdAt %></td>
 								<td style=""><%= trans_disp_name[trans[i].type] %></td>
 								<td style="" class="<%= sign == "-" ? "fg-danger" : "fg-success" %> fg-bold"><%= sign %> <%= amount_str %></td>
 								<td style="width:50px;">

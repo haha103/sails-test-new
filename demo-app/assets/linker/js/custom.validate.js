@@ -11,6 +11,10 @@ $(document).ready(function () {
     return this.optional(element) || ajax_validate("user", "paypass", value);
   }, "支付密码错误");
 
+	$.validator.addMethod("validBalance", function(value, element) {
+    return this.optional(element) || ajax_validate("user", "balance", value);
+  }, "钱不够啦");
+
 	$("#haha-form-paypass-update").validate({
     debug: true,
     rules: {
@@ -54,12 +58,14 @@ $(document).ready(function () {
   $("#haha-form-withdraw").validate({
     debug: true,
     rules: {
-      withdraw_amount: { required: true, digits: true },
+      withdraw_amount: { required: true, digits: true, validBalance: true },
       withdraw_amount_confirm: { equalTo: "#withdraw_amount" },
+			paypass: { required: true, validPaypass: true }
     },
     messages: {
-      withdraw_amount: { required: "请输入提现金额", digits: "您的输入不是数字" },
+      withdraw_amount: { required: "请输入提现金额", digits: "您的输入不是数字", validBalance: "钱不够啦" },
       withdraw_amount_confirm: { equalTo: "两次输入的提现金额不匹配" },
+			paypass: { required: "请输入支付密码", validPaypass: "支付密码输入错误" }
     },
     highlight: function(element) {
       fg = $(element).closest('.form-group');
@@ -80,7 +86,11 @@ $(document).ready(function () {
 		errorElement: 'span',
 		errorClass: 'haha-validate-error validate-message',
 		errorPlacement: function(error, element) {
-			error.insertAfter($(element).closest(".input-group"));
+			if ($(element).parent().attr("class") == "input-group") {
+				error.insertAfter($(element).closest(".input-group"));
+			} else {
+				error.insertAfter($(element));
+			}
 		},
     submitHandler: function(form) {
       form.submit();
