@@ -24,7 +24,6 @@ var mkdirp = require('mkdirp');
 var bcrypt = require('bcrypt');
 var commait = require('comma-it');
 var moment = require('moment');
-moment.lang("zh-cn");
 
 var display_name = {
   'user_name'              : '用户名',

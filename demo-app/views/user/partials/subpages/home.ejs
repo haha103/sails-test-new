@@ -100,6 +100,7 @@
           </tr>
         </thead>
         <tbody>
+					<% moment.lang("zh-cn"); %>
 					<% Transaction.find({ user_id: user.id}).done(function(err, trans) { %>
 						<%
 							if (err) { console.log(err); return; }
@@ -114,7 +115,7 @@
 								}
 						%>
 							<tr>
-								<td style=""><%= trans[i].createdAt %></td>
+								<td style=""><%= moment(trans[i].createdAt).format("YYYY-MM-DD hh:mm:ss A") %></td>
 								<td style=""><%= trans_disp_name[trans[i].type] %></td>
 								<td style="" class="<%= sign == "-" ? "fg-danger" : "fg-success" %> fg-bold"><%= sign %> <%= amount_str %></td>
 								<td style="width:50px;">
