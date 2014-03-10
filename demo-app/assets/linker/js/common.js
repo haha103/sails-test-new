@@ -5,7 +5,9 @@ $(document).ready(function(){
 	
   $('select').selectpicker({
     style: 'btn btn-default',
-    title: ''
+		size: 6,
+    title: '请选择',
+		dropupAuto: false
   });
   
   $('select#client-type').on("change", function(e) {
