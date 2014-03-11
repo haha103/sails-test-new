@@ -47,8 +47,16 @@ module.exports = {
 		var product = null; // for update
 		if (req.param('product')) {
 			Product.findOne({ id: req.param('product') }).done(function(err, p) {
-				if (!err)
+				if (!err) {
+					p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
+          p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
+					p.remain_amount_n = p.needed_amount - p.current_amount;
+					p.needed_amount_n = p.needed_amount;
+          p.needed_amount = to_ten_thousand(p.needed_amount);
+          p.interest = (p.interest * 100).toString() + "%";
+          p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
 					product = p;
+				}
 			});
 		}
     Product.find({}).done(function (err, ps) {

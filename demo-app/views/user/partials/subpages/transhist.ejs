@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+		<h4 class="panel-title">
+			<a data-toggle="collapse" data-target="#transhist" href="#transhist">
+				历史交易记录
+			</a>
+		</h4>
+  </div>
+  <div id="transhist" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <table class="table table-hover table-condensed haha-table-compact">
+        <thead>
+          <tr>
+            <th>交易时间</th>
+            <th>交易类型</th>
+            <th>交易收支</th>
+            <th>更多</th>
+          </tr>
+        </thead>
+        <tbody>
+					<% moment.lang("zh-cn"); %>
+					<% Transaction.find({ user_id: user.id }).sort("createdAt DESC").done(function(err, trans) { %>
+						<%
+							if (err) { console.log(err); return; }
+							if (!trans) { console.log("该用户没有交易"); return; }
+							for (var i = 0; i < trans.length; ++i) {
+								var amount = trans[i].amount;
+								var amount_str = amount < 10000 ? commait.commaIt(amount, { thousandSeperator: ','}) + " 元" : commait.commaIt((amount / 10000).toFixed(2)) + "万 元";
+								var sign = "+";
+								var type = trans[i].type;
+								if (type == "invest" || type == "transfer" || type == "withdraw") {
+									sign = "-";
+								}
+						%>
+							<tr>
+								<td style=""><%= moment(trans[i].createdAt).format("YYYY-MM-DD hh:mm:ss A") %></td>
+								<td style=""><%= trans_disp_name[trans[i].type] %></td>
+								<td style="" class="<%= sign == "-" ? "fg-danger" : "fg-success" %> fg-bold"><%= sign %> <%= amount_str %></td>
+								<td style="width:50px;">
+									<a class="btn btn-primary btn-xs btn-block" href="/transaction/show/<%= trans[i].id %>">
+										详情
+									</a>
+								</td>
+							</tr>
+						<% } %>
+					<% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div

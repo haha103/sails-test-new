@@ -39,14 +39,16 @@
         </div>
         <div class="navbar-collapse collapse haha-nav-container">
           <ul class="nav navbar-nav haha-navbar-nav-vpad-ext">
+						<li><a href="/product/">产品列表</a></li>
             <% if (session.User && session.User.admin) { %>
-            <li><a href="/product/admin">产品管理</a></li>
-            <% } %>
-            <li><a href="/product/">产品列表</a></li>
-          </ul>
-          <ul class="nav navbar-nav haha-navbar-nav-vpad-ext">
-            <% if (session.User && session.User.admin) { %>
-            <li><a href="/user">用户管理</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">管理 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+									<li><a href="/product/admin">产品管理</a></li>
+									<li><a href="/user">用户管理</a></li>
+									<li><a href="/platform/admin">平台管理</a></li>
+                </ul>
+              </li>
             <% } %>
           </ul>
           <div class="navbar-right">
