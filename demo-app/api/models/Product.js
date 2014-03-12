@@ -25,7 +25,7 @@ module.exports = {
     invest_receiver: { type: 'string' },
     invest_purpose: { type: 'string' },
     payment_method: { type: 'string' },
-
+		invest_started: { type: 'boolean', defaultsTo: false },
   }
 
 };

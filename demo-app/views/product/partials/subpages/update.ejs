@@ -20,10 +20,10 @@
         <h1 class='haha-no-vmargin <%= product.remain_amount_n > 0 ? "fg-danger" : "fg-success" %>'>- <%= commait.commaIt(product.remain_amount_n, { thousandSeperator: ',' }) %> <small>元</small></h1>
       </div>
       <div class="col-md-2 col-md-offset-2 haha-compact-col haha-add-tmargin-xs">
-				<a class="btn btn-primary btn-block" href="/product/startinvest">开放投资</a>
+				<a class="btn btn-primary btn-block" href="/product/startinvest?product=<%= product.id %>" <%= product.invest_started ? "disabled" : "" %>>开放投资</a>
       </div>
       <div class="col-md-2 haha-compact-col haha-add-tmargin-xs">
-				<a class="btn btn-primary btn-block" href="/product/stopinvest">暂停投资</a>
+				<a class="btn btn-primary btn-block" href="/product/stopinvest?product=<%= product.id %>" <%= product.invest_started ? "" : "disabled" %>>暂停投资</a>
       </div>
     </div>
   </div>
@@ -52,10 +52,10 @@
         <h1 class='haha-no-vmargin fg-success'> 50 <small>天</small></h1>
       </div>
       <div class="col-md-2 col-md-offset-2 haha-compact-col haha-add-tmargin-xs">
-				<a class="btn btn-primary btn-block" href="/product/startinvest">还款</a>
+				<a class="btn btn-primary btn-block" href="/product/refundplatform">还款入账</a>
       </div>
       <div class="col-md-2 haha-compact-col haha-add-tmargin-xs">
-				<a class="btn btn-primary btn-block" href="/product/stopinvest">回报投资者</a>
+				<a class="btn btn-primary btn-block" href="/product/refundinvestor">投资者分红</a>
       </div>
     </div>
   </div>

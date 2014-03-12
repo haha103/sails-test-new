@@ -22,7 +22,7 @@
 					<%- partial("../modals/transhist", { i: i, p: p }) %>
 				</div>
         <div class="col-md-1 haha-compact-col">
-          <button class="btn btn-success btn-xs btn-block invest-btn" modal-index="<%= i %>">投资</button>
+          <button class="btn btn-success btn-xs btn-block invest-btn" modal-index="<%= i %>" <%= p.invest_started ? "" : "disabled" %>>投资</button>
           <%- partial("../modals/invest", { i: i, p: p }) %>
         </div>
 				<% if (session.User && session.User.admin) { %>

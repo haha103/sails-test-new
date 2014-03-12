@@ -105,6 +105,24 @@ module.exports = {
     });
   },
 
+	startinvest: function(req, res, next) {
+		var pid = req.param("product");
+		Product.update({ id: pid }, { invest_started: true }, function(err, p) {
+			if (!err) {
+				res.redirect("/product/admin?subpage=update&product=" + pid);
+			}
+		});
+	},
+
+	stopinvest: function(req, res, next) {
+		var pid = req.param("product");
+		Product.update({ id: pid }, { invest_started: false }, function(err, p) {
+			if (!err) {
+				res.redirect("/product/admin?subpage=update&product=" + pid);
+			}
+		});
+	},
+
   create: function(req, res, next) {
     var file = req.files.guarantee_letter_scan;
     var upload_path = UPLOAD_PATH + "/guaranett_letter_scan/";
