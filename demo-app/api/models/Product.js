@@ -15,6 +15,8 @@ module.exports = {
     contract: { type: 'string' },
     needed_amount: { type: 'integer' },
     current_amount: { type: 'integer', defaultsTo: 0 },
+		return_amount: { type: 'integer' },
+		returned_amount: { type: 'integer', defaultsTo: 0 },
     interest: { type: 'float' },
     duration_from: { type: 'date' },
     duration_to: { type: 'date' },

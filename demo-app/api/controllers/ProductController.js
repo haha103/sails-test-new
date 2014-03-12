@@ -26,6 +26,7 @@ var UPLOAD_PATH = 'assets/userdata/products';
 var display_name = {
   'contract': '合同编号',
   'needed_amount': '需求金额',
+	'return_amount': '还款金额',
   'interest': '年化利率',
   'duration_from': '开始',
   'duration_to': '截至',
@@ -49,15 +50,22 @@ module.exports = {
 			Product.findOne({ id: req.param('product') }).done(function(err, p) {
 				if (!err) {
 					p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
+					p.return_progress = ((p.returned_amount / p.return_amount) * 100).toFixed(2);
+					p.return_amount_due = to_ten_thousand(p.return_amount - p.returned_amount);
+					p.return_amount_due_n = p.return_amount - p.returned_amount;
           p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
 					p.remain_amount_n = p.needed_amount - p.current_amount;
 					p.needed_amount_n = p.needed_amount;
           p.needed_amount = to_ten_thousand(p.needed_amount);
           p.interest = (p.interest * 100).toString() + "%";
           p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
+					p.due_in_days = dayDiff(new Date(), new Date(p.duration_to));
 					product = p;
 				}
 			});
+			console.log("--- aaa ---");
+			console.log(product);
+			console.log("--- aaa ---");
 		}
     Product.find({}).done(function (err, ps) {
       if (!err) {
