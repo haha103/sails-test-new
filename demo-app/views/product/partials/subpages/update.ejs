@@ -52,7 +52,8 @@
         <h1 class='haha-no-vmargin <%= product.due_in_days > 0 ? "fg-success" : "fg-danger" %>'> <%= product.due_in_days %> <small>天</small></h1>
       </div>
       <div class="col-md-2 col-md-offset-2 haha-compact-col haha-add-tmargin-xs">
-				<a class="btn btn-primary btn-block" href="/product/refundplatform">还款入账</a>
+				<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#refundplatform-modal">还款入账</button>
+				<%- partial("../modals/refundplatform", { product: product }) %>
       </div>
       <div class="col-md-2 haha-compact-col haha-add-tmargin-xs">
 				<a class="btn btn-primary btn-block" href="/product/refundinvestor">投资者分红</a>

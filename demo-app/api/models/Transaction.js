@@ -22,6 +22,8 @@ module.exports = {
     withdraw_bank_account: { type: 'string' },
     transfer_to_user_id: { type: 'integer' },
     transfer_to_bank_account: { type: 'string' },
+
+		product: { type: 'integer' },
     
   }
 

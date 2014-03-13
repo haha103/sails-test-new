@@ -108,7 +108,7 @@
         </thead>
         <tbody>
 					<% moment.lang("zh-cn"); %>
-					<% Transaction.find({ user_id: user.id }).limit(10).sort("createdAt DESC").done(function(err, trans) { %>
+					<% Transaction.find({ user_id: user.id }).sort("createdAt DESC").limit(10).done(function(err, trans) { %>
 						<%
 							if (err) { console.log(err); return; }
 							if (!trans) { console.log("该用户没有交易"); return; }

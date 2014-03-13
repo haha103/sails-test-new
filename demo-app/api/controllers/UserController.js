@@ -48,7 +48,8 @@ var trans_disp_name = {
 	'recharge': '充值',
 	'withdraw': '取现',
 	'invest': '购买产品',
-	'transfer': '转账'
+	'transfer': '转账',
+	'refundplatform': '还款到平台账户',
 };
 
 var cities = CityHelper.get_cities();

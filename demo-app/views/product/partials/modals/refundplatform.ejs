@@ -1,0 +1,40 @@
+<div class="modal fade" id="refundplatform-modal" tabindex="-1" role="dialog" aria-labelledby="refundplatform-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form role='form' action="/transaction/create?type=refundplatform&product=<%= product.id %>" method="POST" class="form-horizontal" id="haha-form-refundplatform">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          还款到平台账户
+        </div>
+        <div class="modal-body">
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="refundplatform_amount">还款金额</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <input type='text' class='form-control' id='refundplatform_amount' name='refundplatform_amount'></input>
+                <span class="input-group-addon">元</span>
+              </div>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-md-2' for="refundplatform_amount_confirm">确认金额</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <input type='text' class='form-control' name='refundplatform_amount_confirm'></input>
+                <span class="input-group-addon">元</span>
+              </div>
+            </div>
+          </div>
+          <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+        </div>
+        <div class="modal-footer haha-modal-footer-compact">
+          <div class='row'>
+            <div class="col-md-2 col-md-offset-10">
+              <button type="submit" class="btn btn-primary btn-block btn-sm">确定</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

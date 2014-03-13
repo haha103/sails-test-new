@@ -96,6 +96,43 @@ $(document).ready(function () {
       form.submit();
     }
   });
+
+	$("#haha-form-refundplatform").validate({
+    debug: true,
+    rules: {
+      refundplatform_amount: { required: true, digits: true },
+      refundplatform_amount_confirm: { equalTo: "#refundplatform_amount" },
+    },
+    messages: {
+      refundplatform_amount: { required: "请输入还款金额", digits: "您的输入不是数字" },
+      refundplatform_amount_confirm: { equalTo: "两次输入的金额不匹配" },
+    },
+    highlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-success');
+      fg.addClass('has-error');
+    },
+    unhighlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
+    },
+    success: function(element) {
+      fg = $(element).closest('.form-group');
+			fg.removeClass('has-error');
+			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
+		},
+		errorElement: 'span',
+		errorClass: 'haha-validate-error validate-message',
+		errorPlacement: function(error, element) {
+			error.insertAfter($(element).closest(".input-group"));
+		},
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+	
   $("#haha-form-recharge").validate({
     debug: true,
     rules: {

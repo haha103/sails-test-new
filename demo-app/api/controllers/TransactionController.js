@@ -121,6 +121,38 @@ module.exports = {
 				});
 				console.log(errs);
 				res.redirect("/product/");
+			} else if (type == "refundplatform") {
+				var product = req.param("product");
+				var trans = {
+          user_id: user.id,
+          type: type,
+          amount: req.param("refundplatform_amount"),
+          product: product
+        }; 
+        Transaction.create(trans, function (err, trans) {
+          if (err) { errs.push(err); return; }
+					Platform.findOne({ key: "balance" }).done(function(err, pair) {
+						if (err) { errs.push(err); return; }
+						if (pair) {
+							pair.fval += trans.amount;
+							pair.save(function(err, pair) {
+								if (err) { errs.push(err); return; }
+							});
+						} else {
+							Platform.create({ key: 'balance', fval: trans.amount }, function(err, pair) {
+								if (err) { errs.push(err); return; }
+							});
+						}
+					});
+					Product.findOne({ id: product }).done(function(err, p) {
+						if (err || !p) { errs.push(err); return; }
+						p.returned_amount += trans.amount;
+						p.save(function(err, p) {
+							if (err) { errs.push(err); return; }
+						});
+					});
+        });
+        res.redirect("/product/admin?subpage=update&product=" + product);
       } else {
 				
       }
