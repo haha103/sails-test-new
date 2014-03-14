@@ -46,13 +46,13 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-4">
-        <h1 class='haha-no-vmargin fg-danger'>- <%= commait.commaIt(product.return_amount_due_n, { thousandSeperator: ',' }) %> <small>元</small></h1>
+        <h1 class='haha-no-vmargin <%= product.return_amount_due_n > 0 ? "fg-danger" : "fg-success" %>'>- <%= commait.commaIt(product.return_amount_due_n, { thousandSeperator: ',' }) %> <small>元</small></h1>
       </div>
 			<div class="col-md-2">
         <h1 class='haha-no-vmargin <%= product.due_in_days > 0 ? "fg-success" : "fg-danger" %>'> <%= product.due_in_days %> <small>天</small></h1>
       </div>
       <div class="col-md-2 col-md-offset-2 haha-compact-col haha-add-tmargin-xs">
-				<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#refundplatform-modal">还款入账</button>
+				<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#refundplatform-modal" <%= product.return_amount_due_n <= 0 ? "disabled" : "" %>>还款入账</button>
 				<%- partial("../modals/refundplatform", { product: product }) %>
       </div>
       <div class="col-md-2 haha-compact-col haha-add-tmargin-xs">

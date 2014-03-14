@@ -15,6 +15,10 @@ $(document).ready(function () {
     return this.optional(element) || ajax_validate("user", "balance", value);
   }, "钱不够啦");
 
+	$.validator.addMethod("validRefundBalance", function(value, element) {
+    return this.optional(element) || ajax_validaterefundbalance(value);
+  }, "您确定到账了这么多钱");
+
 	$("#haha-form-paypass-update").validate({
     debug: true,
     rules: {
@@ -100,11 +104,11 @@ $(document).ready(function () {
 	$("#haha-form-refundplatform").validate({
     debug: true,
     rules: {
-      refundplatform_amount: { required: true, digits: true },
+      refundplatform_amount: { required: true, digits: true, validRefundBalance: true },
       refundplatform_amount_confirm: { equalTo: "#refundplatform_amount" },
     },
     messages: {
-      refundplatform_amount: { required: "请输入还款金额", digits: "您的输入不是数字" },
+      refundplatform_amount: { required: "请输入还款金额", digits: "您的输入不是数字", validRefundBalance: "您不需要还这么多" },
       refundplatform_amount_confirm: { equalTo: "两次输入的金额不匹配" },
     },
     highlight: function(element) {
@@ -344,6 +348,26 @@ function ajax_validate(controller, key, value) {
     type: 'get',
     async: false,
     data: key + '=' + value,
+    success: function(data) {
+      console.log(data);
+      result = data.result;
+    },
+    error: function(e) {
+      console.log(e.message);
+    }
+  });
+  console.log(result);
+  return result;
+}
+
+function ajax_validaterefundbalance(value) {
+	var result = false;
+	var product = $('input#pid').attr('value');
+  $.ajax({
+    url: '/product/validaterefundbalance',
+    type: 'get',
+    async: false,
+    data: 'product=' + product + '&refundplatform_amount=' + value,
     success: function(data) {
       console.log(data);
       result = data.result;

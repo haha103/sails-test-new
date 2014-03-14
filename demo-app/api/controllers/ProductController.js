@@ -42,6 +42,19 @@ var display_name = {
 
 module.exports = {
 
+	validaterefundbalance: function(req, res) {
+		var data = { result: false };
+		var product = req.param("product");
+		if (product) {
+			Product.findOne({ id: product }).done(function(err, p) {
+				if (!err && (p.return_amount - p.returned_amount >= req.param("refundplatform_amount"))) {
+					data.result = true;
+				}
+			});
+		}
+		res.json(data);
+	},
+	
   admin: function(req, res) {
     var subpage = req.param('subpage') ? req.param('subpage') : 'new';
     var products = []; // for index
