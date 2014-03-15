@@ -50,6 +50,7 @@ var trans_disp_name = {
 	'invest': '购买产品',
 	'transfer': '转账',
 	'refundplatform': '还款到平台账户',
+	'refundinvestor': '还款给投资者',
 };
 
 var cities = CityHelper.get_cities();

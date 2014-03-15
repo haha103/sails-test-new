@@ -15,8 +15,9 @@ module.exports = {
     contract: { type: 'string' },
     needed_amount: { type: 'integer' },
     current_amount: { type: 'integer', defaultsTo: 0 },
-		return_amount: { type: 'integer' },
-		returned_amount: { type: 'integer', defaultsTo: 0 },
+		return_amount: { type: 'integer' }, // 应返还平台的金额
+		returned_amount: { type: 'integer', defaultsTo: 0 }, // 已返还平台的金额
+		returned_investor_amount: { type: 'integer', defaultsTo: 0 }, // 已返还投资者的金额 (应返还金额通过计算得出)
     interest: { type: 'float' },
     duration_from: { type: 'date' },
     duration_to: { type: 'date' },

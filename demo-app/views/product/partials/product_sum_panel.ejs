@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+		<h4 class="panel-title">
+      <a data-toggle="collapse" data-target="#basic-info" href="#basic-info">
+				产品摘要
+      </a>
+    </h4>  
+  </div>
+  <div id="basic-info" class="panel-collapse collapse in">
+    <div class="panel-body">
+			<table class="table table-condensed haha-table-compact">
+				<thead>
+					<tr>
+						<th></th>
+						<th>需求</th>
+						<th>投资用途</th>
+						<th>期限</th>
+						<th>投资开始</th>
+						<th>投资截至</th>
+						<th>担保机构</th>
+						<th>担保函编号</th>
+						<th>担保函扫描件</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style=""></td>
+						<td style=""><%= p.needed_amount %></td>
+						<td style=""><%= p.invest_purpose %></td>
+						<td style=""><%= p.duration_diff %>天</td>
+						<td style=""><%= p.duration_from %></td>
+						<td style=""><%= p.duration_to %></td>
+						<td style=""><%= p.guarantee_company %></td>
+						<td style=""><%= p.guarantee_letter_code %></td>
+						<td style="">
+							<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#scan">
+								查看
+							</button>
+							<div class="modal fade" id="scan" tabindex="-1" role="dialog" aria-labelledby="scan-label" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											担保函扫描件
+										</div>
+										<div class="modal-body">
+											<img class="img-responsive" src="<%= p.guarantee_letter_scan.replace(/^assets/, "") %>"></img>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+  </div>
+</div>

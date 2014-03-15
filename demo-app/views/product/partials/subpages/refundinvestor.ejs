@@ -1,0 +1,107 @@
+<% if (product) { %>
+<%- partial("../product_sum_panel.ejs", { p: product }) %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+		<h4 class="panel-title">
+			分红摘要
+		</h4>
+  </div>
+  <div class="panel-body">
+		<table class="table table-condensed haha-table-compact">
+			<thead>
+				<tr>
+					<th>总借款金额</th>
+					<th>到期应还</th>
+					<th>已还金额</th>
+					<th>还差金额</th>
+					<th>平台到账金额</th>
+					<th>分红进度</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style=""><h3 class="haha-no-vmargin"><%= commait.commaIt(product.needed_amount_n, { thousandSeperator: ',' }) %> <small>元</small></h3></td>
+					<td style=""><h3 class="haha-no-vmargin"><%= commait.commaIt(product.return_investor_sum_n, { thousandSeperator: ',' }) %> <small>元</small></h3></td>
+					<td style=""><h3 class="haha-no-vmargin"><%= commait.commaIt(product.returned_investor_amount_n, { thousandSeperator: ',' }) %> <small>元</small></h3></td>
+					<td style=""><h3 class="haha-no-vmargin <%= product.return_investor_due_n > 0 ? "fg-danger" : "fg-success" %>"><%= commait.commaIt(product.return_investor_due_n, { thousandSeperator: ',' }) %> <small>元</small></h3></td>
+					<td style=""><h3 class="haha-no-vmargin <%= product.returned_amount < product.return_investor_sum_n ? "fg-danger" : "fg-success" %>"><%= commait.commaIt(product.returned_amount, { thousandSeperator: ',' }) %> <small>元</small></h3></td>
+					<td style="width:150px;">
+						<div class="progress progress-striped active haha-progress-compact haha-progress-center-span" style="margin-top:3px;">
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= product.return_investor_progress %>%;">
+								<span><b><%= product.return_investor_progress %>%</b></span>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+		<h4 class="panel-title">分红详情</h4>
+  </div>
+  <div class="panel-body">
+		<table class="table table-condensed haha-table-compact">
+			<thead>
+				<tr>
+					<th></th>
+					<th>投资者</th>
+					<th>分红进度</th>
+					<th>总投资额</th>
+					<th>利率</th>
+					<th>应分得总金额</th>
+					<th>已分得总金额</th>
+					<th>还差金额</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% Transaction.find({ type: "invest", invest_product: product.id }).groupBy("user_id").sum("amount").done(function(err, trans) { 
+					if (err) { console.log(err); return; }
+					if (!trans) { console.log("该产品没有交易"); return; }
+					for (var i = 0; i < trans.length; ++i) {
+						User.findOne({ id: trans[i].user_id }).done(function(err, user) {
+							if (err) { console.log(err); return; }
+							if (!user) { console.log("没有找到用户"); return; }
+							var refund_investor_sum = (trans[i].amount * (1 + product.interest_n)).toFixed(0);
+							var fully_refunded = false;
+							var refunded_amount = 0;
+							Transaction.find({ type: "refundinvestor", user_id: user.id, product: product.id }).groupBy("user_id").sum("amount").done(function(err, trans2) {
+								if (err) { console.log(err); return; }
+								if (trans2 && trans2.amount >= refund_investor_sum) {
+									fully_refunded = true;
+									refunded_amount = trans2.amount;
+								}
+								var refunded_progress = (refunded_amount / refund_investor_sum).toFixed(2);
+				%>
+					<tr>
+						<td style="width:30px;"><span class="glyphicon <%= fully_refunded ? "glyphicon-ok" : "glyphicon-star-empty" %>"></span></td>
+						<td style=""><%= user.user_name %></td>
+						<td style="width:150px;">
+							<div class="progress progress-striped active haha-progress-compact haha-progress-center-span">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= refunded_progress %>%;">
+									<span><b><%= refunded_progress %>%</b></span>
+								</div>
+							</div>
+						</td>
+						<td style=""><%= commait.commaIt(trans[i].amount, { thousandSeperator: ',' }) %> 元</td>
+						<td style=""><%= product.interest %></td>
+						<td style=""><%= commait.commaIt(refund_investor_sum, { thousandSeperator: ',' }) %> 元</td>
+						<td style=""><%= commait.commaIt(refunded_amount, { thousandSeperator: ',' }) %> 元</td>
+						<td style=""><%= commait.commaIt(refund_investor_sum - refunded_amount, { thousandSeperator: ',' }) %> 元</td>
+            <td style="width:50px;">
+							<a class="btn btn-primary btn-xs btn-block" href="/product/refundinvestor?product=<%= product.id %>?user=<%= user.id %>" <%= fully_refunded ? "disabled" : "" %>>
+								分红
+							</a>
+						</td>
+					</tr>
+					<% }); %>
+				<% }); %>
+			<% } %>
+		<% }); %>
+			</tbody>
+		</table>
+  </div>
+</div>
+<% } %>

@@ -35,7 +35,7 @@
         <tr>
 					<% var paypass_ok = (session.User && session.User.encryptedPaypass); %>
           <td style="border-top: none; width:30px;"><span class="glyphicon glyphicon-<%= paypass_ok ? "ok" : "remove" %>"></span></td>
-          <td style="border-top: none; width:50px;" class="fg-<%= paypass_ok ? "success" : "danger" %> fg-bold"><%= paypass_ok ? "保护中" : "未使用" %></td>
+          <td style="border-top: none; width:70px;" class="fg-<%= paypass_ok ? "success" : "danger" %> fg-bold"><%= paypass_ok ? "保护中" : "未使用" %></td>
           <td style="border-top: none; width:100px;">支付密码</td>
           <td style="border-top: none;">付款或修改账户信息时输入，保护账户资金安全。</td>
           <td style="border-top: none; width:50px;">

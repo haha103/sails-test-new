@@ -63,6 +63,10 @@ module.exports = {
 			Product.findOne({ id: req.param('product') }).done(function(err, p) {
 				if (!err) {
 					p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
+					p.return_investor_sum_n = (p.needed_amount * (1 + p.interest)).toFixed(0);
+					p.returned_investor_amount_n = p.returned_investor_amount ? p.returned_investor_amount : 0;
+					p.return_investor_progress = (p.returned_investor_amount_n / p.return_investor_sum_n).toFixed(2);
+					p.return_investor_due_n = p.return_investor_sum_n - p.returned_investor_amount_n;
 					p.return_progress = ((p.returned_amount / p.return_amount) * 100).toFixed(2);
 					p.return_amount_due = to_ten_thousand(p.return_amount - p.returned_amount);
 					p.return_amount_due_n = p.return_amount - p.returned_amount;
@@ -70,6 +74,7 @@ module.exports = {
 					p.remain_amount_n = p.needed_amount - p.current_amount;
 					p.needed_amount_n = p.needed_amount;
           p.needed_amount = to_ten_thousand(p.needed_amount);
+					p.interest_n = p.interest;
           p.interest = (p.interest * 100).toString() + "%";
           p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
 					p.due_in_days = dayDiff(new Date(), new Date(p.duration_to));
