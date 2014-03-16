@@ -18,7 +18,7 @@
 					}																			 
 				%>
 				<div class="col-md-offset-<%= offset %> col-md-1 haha-compact-col">
-          <button class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#trans-<%= i %>">交易详情</button>
+          <button class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#trans-<%= i %>">交易</button>
 					<%- partial("../modals/transhist", { i: i, p: p }) %>
 				</div>
         <div class="col-md-1 haha-compact-col">
@@ -27,7 +27,7 @@
         </div>
 				<% if (session.User && session.User.admin) { %>
 				<div class="col-md-1 haha-compact-col">
-          <a class="btn btn-danger btn-xs btn-block" href="/product/admin?subpage=update&product=<%= p.id %>">更新产品</a>
+          <a class="btn btn-danger btn-xs btn-block" href="/product/admin?subpage=update&product=<%= p.id %>">更新</a>
         </div>
 				<% } %>
       </div>
@@ -37,7 +37,6 @@
 				<table class="table table-condensed haha-table-compact">
 					<thead>
 						<tr>
-							<th></th>
 							<th>需求</th>
 							<th>收益率</th>
 							<th>期限</th>
@@ -52,7 +51,6 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td style=""></td>
 							<td style=""><%= p.needed_amount %></td>
 							<td style=""><%= p.interest %></td>
 							<td style=""><%= p.duration_diff %>天</td>
@@ -68,8 +66,8 @@
 							</td>
 							<td style=""><%= p.remain_amount %></td>
 							<td style=""><%= p.guarantee_company %></td>
-							<td style="">
-								<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#scan-<%= i %>">
+							<td style="width:52px;">
+								<button class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#scan-<%= i %>">
 									查看
 								</button>
 								<div class="modal fade" id="scan-<%= i %>" tabindex="-1" role="dialog" aria-labelledby="scan-label" aria-hidden="true">

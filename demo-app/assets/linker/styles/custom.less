@@ -236,7 +236,7 @@ body {
     position: absolute;
     display: block;
     width: 100%;
-    //color: @lightGray4;
+    color: @bodyText;
 		font-size: 12px;
  }
 
@@ -327,4 +327,9 @@ table a, .table a {
   text-decoration: none;
   color: white;
   //background-color: whitesmoke;
+}
+
+// monkey patches
+.form-horizontal .control-label, .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+	padding-top: 9px;
 }
