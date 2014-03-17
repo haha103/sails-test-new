@@ -65,7 +65,7 @@ module.exports = {
 					p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
 					p.return_investor_sum_n = (p.needed_amount * (1 + p.interest)).toFixed(0);
 					p.returned_investor_amount_n = p.returned_investor_amount ? p.returned_investor_amount : 0;
-					p.return_investor_progress = (p.returned_investor_amount_n / p.return_investor_sum_n).toFixed(2);
+					p.return_investor_progress = ((p.returned_investor_amount_n / p.return_investor_sum_n) * 100).toFixed(2);
 					p.return_investor_due_n = p.return_investor_sum_n - p.returned_investor_amount_n;
 					p.return_progress = ((p.returned_amount / p.return_amount) * 100).toFixed(2);
 					p.return_amount_due = to_ten_thousand(p.return_amount - p.returned_amount);
@@ -172,6 +172,49 @@ module.exports = {
     });
     res.redirect("/product/admin?subpage=index");
   },
+
+	refundinvestor: function(req, res, next) {
+		var pid = req.param("product");
+		var uid = req.param("user");
+
+		console.log("pid=" + pid);
+		console.log("uid=" + uid);
+		
+		var errs = [];
+		
+		Transaction.find({ type: "invest", invest_product: pid, user_id: uid }).groupBy("user_id").sum("amount").done(function(err, t) {
+			if (err) { errs.push(err); return; }
+			Product.findOne({ id: pid }).done(function(err, p) {
+				if (err) { errs.push(err); return; }
+				var refund_amount = (t[0].amount * (1 + p.interest)).toFixed(0);
+				if (refund_amount > p.returned_amount) {
+					console.log("平台收到的还款金额不够!");
+					return;
+				}
+				var tran = {
+					user_id: uid,
+					type: "refundinvestor",
+					amount: refund_amount,
+					product: pid
+				};
+				Transaction.create(tran, function(err, t2) {
+					if (err) { errs.push(err); return; }
+					if (t2) {
+						p.returned_investor_amount += refund_amount;
+						p.save(function(err, p2) {
+							if (err) { errs.push(err); return; }
+						});
+					}
+				});
+			});
+		});
+
+		if (errs.length > 0) {
+			res.json(errs);
+		} else {
+			res.redirect("/product/admin?subpage=refundinvestor&product=" + pid);
+		}
+	},
 
   /**
    * Overrides for the settings in `config/controllers.js`
