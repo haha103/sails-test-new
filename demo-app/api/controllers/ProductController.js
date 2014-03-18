@@ -176,6 +176,7 @@ module.exports = {
 	refundinvestor: function(req, res, next) {
 		var pid = req.param("product");
 		var uid = req.param("user");
+		var amount = parseInt(req.param("refundinvestor_amount"));
 
 		console.log("pid=" + pid);
 		console.log("uid=" + uid);
@@ -186,16 +187,17 @@ module.exports = {
 			if (err) { errs.push(err); return; }
 			Product.findOne({ id: pid }).done(function(err, p) {
 				if (err) { errs.push(err); return; }
-				var refund_amount = (t[0].amount * (1 + p.interest)).toFixed(0);
+				var refund_amount = amount ? amount : (t[0].amount * (1 + p.interest)).toFixed(0);
 				if (refund_amount > p.returned_amount) {
 					console.log("平台收到的还款金额不够!");
 					return;
 				}
 				var tran = {
-					user_id: uid,
+					user_id: req.session.User.id,
 					type: "refundinvestor",
 					amount: refund_amount,
-					product: pid
+					product: pid,
+					target_user_id: uid
 				};
 				Transaction.create(tran, function(err, t2) {
 					if (err) { errs.push(err); return; }

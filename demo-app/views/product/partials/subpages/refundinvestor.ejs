@@ -67,11 +67,14 @@
 							var refund_investor_sum = (trans[i].amount * (1 + product.interest_n)).toFixed(0);
 							var fully_refunded = false;
 							var refunded_amount = 0;
-							Transaction.find({ type: "refundinvestor", user_id: user.id, product: product.id }).groupBy("user_id").sum("amount").done(function(err, trans2) {
+							Transaction.find({ type: "refundinvestor", target_user_id: user.id, product: product.id }).groupBy("target_user_id").sum("amount").done(function(err, trans2) {
 								if (err) { console.log(err); return; }
-								if (trans2.length == 1 && trans2[0].amount >= refund_investor_sum) {
-									fully_refunded = true;
+								console.log(trans2);
+								if (trans2.length == 1) {
 									refunded_amount = trans2[0].amount;
+									if(trans2[0].amount >= refund_investor_sum) {
+										fully_refunded = true;
+									}
 								}
 								var refunded_progress = ((refunded_amount / refund_investor_sum) * 100).toFixed(2);
 				%>
@@ -91,9 +94,8 @@
 						<td style=""><%= commait.commaIt(refunded_amount, { thousandSeperator: ',' }) %> 元</td>
 						<td style=""><%= commait.commaIt(refund_investor_sum - refunded_amount, { thousandSeperator: ',' }) %> 元</td>
             <td style="width:50px;">
-							<a class="btn btn-primary btn-xs btn-block" href="/product/refundinvestor?product=<%= product.id %>&user=<%= user.id %>" <%= fully_refunded ? "disabled" : "" %>>
-								分红
-							</a>
+							<button class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#refundinvestor-modal" <%= fully_refunded ? "disabled" : "" %>>分红</button>
+							<%- partial("../modals/refundinvestor.ejs", { product: product, user: user }) %>
 						</td>
 					</tr>
 					<% }); %>
