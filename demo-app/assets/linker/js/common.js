@@ -51,6 +51,7 @@ $(document).ready(function(){
     handle_auto_spacing();
   } else if (/^\/user\/show/.test(page)) {
     handle_city_selection();
+		handle_sidebar_menu();
   } else if (/^\/product\/admin/.test(page)) {
     handle_guarantee_model();
     handle_file_input();
@@ -63,7 +64,9 @@ $(document).ready(function(){
 });
 
 function handle_sidebar_menu() {
-	
+	$("a.parent").click(function() {
+		$(this).siblings("ul").toggle();
+	});
 }
 
 function handle_invest() {
