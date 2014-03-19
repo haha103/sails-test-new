@@ -15,10 +15,15 @@
 @lightGray2: rgb(238, 238, 238);
 @lightGray3: #F5F5F5;
 @lightGray4: rgb(235, 235, 235);
+@lightGray5: #DDDDDD;
 @red: #c7254e;
 @red2: #d9534f;
 @primary: #dd4814;
 @bodyText: #333333;
+
+* {
+	border-radius: 0px !important;
+}
 
 body {
 	padding-top: 55px;
@@ -67,30 +72,70 @@ body {
   height: 30px;
 }
 
+.haha-sidebar > .nav > li {
+	border-color: @lightGray5;
+	border-style: solid;
+	border-left-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-top-width: 0px;
+}
+
+.haha-sidebar > .nav > li:first-of-type {
+	border-top-width: 1px;
+}
+
+.haha-sidebar > .nav .nav > li:last-of-type {
+	border-bottom-width: 0px;
+}
+
+.haha-sidebar > .nav .nav > li {
+	border-color: @lightGray5;
+	border-style: solid;
+	border-width: 0px;
+	border-bottom-width: 1px;
+}
+
+.haha-sidebar > .nav .nav > li:first-of-type {
+	border-top-width: 1px;
+}
+
+.haha-sidebar > .nav .nav > li:first-of-type > a {
+	//padding-top: 10px;
+}
+
+.haha-sidebar > .nav .nav > li:last-of-type > a {
+	//padding-bottom: 10px;
+}
+
 .haha-sidebar .nav > .active > a,
 .haha-sidebar .nav .nav > .active > a {
   font-weight: bold;
   color: @primary;
-  border-right: 2px solid @primary;
+	//color: @bodyText;
+	//background-color: whitesmoke;
+  //border-right: 2px solid @primary;
 }
 
 .haha-sidebar .nav > li > a:hover,
 .haha-sidebar .nav .nav > li > a:hover,
 .haha-sidebar .nav > .active > a:hover,
 .haha-sidebar .nav .nav > .active > a:hover {
-  background-color: whitesmoke;	
+  background-color: @lightGray4;
+	//text-decoration: underline;
 }
 
-.haha-sidebar .nav > li > a {
-  color: @lightGray;
+.haha-sidebar > .nav > li > a {
+	background-color: whitesmoke;
+  color: @bodyText;
 	font-size: 16px;
-  padding: 4px 20px;
+  padding: 8px 15px 7px 15px;
 }
 
 .haha-sidebar .nav .nav > li > a {
-  color: @lightGray;
+  color: @bodyText;
 	font-size: 12px;
-  padding: 2px 35px;
+  padding: 6px 15px;
 }
 
 .haha-sidebar .nav .active ul li {

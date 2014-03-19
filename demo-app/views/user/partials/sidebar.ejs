@@ -36,7 +36,8 @@
 		<% for (var i = 0; i < categories.length; ++i) { %>
 		<%   var c = categories[i]; %>
 			<li class="<%= c.subcats ? (_.contains(c.subcats.map(function(x) { return x.name; }), subpage) ? "active" : "") : (subpage == c.name ? "active" : "") %>">
-				<a href="<%= c.subcats ? "/user/show/" + user.id + "?subpage=" + c.subcats[0].name : "/user/show/" + user.id + "?subpage=" + c.name %>"><%= c.title %></a>
+				<!--<a href="<%= c.subcats ? "/user/show/" + user.id + "?subpage=" + c.subcats[0].name : "/user/show/" + user.id + "?subpage=" + c.name %>"><%= c.title %> <span class="<%= c.subcats ? "caret pull-right" : "" %>" style="margin-top:8px;"></span></a> -->
+				<a href="<%= c.subcats ? "/user/show/" + user.id + "?subpage=" + c.subcats[0].name : "/user/show/" + user.id + "?subpage=" + c.name %>"><%= c.title %> <span class="<%= c.subcats ? "caret pull-right" : "" %>" style="margin-top:8px;"></span></a>
 				<% if (c.subcats) { %>
 					<ul class="nav">
 					<% for (var j = 0; j < c.subcats.length; ++j) { %>

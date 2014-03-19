@@ -62,6 +62,10 @@ $(document).ready(function(){
   }
 });
 
+function handle_sidebar_menu() {
+	
+}
+
 function handle_invest() {
 	$(".invest-btn").click(function() {
 		var idx = $(this).attr("modal-index");
