@@ -7,7 +7,7 @@ module.exports = function (req, res, ok) {
       message: '请登录'
     }];
     req.session.flash = { err: err };
-    res.redirect('/session/new');
+    res.redirect('/session/new?original_url=' + req.url);
     return;
   }
 };

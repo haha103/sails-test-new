@@ -26,7 +26,7 @@ module.exports = {
       uri: captcha.uri(),
       txt: captcha.text()
     };
-    res.view();
+    res.view({ original_url: req.param("original_url") });
   },
 
 	authenticated: function(req, res) {
@@ -44,6 +44,7 @@ module.exports = {
   },
 
   'create': function(req, res, next) {
+		var original_url = req.param("original_url");
     if (!req.param('user_name') || !req.param('password')) {
       var err = [{
         name: '输入错误',
@@ -98,11 +99,9 @@ module.exports = {
             action: ' 已登录'
           });
 
-          if (user.admin) {
-            res.redirect('/product');
-            return;
-          }
-          res.redirect('/user/show/' + user.id);
+					original_url ? res.redirect(original_url)
+						: ( user.admin ? res.redirect('/product') : res.redirect('/user/show/' + user.id) );
+					
         });
       });
     });
