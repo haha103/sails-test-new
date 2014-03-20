@@ -1,7 +1,53 @@
+
+<%
+	var categories = [
+		{
+			name: "productcenter",
+			title: "产品中心",
+			subcats: [
+				{ name: "index", title: "所有产品", subcats: null },
+				{ name: "new", title: "新建产品", subcats: null },
+				{ name: "update", title: "更新产品", subcats: null },
+			]
+		},
+		{
+			name: "productstats",
+			title: "产品统计",
+			subcats: [
+				{ name: "stat1", title: "统计信息1", subcats: null },
+				{ name: "stat2", title: "统计信息2", subcats: null },
+				{ name: "stat3", title: "统计信息3", subcats: null },
+			]
+		},
+		{
+			name: "producthelp",
+			title: "帮助中心",
+			subcats: [
+				{ name: "help1", title: "帮助1", subcats: null },
+				{ name: "help2", title: "帮助2", subcats: null },
+				{ name: "help3", title: "帮助3", subcats: null },
+			]
+		},
+	];
+%>
 <div class="hidden-print affix-top haha-sidebar" role="complementary" style="">
   <ul class="nav">
-		<li class="<%= subpage == 'new' ? 'active' : '' %>"><a href="/product/admin?subpage=new">新建产品</a></li>
-    <li class="<%= subpage == 'index' ? 'active' : '' %>"><a href="/product/admin?subpage=index">所有产品</a></li>
-		<li class="<%= subpage == 'update' ? 'active' : '' %>"><a href="/product/admin?subpage=update">更新产品</a></li>
+		<% for (var i = 0; i < categories.length; ++i) { %>
+		<%   var c = categories[i]; %>
+			<li class="<%= c.subcats ? (_.contains(c.subcats.map(function(x) { return x.name; }), subpage) ? "active" : "") : (subpage == c.name ? "active" : "") %>">
+				<a href="<%= c.subcats ? "#" : "/product/admin?subpage=" + c.name %>" class="parent"><%= c.title %> <span class="<%= c.subcats ? "caret pull-right" : "" %>" style="margin-top:9px;"></span></a>
+				<% if (c.subcats) { %>
+					<ul class="nav">
+					<% for (var j = 0; j < c.subcats.length; ++j) { %>
+					<%   var subc = c.subcats[j]; %>	
+						<li class="<%= subpage == subc.name ? 'active' : '' %>">
+							<a href="/product/admin?subpage=<%= subc.name%>"><%= subc.title %></a>
+						</li>
+					<% } %>
+					</ul>
+				<% } %>
+			</li>
+		<% } %>
   </ul>
 </div>
+

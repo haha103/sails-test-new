@@ -56,6 +56,7 @@ $(document).ready(function(){
     handle_guarantee_model();
     handle_file_input();
 		handle_invest();
+		handle_sidebar_menu();
 	} else if (/^\/product(\/index)?/.test(page)) {
 		handle_invest();
   } else {

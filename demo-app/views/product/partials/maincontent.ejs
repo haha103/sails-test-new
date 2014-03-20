@@ -1,1 +1,8 @@
+<%
+	if (subpage == "update" && !product) {
+		subpage = "index";
+%>
+<div class="alert alert-info"><p class="text-center">请选择要更新的产品</p></div>
+<% } %>
+
 <%- partial('subpages/' + subpage + '.ejs') %>
