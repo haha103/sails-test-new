@@ -248,7 +248,7 @@ module.exports = {
 				'name', 'user_name', 'email', 'password', 'confirmation',
 				'bank_name', 'bank_account', 'bank_city', 'bank_province',
 				'city', 'province', 'address', 'phone',
-				'paypass', 'paypass_confirm', 'activated', 'admin'
+				'paypass', 'paypass_confirm', 'activated', 'admin', 'balance'
 			].map(function(field) {
 				if (req.param(field)) userObj[field] = req.param(field);
 			});

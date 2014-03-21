@@ -30,6 +30,7 @@ module.exports.policies = {
 
   user: {
     'show': ['flash', 'user_access'],
+		'update': ['flash', 'user_access'],
     '*': ['flash']
   }
 
