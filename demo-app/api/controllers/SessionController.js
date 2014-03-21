@@ -45,6 +45,10 @@ module.exports = {
 
   'create': function(req, res, next) {
 		var original_url = req.param("original_url");
+		// string testing is needed here since that "undefined" string is passed through hidden fields
+		if (original_url == "undefined") 
+			original_url = null;
+		
     if (!req.param('user_name') || !req.param('password')) {
       var err = [{
         name: '输入错误',

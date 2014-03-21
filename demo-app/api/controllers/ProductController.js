@@ -205,6 +205,13 @@ module.exports = {
 						p.returned_investor_amount += refund_amount;
 						p.save(function(err, p2) {
 							if (err) { errs.push(err); return; }
+							User.findOne(uid).done(function(err, user) {
+								if (err) { errs.push(err); return; }
+								user.balance += refund_amount;
+								user.save(function(err, user2) {
+									if (err) { errs.push(err); return; }
+								});
+							});
 						});
 					}
 				});
