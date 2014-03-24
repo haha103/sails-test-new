@@ -1,5 +1,9 @@
 <div class='container'>
-  <hr/>
+	<% if (req.url == "/session/new") { %>
+		<br/>
+	<% } else { %>
+		<hr/>
+	<% } %>
   <footer class='footer'>
     <div class='pull-right'>
       <p class="text-right haha-vcompact-p"><small>版权所有 &copy; <a href="#">幻日融资服务重庆有限公司</a></small></p>

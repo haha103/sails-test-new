@@ -180,6 +180,7 @@ module.exports = {
 	'show': function (req, res, next) {
     var subpage = req.param('subpage') ? req.param('subpage') : "home";
     var errs = [];
+		var products = [];
 		User.findOne(req.param('id'), function foundUser (err, user) {
       if (err) {
         console.log(err);
@@ -201,15 +202,35 @@ module.exports = {
       } else if (!user.reg_completed) {
         res.redirect("/user/regcompletion/" + user.id);
       } else {
-        res.view({
-          user: user,
-          subpage: subpage,
-          display_name: display_name,
-					trans_disp_name: trans_disp_name,
-          cities: cities,
-					commait: commait,
-					moment: moment
-        });
+				Transaction.find({ user_id: user.id, type: "invest" }).done(function (err, trans) {
+					if (err) { console.log(err); errs.push(err); return; }
+					for (var i = 0; i < trans.length; ++i) {
+						Product.findOne(trans[i].invest_product).done(function(err, p) {
+							if (err) { errs.push(err); return; }
+							products.push(p);
+						});
+					}
+					products = _.uniq(products, function(p) {
+						return p.id;
+					});
+					products.map(function(p) {
+						p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
+						p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
+						p.needed_amount = to_ten_thousand(p.needed_amount);
+						p.interest = (p.interest * 100).toString() + "%";
+						p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
+					});
+					res.view({
+						user: user,
+						subpage: subpage,
+						display_name: display_name,
+						trans_disp_name: trans_disp_name,
+						cities: cities,
+						commait: commait,
+						moment: moment,
+						products: products
+					});
+				});
       }
 		});
     if (errs.length > 0) {
@@ -304,3 +325,14 @@ module.exports = {
   
 
 };
+
+function dayDiff(d1, d2)
+{
+  d1 = d1.getTime() / 86400000;
+  d2 = d2.getTime() / 86400000;
+  return new Number(d2 - d1).toFixed(0);
+}
+
+function to_ten_thousand(n) {
+  return (n / 10000).toFixed(0) + "万";
+}

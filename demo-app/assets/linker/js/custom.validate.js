@@ -346,7 +346,11 @@ $(document).ready(function () {
 		//errorClass: 'help-block validate-message',
     //focusCleanup: true,
 		errorPlacement: function(error, element) {
-			error.insertAfter(element);
+			if ($(element).parent().attr("class") == "input-group") {
+				error.insertAfter($(element).closest(".input-group"));
+			} else {
+				error.insertAfter($(element));
+			}
 		},
     submitHandler: function(form) {
       form.submit();

@@ -126,7 +126,7 @@ function handle_preview_img() {
   $('.preview').popover({
     html: true,
     trigger: 'hover',
-    placement: 'right',
+    placement: 'top',
     content: function () {
       return '<img src="' + $(this)[0].src + '" />';
     }

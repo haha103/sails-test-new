@@ -1,3 +1,63 @@
+<div class="haha-jumbotron-full">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+				<br/>
+				<br/>
+				<br/>
+				<h1>Parhelia</h1>
+				<h2>安全、高效、高收益的投资及融资平台</h2>
+				<br/>
+				<a href='/user/new' class='btn btn-lg btn-success'>立即注册</a>
+			</div>
+			<div class="col-md-4">
+				<% if (flash && flash.err) { %>
+					<br/>
+					<div class="alert alert-danger">					
+						<% Object.keys(flash.err).forEach(function(error) { %>
+							<%= error %>: <%= flash.err[error].name %> - <%= JSON.stringify(flash.err[error].message) %>
+						<% }) %>
+					</div>
+				<% } %>
+        <div class="haha-transparent-box">
+					<h3 style="margin-top: 0px;margin-bottom: 15px; color:white;">用户登录</h3>
+					<form role='form' action="/session/create" method="POST" class="haha-form-in-transbox" id="haha-form-signin">	
+						<div class='form-group'>
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-user" style="top:0px;"></span>
+								<input type='text' class='form-control' name='user_name'></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-lock" style="top:0px;"></span>
+								<input type='password' class='form-control' name='password' id="password"></input>
+							</div>
+						</div>
+            <div class="form-group">
+							<div class="row">
+								<div class="col-md-8 haha-rcompact-col">
+									<div class="input-group">
+										<span class="input-group-addon glyphicon glyphicon-qrcode" style="top:0px;"></span>
+										<input type='text' class='form-control' name='captcha'></input>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<img src="<%= session.Captcha.uri %>" class="preview img-responsive haha-form-control-img refreshable-captcha" alt="Responsive image">
+								</div>
+							</div>
+						</div>
+						<br/>
+						<button type="submit" class="btn btn-primary btn-block haha-btn-toggle">登录</button>
+						<input class='hidden' name='_csrf' value='<%= _csrf %>' />
+						<input class='hidden' name='original_url' value='<%= original_url %>' />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--
 <div class='container'>
   <% if (flash && flash.err) { %>
   <br/>
@@ -41,3 +101,4 @@
 		<input class='hidden' name='original_url' value='<%= original_url %>' />
   </form>
 </div>
+-->
