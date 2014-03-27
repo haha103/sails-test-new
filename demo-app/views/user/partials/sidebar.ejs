@@ -1,6 +1,6 @@
 <%
 	var categories = [
-		{ name: "home", title: "主页", subcats: null },
+		{ name: "home", title: "主页", subcats: null, icon: "home" },
 		{
 			name: "accountcenter",
 			title: "账户中心",
@@ -9,7 +9,8 @@
 				{ name: "accountbalance", title: "账户余额", subcats: null },
 				{ name: "accountsecurity", title: "账户安全", subcats: null },
 				{ name: "bankinfo", title: "银行账户", subcats: null },
-			]
+			],
+			icon: "user"
 		},
 		{
 			name: "transcenter",
@@ -18,7 +19,8 @@
 				{ name: "transhist", title: "交易记录", subcats: null },
 				{ name: "myproducts", title: "我的产品", subcats: null },
 				{ name: "stat2", title: "统计信息2", subcats: null },
-			]
+			],
+			icon: "stats"
 		},
 		{
 			name: "helpcenter",
@@ -27,7 +29,8 @@
 				{ name: "onlinehelp", title: "在线帮助", subcats: null },
 				{ name: "message", title: "留言帮助", subcats: null },
 				{ name: "help1", title: "帮助1", subcats: null },
-			]
+			],
+			icon: "question-sign"
 		},
 	];
 %>
@@ -36,8 +39,7 @@
 		<% for (var i = 0; i < categories.length; ++i) { %>
 		<%   var c = categories[i]; %>
 			<li class="<%= c.subcats ? (_.contains(c.subcats.map(function(x) { return x.name; }), subpage) ? "active" : "") : (subpage == c.name ? "active" : "") %>">
-				<!--<a href="<%= c.subcats ? "/user/show/" + user.id + "?subpage=" + c.subcats[0].name : "/user/show/" + user.id + "?subpage=" + c.name %>"><%= c.title %> <span class="<%= c.subcats ? "caret pull-right" : "" %>" style="margin-top:8px;"></span></a> -->
-				<a href="<%= c.subcats ? "#" : "/user/show/" + user.id + "?subpage=" + c.name %>" class="parent"><%= c.title %> <span class="<%= c.subcats ? "caret pull-right" : "" %>" style="margin-top:9px;"></span></a>
+				<a href="<%= c.subcats ? "#" : "/user/show/" + user.id + "?subpage=" + c.name %>" class="parent"><span class="glyphicon glyphicon-<%= c.icon %>"></span> &nbsp;<%= c.title %> <span class="<%= c.subcats ? "caret pull-right" : "" %>" style="margin-top:9px;"></span></a>
 				<% if (c.subcats) { %>
 					<ul class="nav">
 					<% for (var j = 0; j < c.subcats.length; ++j) { %>

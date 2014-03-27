@@ -39,10 +39,10 @@
         </div>
         <div class="navbar-collapse collapse haha-nav-container">
           <ul class="nav navbar-nav haha-navbar-nav-vpad-ext">
-						<li><a href="/product/">产品列表</a></li>
+						<li><a href="/product/"><span class="glyphicon glyphicon-list"></span> &nbsp;产品列表</a></li>
             <% if (session.User && session.User.admin) { %>
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">管理 <b class="caret"></b></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-tower"></span> &nbsp;管理 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
 									<li><a href="/product/admin">产品管理</a></li>
 									<li><a href="/user">用户管理</a></li>
@@ -56,17 +56,17 @@
 							<% if (session.authenticated) { %>
               <li>
                 <a href="/user/show/<%= session.User.id %>">
-                  <%= session.User.user_name %> ( <%= session.User.name %> )
+                  <span class="glyphicon glyphicon-user"></span> &nbsp;<%= session.User.user_name %> ( <%= session.User.name %> )
                 </a>
               </li>
               <li>
 								<a href="/session/destroy">
-									退出
+									<span class="glyphicon glyphicon-log-out"></span> 退出
 								</a>
 							</li>
 						  <% } else { %>
-							<li><a href="/session/new">登录</a></li>
-							<li><a href="/user/new">注册</a></li>
+							<li><a href="/session/new"><span class="glyphicon glyphicon-log-in"></span> &nbsp;登录</a></li>
+							<li><a href="/user/new"><span class="glyphicon glyphicon-plus"></span> &nbsp;注册</a></li>
 							<% } %>
             </ul>
           </div>
