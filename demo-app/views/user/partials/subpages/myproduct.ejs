@@ -1,0 +1,24 @@
+<% Transaction.find({ type: "invest", user_id: user.id, invest_product: p.id }).groupBy("invest_product").sum("amount").done(function(err, t) { %>
+	<% if (err) { console.log(err); return; } %>
+	<%
+		console.log(t);
+		console.log(p.interest);
+	%>
+  <tr>
+    <td>[<%= p.guarantee_letter_code %>]<%= p.invest_purpose %>需求<%= p.needed_amount %></td>
+    <td><%= p.status %></td>
+    <td><%= p.interest %></td>
+    <td><%= t[0].amount %></td>
+    <td><%= (t[0].amount * (1 + p.interest_n)).toFixed(0) %></td>
+    <td style="width:80px;">
+			<a class="btn btn-primary btn-xs btn-block" href="/product/show/<%= p.id %>">
+				产品详情
+			</a>
+		</td>
+    <td style="width:80px;">
+			<button class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myinvest-details-<%= i %>">
+				投资详情
+			</button>
+		</td>
+  </tr>
+<% }); %>

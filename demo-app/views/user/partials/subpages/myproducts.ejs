@@ -1,1 +1,27 @@
-<%- partial("../../../product/partials/subpages/index.ejs", { products: products }) %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+		我的所有产品
+	</div>
+  <div class="panel-body">
+		<table class="table table-hover haha-table-compact">
+			<thead>
+				<tr>
+					<th>投资产品</th>
+					<th>产品状态</th>
+					<th>年化利率</th>
+					<th>总投资额</th>
+					<th>预期收益</th>
+					<th>产品详情</th>
+					<th>投资详情</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (var i = 0; i < products.length; ++i) { %>
+					<%- partial("myproduct.ejs", { p: products[i], user: user, i: i }) %>
+					<% } %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+

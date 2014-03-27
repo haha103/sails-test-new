@@ -217,6 +217,7 @@ module.exports = {
 						p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
 						p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
 						p.needed_amount = to_ten_thousand(p.needed_amount);
+						p.interest_n = p.interest;
 						p.interest = (p.interest * 100).toString() + "%";
 						p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
 					});
