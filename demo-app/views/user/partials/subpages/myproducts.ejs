@@ -11,13 +11,14 @@
 					<th>年化利率</th>
 					<th>总投资额</th>
 					<th>预期收益</th>
+          <th>到期时间</th>
 					<th>产品详情</th>
 					<th>投资详情</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% for (var i = 0; i < products.length; ++i) { %>
-					<%- partial("myproduct.ejs", { p: products[i], user: user, i: i }) %>
+					<%- partial("myproduct.ejs", { p: products[i], user: user, i: i, commait: commait }) %>
 					<% } %>
 			</tbody>
 		</table>

@@ -8,8 +8,9 @@
     <td>[<%= p.guarantee_letter_code %>]<%= p.invest_purpose %>需求<%= p.needed_amount %></td>
     <td><%= p.status %></td>
     <td><%= p.interest %></td>
-    <td><%= t[0].amount %></td>
-    <td><%= (t[0].amount * (1 + p.interest_n)).toFixed(0) %></td>
+    <td><%= commait.commaIt(t[0].amount, { thousandSeperator: ',' }) %></td>
+    <td><%= commait.commaIt((t[0].amount * (1 + p.interest_n)).toFixed(0), { thousandSeperator: ',' }) %></td>
+    <td><%= p.duration_to %></td>
     <td style="width:80px;">
 			<a class="btn btn-primary btn-xs btn-block" href="/product/show/<%= p.id %>">
 				产品详情

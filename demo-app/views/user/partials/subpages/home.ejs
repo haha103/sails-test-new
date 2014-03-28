@@ -8,15 +8,15 @@
         <h1 class='haha-no-vmargin'><small>&yen;</small> <%= commait.commaIt(session.User.balance, { thousandSeperator: ',' }) %> <small>元</small></h1>
       </div>
       <div class="col-md-1 col-md-offset-3 haha-compact-col haha-add-tmargin-xs">
-        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#recharge-modal">充值</button>
+        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#recharge-modal"><span class="glyphicon glyphicon-save"></span> &nbsp;充值</button>
 				<%- partial("../modals/recharge") %>
       </div>
       <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
-        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#withdraw-modal">提现</button>
+        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#withdraw-modal"><span class="glyphicon glyphicon-open"></span> &nbsp;提现</button>
 				<%- partial("../modals/withdraw") %>
       </div>
       <div class="col-md-1 haha-compact-col haha-add-tmargin-xs">
-        <button class="btn btn-primary btn-block">转账</button>
+        <button class="btn btn-primary btn-block"><span class="glyphicon glyphicon-transfer"></span> &nbsp;转账</button>
       </div>
     </div>
   </div>
