@@ -2,7 +2,7 @@
   <div class="panel-heading">
 		<h4 class="panel-title">
 			<a data-toggle="collapse" data-target="#transhist" href="#transhist">
-				历史交易记录
+				<%= pagination ? "最近交易记录" : "历史交易记录" %>
 			</a>
 		</h4>
   </div>
@@ -19,7 +19,14 @@
         </thead>
         <tbody>
 					<% moment.lang("zh-cn"); %>
-					<% Transaction.find({ user_id: user.id }).sort("createdAt DESC").done(function(err, trans) { %>
+					<%
+	          Transaction.find({
+							or: [ { user_id: user.id }, { target_user_id: user.id } ]
+						}).sort("createdAt DESC")
+	            .skip(pagination ? (transpage * transpage_max) : 0)
+	            .limit(pagination ? transpage_max : limit)
+	            .done(function(err, trans) {
+					%>
 						<%
 							if (err) { console.log(err); return; }
 							if (!trans) { console.log("该用户没有交易"); return; }
@@ -46,6 +53,18 @@
 					<% }); %>
         </tbody>
       </table>
+			<% if (pagination) { %>
+				<% console.log(req); %>
+				<div class="text-center">
+					<ul class="pagination pagination-sm haha-pagination-bcompact">
+						<li class="<%= transpage == 0 ? "disabled" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + (transpage - 1) %>">&laquo;</a></li>
+						<% for (var i = 0; i < transcount / transpage_max; ++i) { %>
+							<li class="<%= transpage == i ? "active" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + i %>"><%= i + 1 %></a></li>
+						<% } %>
+						<li class="<%= transpage == (transcount / transpage_max).toFixed(0) ? "disabled" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + (transpage + 1) %>">&raquo;</a></li>
+					</ul>
+				</div>
+			<% } %>
     </div>
   </div>
 </div

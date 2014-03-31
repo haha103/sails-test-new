@@ -179,6 +179,8 @@ module.exports = {
 
 	'show': function (req, res, next) {
     var subpage = req.param('subpage') ? req.param('subpage') : "home";
+		var transpage = req.param('transpage') ? parseInt(req.param('transpage')) : 0;
+		var transpage_max = 5;
     var errs = [];
 		var products = [];
 		User.findOne(req.param('id'), function foundUser (err, user) {
@@ -221,6 +223,12 @@ module.exports = {
 						p.interest = (p.interest * 100).toString() + "%";
 						p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
 					});
+					var transcount = 0;
+					Transaction.find({
+						or: [ { user_id: user.id }, { target_user_id: user.id } ]
+					}).done(function(err, trans) {
+						transcount = trans.length;
+					});
 					res.view({
 						user: user,
 						subpage: subpage,
@@ -229,7 +237,11 @@ module.exports = {
 						cities: cities,
 						commait: commait,
 						moment: moment,
-						products: products
+						products: products,
+						transpage: transpage,
+						transpage_max: transpage_max,
+						transcount: transcount,
+						pagination: true
 					});
 				});
       }
