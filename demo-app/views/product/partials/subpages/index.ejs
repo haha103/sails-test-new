@@ -7,7 +7,7 @@
 			<span class="input-group-addon">
 				<span class="glyphicon glyphicon-search"></span>
 			</span>
-			<input class="form-control" type="text" name="" value="" placeholder="搜索"/>
+			<input class="form-control" type="text" name="product-filter" id="product-filter" value="" placeholder="搜索"/>
 		</div>
 	</li>
 </ul>
@@ -32,16 +32,16 @@
 					}																			 
 				%>
 				<div class="col-md-offset-<%= offset %> col-md-1 haha-compact-col">
-          <button class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#trans-<%= i %>">交易</button>
+          <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#trans-<%= i %>">交易</button>
 					<%- partial("../modals/transhist", { i: i, p: p }) %>
 				</div>
         <div class="col-md-1 haha-compact-col">
-          <button class="btn btn-success btn-xs btn-block invest-btn" modal-index="<%= i %>" <%= p.invest_started ? "" : "disabled" %>>投资</button>
+          <button class="btn btn-success btn-sm btn-block invest-btn" modal-index="<%= i %>" <%= p.invest_started ? "" : "disabled" %>>投资</button>
           <%- partial("../modals/invest", { i: i, p: p }) %>
         </div>
 				<% if (session.User && session.User.admin) { %>
 				<div class="col-md-1 haha-compact-col">
-          <a class="btn btn-danger btn-xs btn-block" href="/product/admin?subpage=update&product=<%= p.id %>">更新</a>
+          <a class="btn btn-danger btn-sm btn-block" href="/product/admin?subpage=update&product=<%= p.id %>">更新</a>
         </div>
 				<% } %>
       </div>

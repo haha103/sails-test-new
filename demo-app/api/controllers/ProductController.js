@@ -59,6 +59,12 @@ module.exports = {
     var subpage = req.param('subpage') ? req.param('subpage') : 'new';
     var products = []; // for index
 		var product = null; // for update
+		var page = req.param('page') ? parseInt(req.param('page')) : 0;
+		var page_max = 10;
+		var products_count = 0;
+    Product.find({}).done(function (err, ps) {
+      if (!err) { products_count = ps.length; }
+    });
 		if (req.param('product')) {
 			Product.findOne({ id: req.param('product') }).done(function(err, p) {
 				if (!err) {
@@ -104,7 +110,10 @@ module.exports = {
       products: products,
 			product: product,
 			commait: commait,
-			moment: moment
+			moment: moment,
+			page: page,
+			page_max: page_max,
+			products_count: products_count
     });
   },
   

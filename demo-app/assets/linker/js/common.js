@@ -64,6 +64,10 @@ $(document).ready(function(){
   }
 });
 
+function handle_product_filter() {
+	
+}
+
 function handle_sidebar_menu() {
 	$("a.parent").click(function() {
 		$(this).siblings("ul").toggle();
