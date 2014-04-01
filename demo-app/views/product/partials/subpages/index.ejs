@@ -1,4 +1,4 @@
-<div class="panel-group" id="accordion">
+<div class="panel-group haha-no-vmargin" id="accordion">
   <% for (var i = 0; i < products.length; ++i) { %>
   <%   var p = products[i]; %>
   <div class="panel panel-default">
@@ -94,7 +94,7 @@
 	<%
 	  var query = req.query;
 	%>
-	<div class="text-center">
+	<div class="text-right">
 		<ul class="pagination pagination-sm haha-pagination-bcompact">
 			<% query.page = page - 1; %>
 			<li class="<%= page == 0 ? "disabled" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>">&laquo;</a></li>

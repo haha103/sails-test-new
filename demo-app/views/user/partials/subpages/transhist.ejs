@@ -54,7 +54,7 @@
         </tbody>
       </table>
 			<% if (pagination) { %>
-				<div class="text-center">
+				<div class="text-right">
 					<ul class="pagination pagination-sm haha-pagination-bcompact">
 						<li class="<%= transpage == 0 ? "disabled" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + (transpage - 1) %>">&laquo;</a></li>
 						<% for (var i = 0; i < transcount / transpage_max; ++i) { %>
