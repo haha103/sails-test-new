@@ -110,7 +110,13 @@ module.exports = {
   
   index: function(req, res) {
     var products = [];
+		var page = req.param('page') ? parseInt(req.param('page')) : 0;
+		var page_max = 10;
+		var products_count = 0;
     Product.find({}).done(function (err, ps) {
+      if (!err) { products_count = ps.length; }
+    });
+		Product.find({}).skip(page * page_max).limit(page_max).done(function (err, ps) {
       if (!err) {
         ps.map(function(p) {
           p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
@@ -122,12 +128,15 @@ module.exports = {
         products = ps;
       }
     });
-    console.log(products);
+    //console.log(products);
     res.view({ 
       display_name : display_name,
       products: products,
 			commait: commait,
-			moment: moment
+			moment: moment,
+			page: page,
+			page_max: page_max,
+			products_count: products_count
     });
   },
 

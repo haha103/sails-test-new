@@ -91,4 +91,19 @@
     </div>
   </div>
   <% } %>
+	<%
+	  var query = req.query;
+	%>
+	<div class="text-center">
+		<ul class="pagination pagination-sm haha-pagination-bcompact">
+			<% query.page = page - 1; %>
+			<li class="<%= page == 0 ? "disabled" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>">&laquo;</a></li>
+			<% for (var i = 0; i < products_count / page_max; ++i) { %>
+				<% query.page = i; %>
+				<li class="<%= page == i ? "active" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>"><%= i + 1 %></a></li>
+			<% } %>
+			<% query.page = page + 1; %>
+			<li class="<%= page == Math.floor(products_count / page_max) ? "disabled" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>">&raquo;</a></li>
+		</ul>
+	</div>
 </div>

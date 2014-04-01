@@ -54,7 +54,6 @@
         </tbody>
       </table>
 			<% if (pagination) { %>
-				<% console.log(req); %>
 				<div class="text-center">
 					<ul class="pagination pagination-sm haha-pagination-bcompact">
 						<li class="<%= transpage == 0 ? "disabled" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + (transpage - 1) %>">&laquo;</a></li>
