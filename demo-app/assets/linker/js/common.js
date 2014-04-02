@@ -181,13 +181,7 @@ function handle_city_selection() {
   $('select.province').change(function(e) {
     var elem = $("option:selected", this);
     var p = elem.val();
-		$(this).children("option").each(function(){
-			if ($(this).val() == p) {
-				$(this).attr("selected", true);
-			} else {
-				$(this).removeAttr("selected");
-			}
-		});
+		$(this).closest("form").validate().element("select.province");
     $.ajax({
       url: '/user/cities',
       type: 'get',
@@ -201,7 +195,9 @@ function handle_city_selection() {
         for (var i = 0; i < cities.length; ++i) {
           $('select.city').append("<option value='" + cities[i] + "'>" + cities[i] + "</option>");
         }
+				$('select.city').val(cities[0]);
         $('select.city').selectpicker('refresh');
+				$('select.city').closest("form").validate().element("select.city");
       },
       error: function(e) {
         console.log(e.message);
