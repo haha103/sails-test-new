@@ -16,7 +16,7 @@
   </div>
   <h3>绑定银行账户</h3>
   <hr/>
-  <form role='form' action="/user/update/<%= user_info.id %>" method="POST" class="form-horizontal">
+  <form role='form' action="/user/update/<%= user_info.id %>" method="POST" class="form-horizontal" id="bindbank-form">
     <% if (flash && flash.err) { %>
     <div class="alert alert-danger">					
       <% Object.keys(flash.err).forEach(function(error) { %>
@@ -28,7 +28,7 @@
       <label class='control-label col-md-2' for="bank_province"><%= display_name["bank_province"] %></label>
       <div class="col-md-4">
         <select name="bank_province" id="bank_province" class="form-control province">
-          <option value="">&nbsp;</option>
+          <option value="">请选择省份</option>
           <% for (var p in cities) { %>
           <option value="<%= p %>"><%= p %></option>
           <% } %>
@@ -39,6 +39,7 @@
       <label class='control-label col-md-2' for="bank_city"><%= display_name["bank_city"] %></label>
       <div class="col-md-4">
         <select name="bank_city" id="bank_city" class="form-control city">
+					<option value="">请先选择省份</option>
         </select>
       </div>
     </div>
@@ -57,7 +58,7 @@
     <br/>
     <div class='row'>
       <div class="col-md-2 col-md-offset-2">
-        <button type="submit" class="btn btn-primary btn-block haha-btn-toggle" onclick="handle_submit_btn(this)">绑定</button>
+        <button type="submit" class="btn btn-primary btn-block haha-btn-toggle">绑定</button>
       </div>
     </div>
     <input class='hidden' name='_csrf' value='<%= _csrf %>' />

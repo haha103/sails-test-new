@@ -181,12 +181,23 @@ function handle_city_selection() {
   $('select.province').change(function(e) {
     var elem = $("option:selected", this);
     var p = elem.val();
+		$(this).children("option").each(function(){
+			if ($(this).val() == p) {
+				$(this).attr("selected", true);
+			} else {
+				$(this).removeAttr("selected");
+			}
+		});
     $.ajax({
       url: '/user/cities',
       type: 'get',
       data: 'province=' + p,
       success: function(cities) {
+				console.log(cities);
         $('select.city').empty();
+				if (cities.length == 0) {
+					$('select.city').append("<option value=''>请先选择省份</option>");
+				}
         for (var i = 0; i < cities.length; ++i) {
           $('select.city').append("<option value='" + cities[i] + "'>" + cities[i] + "</option>");
         }

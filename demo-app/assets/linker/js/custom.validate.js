@@ -243,6 +243,8 @@ $(document).ready(function () {
 		errorPlacement: function(error, element) {
 			if ($(element).parent().attr("class") == "input-group") {
 				error.insertAfter($(element).closest(".input-group"));
+			}	else if ($(element).next("div").attr("class") == "bootstrap-select") {
+				error.insertAfter($(element).next("div#bootstrap-select"));
 			} else {
 				error.insertAfter($(element));
 			}
@@ -356,7 +358,63 @@ $(document).ready(function () {
       form.submit();
     }
 	});
+
+	var rules = {
+		bank_province: { required: true },
+		bank_city: { required: true },
+		bank_name: { required: true },
+		bank_account: { required: true }
+	};
+	var messages = {
+		bank_province: { required: "您必须选择开户行所在省份" },
+		bank_city: { required: "您必须选择开户行所在城市" },
+		bank_name: { required: "您必须提供开户行的全称" },
+		bank_account: { required: "您必须提供您的银行帐号" }
+	};
+	jquery_validate('#bindbank-form', rules, messages);
+	
 });
+
+function jquery_validate(selector, rules, messages) {
+	$(selector).validate({
+		ignore: ':not(select:hidden, input:visible, textarea:visible)',
+    debug: true,
+		rules: rules,
+    messages: messages,
+    highlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-success');
+      fg.addClass('has-error');
+    },
+    unhighlight: function(element) {
+      fg = $(element).closest('.form-group');
+      fg.removeClass('has-error');
+      $(element).closest('.validate-message').remove();
+			$(element).siblings('.validate-message').remove();
+    },
+    success: function(element) {
+      fg = $(element).closest('.form-group');
+			fg.removeClass('has-error');
+			fg.addClass('has-success');
+      $(element).closest('.validate-message').remove();
+			$(element).siblings('.validate-message').remove();
+		},
+		errorElement: 'span',
+		errorClass: 'haha-validate-error validate-message',
+		errorPlacement: function(error, element) {
+			if ($(element).parent().attr("class") == "input-group") {
+				error.insertAfter($(element).closest(".input-group"));
+			}	else if ($(element).next("div.bootstrap-select").length != 0) {
+				error.insertAfter($(element).next("div.bootstrap-select")[0]);
+			} else {
+				error.insertAfter($(element));
+			}
+		},
+    submitHandler: function(form) {
+      form.submit();
+    }
+	});
+}
 
 function validate_id_card(s) {
   return /^(\d{6})(18|19|20)?(\d{2})([01]\d)([0123]\d)(\d{3})(\d|X|x)?$/.test(s);
