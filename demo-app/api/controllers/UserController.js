@@ -161,16 +161,26 @@ module.exports = {
 
   activation: function(req, res, next) {
     //console.log(req.params.all());
-    var user_info = {};
-    User.findOne({ id: req.param("id") }).done(function(err, val) {
-      if (err) return next(err);
-      user_info = val;
-    });
-    //console.log(user_info);
-    res.view({ 
-      display_name: display_name,
-      user_info: user_info
-    });
+		var code = req.param("code");
+		var errs = [];
+		User.findOne(req.param("id")).done(function(e, user) {
+			if (e) { errs.push(e); return; }
+			if (code) {
+				user.activated = true;
+				user.save(function(e, user) {
+					if (e) { errs.push(e); return; }
+					res.redirect("/user/show/" + user.id);
+				});
+			} else {
+				res.view({ 
+					display_name: display_name,
+					user_info: user
+				});
+			}
+		});
+		if (errs.length > 0) {
+			res.redirect("/user/activation/" + req.param("id"));
+		}
   },
 
   recharge: function(req, res, next) {
