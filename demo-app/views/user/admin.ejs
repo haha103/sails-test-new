@@ -1,0 +1,53 @@
+<div class="container">
+  <br/>
+	<h3 style="margin-bottom:5px;">
+		<span class="glyphicon glyphicon-user"></span> 用户管理
+	</h3>
+  <hr style="margin-bottom:10px;"/>
+	<div class="row" style="margin-bottom:10px;">
+    <div class="col-md-9">
+		</div>
+		<div class="col-md-3">
+			<div class="input-group input-group-sm" style="margin-top:0px; width:200px; float:right;">
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-search"></span>
+				</span>
+				<input class="form-control" type="text" name="product-filter" id="product-filter" value="" placeholder="搜索"/>
+			</div>
+		</div>
+	</div>
+  <table class="table table-hover table-condensed" style="border: 1px solid #ddd;">
+    <thead>
+			<tr class="primary">
+				<th>#</th>
+				<th>角色</th>
+				<th>用户名</th>
+				<th>姓名</th>
+				<th>余额</th>
+				<th>邮箱</th>
+				<th>电话</th>
+				<th>详情</th>
+				<th>重置密码</th>
+				<th>删除</th>
+			</tr>
+    </thead>
+    <tbody>
+			<% _.each(users, function(u) { %>
+				<tr>
+					<td style="width:25px;"><%= u.id %></td>
+					<td><span class="glyphicon glyphicon-<%= u.admin ? "tower" : "user" %>"></span></td>
+					<td><%= u.user_name %></td>
+					<td><%= u.name %></td>
+					<td><i class="fa fa-jpy"></i> <%= commait.commaIt(u.balance, { thousandSeperator: ',' }) %></td>
+					<td><%= u.email %></td>
+					<td><%= u.phone == undefined ? "N/A" : u.phone %></td>
+					<td style="width:70px;"><a class="btn btn-primary btn-xs btn-block" href=""><span class="glyphicon glyphicon-pencil"></span></a></td>
+					<td style="width:70px;"><a class="btn btn-warning btn-xs btn-block" href=""><span class="glyphicon glyphicon-lock"></span></a></td>
+					<td style="width:70px;"><a class="btn btn-danger btn-xs btn-block" href=""><span class="glyphicon glyphicon-trash"></span></a></td>
+          
+				</tr>
+			<% }); %>
+    </tbody>
+  </table>
+	<%- partial("partials/pager.ejs", { page: page, page_max: page_max, page_count: page_count }) %>
+</div>

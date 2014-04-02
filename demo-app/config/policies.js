@@ -29,6 +29,7 @@ module.exports.policies = {
   },
 
   user: {
+    'admin': ['flash', 'product_access'],
     'show': ['flash', 'user_access'],
 		'update': ['flash', 'user_access'],
     '*': ['flash']

@@ -56,6 +56,26 @@ var trans_disp_name = {
 var cities = CityHelper.get_cities();
 
 module.exports = {
+
+	admin: function(req, res, next) {
+		var page = req.param('page') ? parseInt(req.param('page')) : 0;
+		var page_max = 2;
+		var page_count = 0;
+		User.find({}).done(function(err, users) {
+			if (err) { next(err); }
+			page_count = users.length;
+		});
+		User.find({}).skip(page * page_max).limit(page_max).done(function(err, users) {
+			if (err) { next(err); }
+			res.view({
+				users: users,
+				commait: commait,
+				page: page,
+				page_max: page_max,
+				page_count: page_count
+			});
+		});
+	},
     
 	'new': function (req, res) {
     var captcha = captchagen.create();
@@ -261,17 +281,10 @@ module.exports = {
       res.redirect("/session/new");
     }
 	},
-
-  /*
+	
 	'index': function(req, res, next) {
-		User.find(function foundUsers (err, users){
-			if (err) return next(err);
-			res.view({
-				users: users
-			});
-		});
+		res.redirect("/user/admin");
 	},
-  */
 
 	'update': function(req, res, next) {
 		var userid = req.param("id");
