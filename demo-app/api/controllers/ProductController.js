@@ -91,7 +91,7 @@ module.exports = {
 			console.log(product);
 			console.log("--- aaa ---");
 		}
-    Product.find({}).done(function (err, ps) {
+    Product.find({}).skip(page * page_max).limit(page_max).done(function (err, ps) {
       if (!err) {
         ps.map(function(p) {
           p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
