@@ -59,6 +59,7 @@ $(document).ready(function(){
 		handle_sidebar_menu();
 	} else if (/^\/product(\/index)?/.test(page)) {
 		handle_invest();
+		handle_product_filter();
 	} else if (/^\/user\/admin/.test(page)) {
 		handle_user_filter();
   } else {
@@ -429,6 +430,21 @@ function handle_user_filter() {
       text = _.map($.trim($(this).text()).split(/\n/), function(e) { return $.trim(e); }).join(" ");
       return !reg.test(text);
     }).hide();
+	});
+}
+
+function handle_product_filter() {
+	var $titles = $('h4.panel-title > a');
+	$('input#product-filter').keyup(function() {
+    var val = $.trim($(this).val());
+    var reg = RegExp(val, 'i');
+    var text;
+		// rest all to be shown
+		$titles.closest('div.panel').show();
+    $titles.filter(function() {
+      text = $.trim($(this).text());
+      return !reg.test(text);
+    }).closest('div.panel').hide();
 	});
 }
 
