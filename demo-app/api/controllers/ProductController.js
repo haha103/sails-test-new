@@ -15,6 +15,8 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+var GuaranteeCompanyHelper = require("../libs/GuaranteeCompanyHelper");
+
 var fs = require('fs');
 var path = require('path');
 var uuid = require('node-uuid');
@@ -62,6 +64,13 @@ module.exports = {
 		var page = req.param('page') ? parseInt(req.param('page')) : 0;
 		var page_max = 10;
 		var products_count = 0;
+		var filter = {};
+		var gc = null;
+		if (req.param('gc')) {
+			gc = GuaranteeCompanyHelper.find({ id: req.param('gc') })[0];
+			filter.guarantee_company = gc.name;
+		}
+		
     Product.find({}).done(function (err, ps) {
       if (!err) { products_count = ps.length; }
     });
@@ -91,41 +100,7 @@ module.exports = {
 			console.log(product);
 			console.log("--- aaa ---");
 		}
-    Product.find({}).skip(page * page_max).limit(page_max).done(function (err, ps) {
-      if (!err) {
-        ps.map(function(p) {
-          p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
-          p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
-          p.needed_amount = to_ten_thousand(p.needed_amount);
-          p.interest = (p.interest * 100).toString() + "%";
-          p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
-        });
-        products = ps;
-      }
-    });
-    console.log(products);
-    res.view({ 
-      display_name : display_name ,
-      subpage: subpage,
-      products: products,
-			product: product,
-			commait: commait,
-			moment: moment,
-			page: page,
-			page_max: page_max,
-			products_count: products_count
-    });
-  },
-  
-  index: function(req, res) {
-    var products = [];
-		var page = req.param('page') ? parseInt(req.param('page')) : 0;
-		var page_max = 10;
-		var products_count = 0;
-    Product.find({}).done(function (err, ps) {
-      if (!err) { products_count = ps.length; }
-    });
-		Product.find({}).skip(page * page_max).limit(page_max).done(function (err, ps) {
+    Product.find(filter).skip(page * page_max).limit(page_max).done(function (err, ps) {
       if (!err) {
         ps.map(function(p) {
           p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
@@ -138,6 +113,50 @@ module.exports = {
       }
     });
     //console.log(products);
+		var all_gc = GuaranteeCompanyHelper.find();
+    res.view({ 
+      display_name : display_name ,
+      subpage: subpage,
+      products: products,
+			product: product,
+			commait: commait,
+			moment: moment,
+			page: page,
+			page_max: page_max,
+			products_count: products_count,
+			guarantee_companies: all_gc
+    });
+  },
+  
+  index: function(req, res) {
+    var products = [];
+		var page = req.param('page') ? parseInt(req.param('page')) : 0;
+		var page_max = 10;
+		var products_count = 0;
+		var filter = {};
+		var gc = null;
+		if (req.param('gc')) {
+			gc = GuaranteeCompanyHelper.find({ id: req.param('gc') })[0];
+			filter.guarantee_company = gc.name;
+		}
+    Product.find(filter).done(function (err, ps) {
+      if (!err) { products_count = ps.length; }
+    });
+		Product.find(filter).skip(page * page_max).limit(page_max).done(function (err, ps) {
+      if (!err) {
+        ps.map(function(p) {
+          p.progress = ((p.current_amount / p.needed_amount) * 100).toFixed(2);
+          p.remain_amount = to_ten_thousand(p.needed_amount - p.current_amount);
+          p.needed_amount = to_ten_thousand(p.needed_amount);
+          p.interest = (p.interest * 100).toString() + "%";
+          p.duration_diff = dayDiff(new Date(p.duration_from), new Date(p.duration_to));
+        });
+        products = ps;
+      }
+    });
+    //console.log(products);
+		var all_gc = GuaranteeCompanyHelper.find();
+		console.log(gc);
     res.view({ 
       display_name : display_name,
       products: products,
@@ -145,7 +164,8 @@ module.exports = {
 			moment: moment,
 			page: page,
 			page_max: page_max,
-			products_count: products_count
+			products_count: products_count,
+			guarantee_companies: all_gc
     });
   },
 

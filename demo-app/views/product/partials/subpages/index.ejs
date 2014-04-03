@@ -1,8 +1,12 @@
+<% var curr_query = _.clone(req.query); %>
 <ul class="nav nav-pills" style="border-bottom:1px solid #dd4814;margin-bottom:5px;">
-	<li class="active"><a href="#">所有产品</a></li>
-	<li><a href="#">担保公司1</a></li>
-	<li><a href="#">担保公司2</a></li>
-  <li style="float:right;">
+	<% var qall = _.clone(req.query); delete qall["gc"]; %>
+	<li class="<%= curr_query.gc ? "" : "active" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(qall, (function(v, k) { return k + "=" + v; })).join("&") %>">所有产品</a></li>
+	<% _.each(guarantee_companies, function(c) { %>
+		<% var q = req.query; q.gc = c.id; %>
+		<li class="<%= curr_query.gc == c.id ? "active" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(q, (function(v, k) { return k + "=" + v; })).join("&") %>"><%= c.name %></a></li>	
+	<% }); %>
+	<li style="float:right;">
     <div class="input-group input-group-sm" style="margin-top:5px; width:200px;">
 			<span class="input-group-addon">
 				<span class="glyphicon glyphicon-search"></span>
