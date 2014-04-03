@@ -1,6 +1,6 @@
 <% var query = req.query; %>
 <div class="text-right">
-	<ul class="pagination pagination-sm haha-pagination-bcompact">
+	<ul class="pagination pagination-sm haha-pagination-bcompact haha-pagination-tcompact">
 		<% query.page = page - 1; %>
 		<li class="<%= page == 0 ? "disabled" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>">&laquo;</a></li>
 			<% for (var i = 0; i < page_count / page_max; ++i) { %>

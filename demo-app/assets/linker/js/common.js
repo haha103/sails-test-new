@@ -59,6 +59,8 @@ $(document).ready(function(){
 		handle_sidebar_menu();
 	} else if (/^\/product(\/index)?/.test(page)) {
 		handle_invest();
+	} else if (/^\/user\/admin/.test(page)) {
+		handle_user_filter();
   } else {
 
   }
@@ -415,6 +417,19 @@ function handle_bonding_modal() {
     $("#new-bonding-modal .modal-body input").val('');
     $("#new-bonding-modal").modal("hide");
   });
+}
+
+function handle_user_filter() {
+	var $rows = $('table#users > tbody > tr');
+	$('input#user-filter').keyup(function() {
+    var val = $.trim($(this).val());
+    var reg = RegExp(val, 'i');
+    var text;
+    $rows.show().filter(function() {
+      text = _.map($.trim($(this).text()).split(/\n/), function(e) { return $.trim(e); }).join(" ");
+      return !reg.test(text);
+    }).hide();
+	});
 }
 
 /* internal */
