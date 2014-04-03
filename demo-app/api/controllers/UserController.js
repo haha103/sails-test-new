@@ -59,7 +59,7 @@ module.exports = {
 
 	admin: function(req, res, next) {
 		var page = req.param('page') ? parseInt(req.param('page')) : 0;
-		var page_max = 2;
+		var page_max = 10;
 		var page_count = 0;
 		User.find({}).done(function(err, users) {
 			if (err) { next(err); }
