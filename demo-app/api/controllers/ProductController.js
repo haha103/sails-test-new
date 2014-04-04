@@ -16,6 +16,8 @@
  */
 
 var GuaranteeCompanyHelper = require("../libs/GuaranteeCompanyHelper");
+var TransactionHelper = require("../libs/TransactionHelper");
+var ProductHelper = require("../libs/ProductHelper");
 
 var fs = require('fs');
 var path = require('path');
@@ -165,7 +167,10 @@ module.exports = {
 			page: page,
 			page_max: page_max,
 			products_count: products_count,
-			guarantee_companies: all_gc
+			guarantee_companies: all_gc,
+			needed_sum: ProductHelper.sumFieldByFilter({}, "needed_amount"),
+			invest_sum: TransactionHelper.sumByFilter({ type: "invest" }),
+			refund_sum: TransactionHelper.sumByFilter({ type: "refundplatform" }),
     });
   },
 

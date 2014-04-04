@@ -1,16 +1,13 @@
 <div class="panel-group haha-compact-panel-group" style="margin-top:5px;">
-  <div class="panel panel-primary">
+  <div class="panel panel-primary haha-panel-stats">
     <div class="panel-heading">
       <b>产品概况</b>
 		</div>
     <div class="panel-collapse collapse in">
 			<div class="panel-body haha-vcompact-padding">
-        <h4 style="margin-bottom:5px;"><small>总投资：</small></h4>
-				<h4 style="margin-top:5px;"><small><i class="fa fa-jpy"></i></small> 4,123,456,789</h4>
-        <h4 style="margin-bottom:5px;"><small>总还款：</small></h4>
-				<h4 style="margin-top:5px;"><small><i class="fa fa-jpy"></i></small> 1,123,456,789</h4>
-        <h4 style="margin-bottom:5px;"><small>总收益：</small></h4>
-				<h4 style="margin-top:5px;"><small><i class="fa fa-jpy"></i></small> 123,456,789</h4>
+				<h4><small>累计需求：</small><small><i class="fa fa-jpy"></i></small>  <%= commait.commaIt(needed_sum, { thousandSeperator: ','}) %> <small>元</small></h4>
+        <h4><small>累计投资：</small><small><i class="fa fa-jpy"></i></small>  <%= commait.commaIt(invest_sum, { thousandSeperator: ','}) %> <small>元</small></h4>
+				<h4><small>累计已还：</small><small><i class="fa fa-jpy"></i></small> <%= commait.commaIt(refund_sum, { thousandSeperator: ','}) %> <small>元</small></h4>
 			</div>
 		</div>
   </div>
