@@ -21,64 +21,6 @@
     </div>
   </div>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <a data-toggle="collapse" data-target="#security-tasks" href="#security-tasks">
-        <span class="glyphicon glyphicon-lock"></span> &nbsp;安全任务
-      </a>
-    </h4>
-  </div>
-  <div id="security-tasks" class="panel-collapse collapse in">
-    <div class="panel-body">
-      <table class="table table-condensed haha-table-compact">
-        <tr>
-					<% var paypass_ok = (session.User && session.User.encryptedPaypass); %>
-          <td style="border-top: none; width:30px;"><span class="glyphicon glyphicon-<%= paypass_ok ? "ok" : "remove" %>"></span></td>
-          <td style="border-top: none; width:70px;" class="fg-<%= paypass_ok ? "success" : "danger" %> fg-bold"><%= paypass_ok ? "保护中" : "未使用" %></td>
-          <td style="border-top: none; width:100px;"><span class="glyphicon glyphicon-barcode"></span> &nbsp;支付密码</td>
-          <td style="border-top: none;">付款或修改账户信息时输入，保护账户资金安全。</td>
-          <td style="border-top: none; width:50px;">
-						<button class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#paypass-update-modal"><%= paypass_ok? "修改" : "添加" %></button>
-						<%- partial("../modals/paypass.ejs") %>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:30px;"><span class="glyphicon glyphicon-ok"></span></td>
-          <td style="width:50px;" class="fg-success fg-bold">保护中</td>
-          <td style="width:100px;"><span class="glyphicon glyphicon-envelope"></span> &nbsp;邮箱绑定</td>
-          <td style="">找回密码时重置的密码将发给绑定的邮箱。</td>
-          <td style="width:50px;">
-            <a class="btn btn-primary btn-xs btn-block" href="/user/securityupdate?type=email">
-              修改
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:30px;"><span class="glyphicon glyphicon-remove"></span></td>
-          <td style="width:50px;" class="fg-danger fg-bold">未使用</td>
-          <td style="width:100px;"><span class="glyphicon glyphicon-phone"></span> &nbsp;短信校验</td>
-          <td style="">付款时输入，每笔支付都需要校验手机短信。保护账户资金安全。</td>
-          <td style="width:50px;">
-            <a class="btn btn-primary btn-xs btn-block" href="/user/securityupdate?type=sms">
-              修改
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:30px;"><span class="glyphicon glyphicon-remove"></span></td>
-          <td style="width:50px;" class="fg-danger fg-bold">未使用</td>
-          <td style="width:100px;"><span class="glyphicon glyphicon-qrcode"></span> &nbsp;强密码</td>
-          <td style="">由大小写字母、数字、符号混合组成的帐号密码。可有效防止暴力破解，保护账户安全。</td>
-          <td style="width:50px;">
-            <a class="btn btn-primary btn-xs btn-block" href="/user/securityupdate?type=complexpass">
-              修改
-            </a>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
+<%- partial("../security_tasks.ejs") %>
 <% pagination = false; %>
 <%- partial("transhist.ejs", { limit: 10, pagination: pagination, user: user, subpage: subpage, display_name: display_name, trans_disp_name: trans_disp_name, cities: cities, commait: commait, moment: moment, products: products, transpage: transpage, transpage_max: transpage_max, transcount: transcount }) %>

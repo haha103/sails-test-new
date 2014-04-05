@@ -1,0 +1,61 @@
+<div class="row">
+	<div class="col-md-5">
+    <h3>留言帮助</h3>
+	</div>
+  <div class="col-md-2">
+    <button type="botton" style="margin-top:16px;" class="btn btn-primary btn-block btn-sm"  data-toggle="modal" data-target="#newmessage-modal">新留言</button>
+		<%- partial("../modals/newmessage.ejs") %>
+	</div>
+  <div class="col-md-2 haha-compact-col">
+		<div class="input-group-btn">
+      <button type="button" style="margin-top:16px;" class="btn-block btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">过滤留言类型 &nbsp;<span class="glyphicon glyphicon-chevron-down"></span>
+</button>
+      <ul class="dropdown-menu">
+        <li><a href="<%= Helper.removeUrlQuery(req, "messagetype") %>">所有类型</a></li>
+				<% _.each(help_message_types, function(t) { %>
+          <li><a href="<%= Helper.updateUrlQuery(req, "messagetype", t.name_en) %>"><%= t.name %></a></li>
+				<% }) %>
+      </ul>
+    </div>
+	</div>
+  <div class="col-md-3 haha-compact-col">
+		<div class="input-group input-group-sm" style="margin-top:16px;float:right;">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-search"></span>
+			</span>
+			<input class="form-control" type="text" name="message-filter" id="message-filter" value="" placeholder="搜索"/>
+		</div>
+	</div>
+</div>
+<hr class="haha-hr-compact"/>
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+      <th style="width:30px;">#</th>
+      <th>类型</th>
+      <th style="width:50%;">主题</th>
+      <th>作者</th>
+      <th>回复</th>
+      <th>最后发表</th>
+      <th style="width:50px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+		<% _.each(helpmessages, function(m) { %>
+      <tr>
+        <td><%= m.id %></td>
+				<td><%= HelpMessageHelper.types_en_zh[m.type] %></td>
+				<td><%= m.title %></td>
+				<td><%= UserHelper.getUserNameById(m.user) %></td>
+				<td><%= m.ncomments %></td>
+        <td><%= m.lastcommenter ? UserHelper.getUserNameById(m.lastcommenter) : "还没有任何回复" %></td>
+        <td>
+					<button class="btn btn-primary btn-block btn-xs">查看</button>
+				</td>
+      </tr>
+		<% }) %>
+  </tbody>
+</table>
+
+<%- partial("../pager2.ejs", { __p: messagepage, __pcount: messagescount, __pmax: messagepage_max, __query_field: "messagepage" }) %>
+

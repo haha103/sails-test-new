@@ -3,7 +3,7 @@ var AppHelper = require("../libs/ApplicationHelper");
 var CreditTypeHelper = require("../libs/CreditTypeHelper");
 var CreditPurposeHelper = require("../libs/CreditPurposeHelper");
 
-module.exports = {
+var self = {
   compactObj: function (o) {
     var r = { };
     for (var k in o) {
@@ -86,4 +86,22 @@ module.exports = {
     });
     return review_info;
   },
+	updateUrlQuery: function(req, field, newval) {
+		var baseurl = req._parsedUrl.pathname;
+		var query = _.clone(req.query);
+		query[field] = newval;
+		var query_str = _.map(query, (function(v, k) { return k + "=" + v; })).join("&");
+		var url = baseurl + "?" + query_str;
+		return url;
+	},
+	removeUrlQuery: function(req, field) {
+		var baseurl = req._parsedUrl.pathname;
+		var query = _.clone(req.query);
+		delete query[field];
+		var query_str = _.map(query, (function(v, k) { return k + "=" + v; })).join("&");
+		var url = baseurl + "?" + query_str;
+		return url;
+	}
 };
+
+module.exports = self;

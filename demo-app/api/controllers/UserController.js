@@ -16,6 +16,9 @@
  */
 
 var CityHelper = require("../libs/CityHelper");
+var HelpMessageHelper = require("../libs/HelpMessageHelper");
+var Helper = require("../libs/Helper");
+var UserHelper = require("../libs/UserHelper");
 var captchagen = require('captchagen');
 var fs = require('fs');
 var path = require('path');
@@ -211,6 +214,12 @@ module.exports = {
     var subpage = req.param('subpage') ? req.param('subpage') : "home";
 		var transpage = req.param('transpage') ? parseInt(req.param('transpage')) : 0;
 		var transpage_max = 5;
+
+		var messagepage = req.param('messagepage') ? parseInt(req.param('messagepage')) : 0;
+		var messagepage_max = 10;
+		var messagefilter = req.param('messagetype') ? { type: req.param('messagetype') } : {};
+		var helpmessages = [];
+		
     var errs = [];
 		var products = [];
 		User.findOne(req.param('id'), function foundUser (err, user) {
@@ -259,6 +268,33 @@ module.exports = {
 					}).done(function(err, trans) {
 						transcount = trans.length;
 					});
+
+					HelpMessage.find(messagefilter)
+						.skip(messagepage * messagepage_max)
+						.limit(messagepage_max).done(function(err, ms) {
+							if (err) { console.log(err); return; }
+							_.each(ms, function(m) {
+								m.ncomments = 0;
+								m.lastcommenter = null;
+								HelpMessageComments.find({ message: m.id }).sort("createdAt DESC").done(function(err, mcs) {
+									if (err) { console.log(err); return; }
+									if (mcs && mcs.length > 0) {
+										m.ncomments = mcs.length;
+										m.lastcommenter = mcs[0].user;
+									}
+								});
+								console.log(m);
+							});
+							console.log(ms);
+							helpmessages = ms;
+					});
+					
+					var messagescount = 0;
+					HelpMessage.find(messagefilter).done(function(err, ms) {
+							if (err) { console.log(err); return; }
+							messagescount = ms.length;
+					});
+					
 					res.view({
 						user: user,
 						subpage: subpage,
@@ -271,7 +307,15 @@ module.exports = {
 						transpage: transpage,
 						transpage_max: transpage_max,
 						transcount: transcount,
-						pagination: true
+						help_message_types: HelpMessageHelper.types(),
+						pagination: true,
+						Helper: Helper,
+						helpmessages: helpmessages,
+						messagepage: messagepage,
+						messagepage_max: messagepage_max,
+						messagescount: messagescount,
+						HelpMessageHelper: HelpMessageHelper,
+						UserHelper: UserHelper
 					});
 				});
       }
@@ -291,7 +335,7 @@ module.exports = {
 		if (!userid && req.session.User) {
 			userid = req.session.User.id;
 		}
-		User.findOne({ id: userid}).done(function(err, user) {
+		User.findOne({ id: userid }).done(function(err, user) {
 			console.log("---> user: " + user);
 			if (err) { return res.json(err); }
 			if (user.encryptedPaypass && req.param("old_paypass") != undefined) { // paypass update -> check if user entered the correct old paypass

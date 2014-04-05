@@ -1,0 +1,15 @@
+<div class="text-right">
+	<ul class="pagination pagination-sm haha-pagination-bcompact haha-pagination-tcompact">
+		<li class="<%= __p == 0 ? "disabled" : "" %>">
+			<a href="<%= Helper.updateUrlQuery(req, __query_field, __p - 1) %>">&laquo;</a>
+		</li>
+		<% for (var i = 0; i < __pcount / __pmax; ++i) { %>
+			<li class="<%= __p == i ? "active" : "" %>">
+				<a href="<%= Helper.updateUrlQuery(req, __query_field, i) %>"><%= i + 1 %></a>
+			</li>
+		<% } %>
+		<li class="<%= __p == Math.floor(__pcount / __pmax) ? "disabled" : "" %>">
+			<a href="<% Helper.updateUrlQuery(req, __query_field, __p + 1) %>">&raquo;</a>
+		</li>
+	</ul>
+</div>

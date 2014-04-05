@@ -448,4 +448,8 @@ function handle_product_filter() {
 	});
 }
 
+function updateUrl() {
+	
+}
+
 /* internal */
