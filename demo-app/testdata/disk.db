@@ -1,801 +1,313 @@
 {
   "data": {
-    "application": [
+    "application": [],
+    "applicationtype": [],
+    "bank": [],
+    "blacklist": [],
+    "client": [],
+    "clientbankaccount": [],
+    "clientbonding": [],
+    "clientloan": [],
+    "clientshareholder": [],
+    "clienttype": [],
+    "creditpurpose": [],
+    "credittype": [],
+    "domain": [],
+    "guaranteecompany": [
       {
-        "type": 1,
-        "workflow": 4,
-        "applicant": 2,
-        "partners": [
-          "1"
-        ],
-        "amount": 200000,
-        "due": "2014-02-26",
-        "payment_source": "src1",
-        "credit_types": [
-          "1"
-        ],
-        "credit_purposes": [
-          "2",
-          "7"
-        ],
-        "state": "REVIEW",
-        "createdAt": "2014-02-02T12:57:10.669Z",
-        "updatedAt": "2014-02-09T00:59:18.832Z",
-        "id": 5,
-        "mortgages": [
-          5
-        ],
-        "guarantors": [
-          1
-        ]
-      }
-    ],
-    "applicationtype": [
-      {
-        "name": "贷款",
-        "createdAt": "2014-01-25T04:09:11.231Z",
-        "updatedAt": "2014-01-25T04:09:11.231Z",
+        "name": "担保公司1",
+        "createdAt": "2014-04-03T13:59:26.452Z",
+        "updatedAt": "2014-04-03T13:59:26.452Z",
         "id": 1
       },
       {
-        "name": "担保",
-        "createdAt": "2014-01-25T04:09:18.215Z",
-        "updatedAt": "2014-01-25T04:09:18.215Z",
-        "id": 2
-      }
-    ],
-    "client": [
-      {
-        "type": 2,
-        "name": "ABC",
-        "pid": "1abc",
-        "domains": [
-          "1",
-          "4"
-        ],
-        "email": "wliu272@163.com",
-        "phone": "111111",
-        "address": "address1",
-        "employer": "",
-        "education": "",
-        "title": "",
-        "yearly_income": "",
-        "legal_person": "",
-        "contact": "",
-        "contact_phone": "",
-        "founded": "",
-        "products": "product1,product2",
-        "registered_capital": "",
-        "total_asset": "",
-        "net_asset": "",
-        "asset_liability_ratio": "",
-        "current_ratio": "",
-        "quick_ratio": "",
-        "sales_income_last_year": "",
-        "sales_income_curr_year": "",
-        "profit_last_year": "",
-        "profit_curr_year": "",
-        "createdAt": "2014-01-23T13:53:33.767Z",
-        "updatedAt": "2014-01-23T13:53:33.780Z",
-        "id": 2,
-        "bondings": [
-          2
-        ]
-      },
-      {
-        "type": 1,
-        "name": "ABC",
-        "pid": "501015198406132534",
-        "domains": [
-          "1",
-          "2"
-        ],
-        "email": "wliu272@163.com",
-        "phone": "111111",
-        "address": "address1",
-        "employer": "Tieto",
-        "education": "PhD",
-        "title": "SW Architect",
-        "yearly_income": 300000,
-        "legal_person": "",
-        "contact": "",
-        "contact_phone": "",
-        "founded": "",
-        "products": "",
-        "registered_capital": "",
-        "total_asset": "",
-        "net_asset": "",
-        "asset_liability_ratio": "",
-        "current_ratio": "",
-        "quick_ratio": "",
-        "sales_income_last_year": "",
-        "sales_income_curr_year": "",
-        "profit_last_year": "",
-        "profit_curr_year": "",
-        "createdAt": "2014-01-23T14:02:28.302Z",
-        "updatedAt": "2014-01-23T14:02:28.304Z",
-        "id": 3,
-        "loans": [
-          1
-        ]
-      },
-      {
-        "type": 1,
-        "name": "ABC",
-        "pid": "501015198406132535",
-        "domains": [
-          "1",
-          "3"
-        ],
-        "email": "haha103@gmail.com",
-        "phone": "85415881",
-        "address": "address1",
-        "employer": "Tieto",
-        "education": "PhD",
-        "title": "SW Architect",
-        "yearly_income": 300000,
-        "legal_person": "",
-        "contact": "",
-        "contact_phone": "",
-        "founded": "",
-        "products": "",
-        "registered_capital": "",
-        "total_asset": "",
-        "net_asset": "",
-        "asset_liability_ratio": "",
-        "current_ratio": "",
-        "quick_ratio": "",
-        "sales_income_last_year": "",
-        "sales_income_curr_year": "",
-        "profit_last_year": "",
-        "profit_curr_year": "",
-        "createdAt": "2014-01-23T14:28:29.605Z",
-        "updatedAt": "2014-01-23T14:28:29.608Z",
-        "id": 4
-      },
-      {
-        "type": 2,
-        "name": "淘宝",
-        "pid": "china00100001111",
-        "domains": [
-          "2",
-          "4"
-        ],
-        "email": "haha103@gmail.com",
-        "phone": "85415881",
-        "address": "address1",
-        "employer": "",
-        "education": "",
-        "title": "",
-        "yearly_income": "",
-        "legal_person": "faren1",
-        "contact": "lianxiren1",
-        "contact_phone": "13881888888",
-        "founded": "2014-01-07",
-        "products": "product1,product2,product3",
-        "registered_capital": 2000000,
-        "total_asset": 2000000,
-        "net_asset": 1000000,
-        "asset_liability_ratio": 0,
-        "current_ratio": 0,
-        "quick_ratio": 0,
-        "sales_income_last_year": 100000,
-        "sales_income_curr_year": 100001,
-        "profit_last_year": 50000,
-        "profit_curr_year": 40000,
-        "createdAt": "2014-01-23T14:30:27.414Z",
-        "updatedAt": "2014-01-23T14:30:27.423Z",
-        "id": 5,
-        "shareholders": [
-          1,
-          2
-        ],
-        "loans": [
-          2,
-          3
-        ],
-        "bondings": [
-          3
-        ]
-      }
-    ],
-    "clientbonding": [
-      {
-        "warrantee_type": 1,
-        "warrantee": "beidanbaoren1",
-        "loaner": 1,
-        "amount": 200000,
-        "start": "2014-01-02",
-        "end": "2014-01-10",
-        "warrantor": 1,
-        "createdAt": "2014-01-23T13:47:52.072Z",
-        "updatedAt": "2014-01-23T13:47:52.072Z",
-        "id": 1
-      },
-      {
-        "warrantee_type": 2,
-        "warrantee": "beidanbaoren1",
-        "loaner": 1,
-        "amount": 200000,
-        "start": "2014-01-01",
-        "end": "2014-01-23",
-        "warrantor": 2,
-        "createdAt": "2014-01-23T13:53:33.779Z",
-        "updatedAt": "2014-01-23T13:53:33.779Z",
+        "name": "担保公司2",
+        "createdAt": "2014-04-03T13:59:34.426Z",
+        "updatedAt": "2014-04-03T13:59:34.426Z",
         "id": 2
       },
       {
-        "warrantee_type": 1,
-        "warrantee": "beidanbaoren2",
-        "loaner": 1,
-        "amount": 200000,
-        "start": "2014-01-18",
-        "end": "2014-05-10",
-        "warrantor": 5,
-        "createdAt": "2014-01-23T14:30:27.422Z",
-        "updatedAt": "2014-01-23T14:30:27.422Z",
+        "name": "担保公司3",
+        "createdAt": "2014-04-03T13:59:38.515Z",
+        "updatedAt": "2014-04-03T13:59:38.515Z",
         "id": 3
       }
     ],
-    "clientloan": [
+    "guarantor": [],
+    "investigation": [],
+    "loanform": [],
+    "loaner": [],
+    "mortgage": [],
+    "mortgagetype": [],
+    "obj": [],
+    "partner": [],
+    "platform": [
       {
-        "amount": 200000,
-        "start": "2014-01-01",
-        "end": "2014-01-10",
-        "form": 1,
-        "loaner": 1,
-        "loanee": 3,
-        "createdAt": "2014-01-23T14:02:28.303Z",
-        "updatedAt": "2014-01-23T14:02:28.303Z",
+        "key": "balance",
+        "fval": 2300000,
+        "createdAt": "2014-03-21T15:07:58.126Z",
+        "updatedAt": "2014-03-21T15:15:42.554Z",
+        "id": 1
+      }
+    ],
+    "product": [
+      {
+        "contract": "HT000002",
+        "needed_amount": 2000000,
+        "return_amount": 2300000,
+        "interest": 0.085,
+        "status": "状态2",
+        "duration_from": "2014-03-21",
+        "duration_to": "2014-06-12",
+        "invest_receiver": "阿里巴巴",
+        "payment_method": "方式2",
+        "invest_purpose": "支付宝业务拓展",
+        "guarantee_company": "担保公司2",
+        "guarantee_letter_code": "DB00000312",
+        "guarantee_letter_scan": "assets/userdata/products/guaranett_letter_scan/3a4c11e0-b10a-11e3-90ef-fdd2878fb794.png",
+        "current_amount": 2000000,
+        "returned_amount": 2300000,
+        "returned_investor_amount": 2170000,
+        "invest_started": false,
+        "createdAt": "2014-03-21T15:05:23.711Z",
+        "updatedAt": "2014-03-21T15:16:07.552Z",
         "id": 1
       },
       {
-        "amount": 200000,
-        "start": "2014-01-01",
-        "end": "2014-01-02",
-        "form": 1,
-        "loaner": 1,
-        "loanee": 5,
-        "createdAt": "2014-01-23T14:30:27.418Z",
-        "updatedAt": "2014-01-23T14:30:27.418Z",
+        "contract": "HT000003",
+        "needed_amount": 350000,
+        "return_amount": 400000,
+        "interest": 0.09,
+        "status": "状态2",
+        "duration_from": "2014-03-22",
+        "duration_to": "2014-08-15",
+        "invest_receiver": "百度",
+        "payment_method": "方式2",
+        "invest_purpose": "新一代搜索算法",
+        "guarantee_company": "担保公司3",
+        "guarantee_letter_code": "DB00120313",
+        "guarantee_letter_scan": "assets/userdata/products/guaranett_letter_scan/e42dc0a0-b15f-11e3-9a1d-873062e4244a.png",
+        "current_amount": 0,
+        "returned_amount": 0,
+        "returned_investor_amount": 0,
+        "invest_started": false,
+        "createdAt": "2014-03-22T01:18:35.947Z",
+        "updatedAt": "2014-03-22T01:18:35.947Z",
         "id": 2
       },
       {
-        "amount": 200000,
-        "start": "2013-11-06",
-        "end": "2014-01-30",
-        "form": 1,
-        "loaner": 1,
-        "loanee": 5,
-        "createdAt": "2014-01-23T14:30:27.420Z",
-        "updatedAt": "2014-01-23T14:30:27.420Z",
+        "contract": "HT000004",
+        "needed_amount": 1250000,
+        "return_amount": 1450000,
+        "interest": 0.095,
+        "status": "状态2",
+        "duration_from": "2014-03-22",
+        "duration_to": "2015-03-21",
+        "invest_receiver": "公司A",
+        "payment_method": "方式3",
+        "invest_purpose": "扩大生产规模",
+        "guarantee_company": "担保公司3",
+        "guarantee_letter_code": "DB012130312",
+        "guarantee_letter_scan": "assets/userdata/products/guaranett_letter_scan/fcd80880-b160-11e3-9a1d-873062e4244a.png",
+        "current_amount": 0,
+        "returned_amount": 0,
+        "returned_investor_amount": 0,
+        "invest_started": false,
+        "createdAt": "2014-03-22T01:26:26.825Z",
+        "updatedAt": "2014-03-22T01:26:26.825Z",
         "id": 3
       }
     ],
-    "clientshareholder": [
-      {
-        "name": "Linda Liao",
-        "amount": 200000,
-        "share": 0.5,
-        "form": 1,
-        "company": 5,
-        "createdAt": "2014-01-23T14:30:27.416Z",
-        "updatedAt": "2014-01-23T14:30:27.416Z",
-        "id": 1
-      },
-      {
-        "name": "Liu Wei",
-        "amount": 200000,
-        "share": 0.5,
-        "form": 5,
-        "company": 5,
-        "createdAt": "2014-01-23T14:30:27.418Z",
-        "updatedAt": "2014-01-23T14:30:27.418Z",
-        "id": 2
-      }
-    ],
-    "domain": [
-      {
-        "name": "信息技术",
-        "createdAt": "2014-01-18T12:05:24.685Z",
-        "updatedAt": "2014-01-18T12:05:24.685Z",
-        "id": 1
-      },
-      {
-        "name": "金融保险",
-        "createdAt": "2014-01-18T12:05:50.077Z",
-        "updatedAt": "2014-01-18T12:05:50.077Z",
-        "id": 2
-      },
-      {
-        "name": "教育",
-        "createdAt": "2014-01-18T12:06:10.031Z",
-        "updatedAt": "2014-01-18T12:06:10.031Z",
-        "id": 3
-      },
-      {
-        "name": "运输物流",
-        "createdAt": "2014-01-18T12:06:31.412Z",
-        "updatedAt": "2014-01-18T12:06:31.412Z",
-        "id": 4
-      }
-    ],
-    "loanform": [
-      {
-        "name": "直接贷款",
-        "createdAt": "2014-01-18T13:01:56.707Z",
-        "updatedAt": "2014-01-18T13:01:56.707Z",
-        "id": 1
-      },
-      {
-        "name": "间接贷款",
-        "createdAt": "2014-01-18T13:02:11.716Z",
-        "updatedAt": "2014-01-18T13:02:11.716Z",
-        "id": 2
-      }
-    ],
-    "loaner": [
-      {
-        "name": "上海浦东发展银行成都分行蜀汉支行",
-        "createdAt": "2014-01-18T12:04:40.797Z",
-        "updatedAt": "2014-01-18T12:04:40.797Z",
-        "id": 1
-      }
-    ],
-    "mortgage": [
-      {
-        "name": "abc1",
-        "value": 22222,
-        "type": 1,
-        "application": 5,
-        "createdAt": "2014-02-02T12:57:10.671Z",
-        "updatedAt": "2014-02-02T12:57:10.671Z",
-        "id": 5
-      }
-    ],
+    "productguarantee": [],
     "purpose": [],
-    "shareholderform": [
+    "review": [],
+    "riskassessment": [],
+    "shareholderform": [],
+    "transaction": [
       {
-        "name": "货币",
-        "createdAt": "2014-01-18T13:11:52.704Z",
-        "updatedAt": "2014-01-18T13:11:52.704Z",
+        "user_id": 1,
+        "type": "recharge",
+        "amount": 3000000,
+        "recharge_from_bank_account": "6225111111111112",
+        "createdAt": "2014-03-21T14:37:11.371Z",
+        "updatedAt": "2014-03-21T14:37:11.371Z",
         "id": 1
       },
       {
-        "name": "实物",
-        "createdAt": "2014-01-18T13:12:11.708Z",
-        "updatedAt": "2014-01-18T13:12:11.708Z",
+        "user_id": 1,
+        "type": "withdraw",
+        "amount": 2000000,
+        "createdAt": "2014-03-21T14:37:27.391Z",
+        "updatedAt": "2014-03-21T14:37:27.391Z",
         "id": 2
       },
       {
-        "name": "知识产权",
-        "createdAt": "2014-01-18T13:12:18.843Z",
-        "updatedAt": "2014-01-18T13:12:18.843Z",
+        "user_id": 2,
+        "type": "recharge",
+        "amount": 3000000,
+        "recharge_from_bank_account": "6110000023456789",
+        "createdAt": "2014-03-21T15:04:18.280Z",
+        "updatedAt": "2014-03-21T15:04:18.280Z",
         "id": 3
       },
       {
-        "name": "土地使用权",
-        "createdAt": "2014-01-18T13:12:33.859Z",
-        "updatedAt": "2014-01-18T13:12:33.859Z",
+        "user_id": 2,
+        "type": "invest",
+        "amount": 200000,
+        "invest_product": 1,
+        "invest_bank_account": 6110000023456789,
+        "createdAt": "2014-03-21T15:06:01.456Z",
+        "updatedAt": "2014-03-21T15:06:01.456Z",
         "id": 4
       },
       {
-        "name": "劳务和信用出资",
-        "createdAt": "2014-01-18T13:12:48.568Z",
-        "updatedAt": "2014-01-18T13:12:48.568Z",
+        "user_id": 2,
+        "type": "invest",
+        "amount": 1800000,
+        "invest_product": 1,
+        "invest_bank_account": 6110000023456789,
+        "createdAt": "2014-03-21T15:07:03.331Z",
+        "updatedAt": "2014-03-21T15:07:03.331Z",
         "id": 5
+      },
+      {
+        "user_id": 1,
+        "type": "refundplatform",
+        "amount": 2100000,
+        "product": 1,
+        "createdAt": "2014-03-21T15:07:58.124Z",
+        "updatedAt": "2014-03-21T15:07:58.124Z",
+        "id": 6
+      },
+      {
+        "user_id": 1,
+        "type": "refundinvestor",
+        "amount": 2100000,
+        "product": 1,
+        "target_user_id": 2,
+        "createdAt": "2014-03-21T15:08:45.992Z",
+        "updatedAt": "2014-03-21T15:08:45.992Z",
+        "id": 7
+      },
+      {
+        "user_id": 1,
+        "type": "refundplatform",
+        "amount": 200000,
+        "product": 1,
+        "createdAt": "2014-03-21T15:15:42.549Z",
+        "updatedAt": "2014-03-21T15:15:42.549Z",
+        "id": 8
+      },
+      {
+        "user_id": 1,
+        "type": "refundinvestor",
+        "amount": 70000,
+        "product": 1,
+        "target_user_id": 2,
+        "createdAt": "2014-03-21T15:16:07.548Z",
+        "updatedAt": "2014-03-21T15:16:07.548Z",
+        "id": 9
       }
     ],
     "user": [
       {
-        "name": "Liu Wei",
-        "title": "SW Architect",
+        "user_name": "haha103",
+        "name": "刘玮",
+        "id_card": "510105198406132534",
         "email": "wliu272@163.com",
         "admin": true,
         "online": false,
-        "encryptedPassword": "$2a$10$2AS8B.etJpvQXS.gntfchujtd4vtYa9yGX2ww.h4dz.femCbZ40jO",
-        "createdAt": "2014-02-06T12:45:10.915Z",
-        "updatedAt": "2014-02-09T01:48:14.724Z",
-        "id": 1
-      }
-    ],
-    "object": [],
-    "obj": [],
-    "mortgagetype": [
-      {
-        "name": "抵押",
-        "createdAt": "2014-01-18T06:52:28.212Z",
-        "updatedAt": "2014-01-18T06:52:28.212Z",
-        "id": 1
+        "activated": true,
+        "bank_binded": true,
+        "reg_completed": true,
+        "balance": 1000000,
+        "encryptedPassword": "$2a$10$/9shAlixs2ojiUwepwRF8uWp14sQ7HvKwef7XbgfDeWzOCPFosw.m",
+        "createdAt": "2014-03-21T14:31:17.445Z",
+        "updatedAt": "2014-04-04T14:57:52.034Z",
+        "id": 1,
+        "bank_name": "浦发银行重庆营业部",
+        "bank_account": "6225111111111112",
+        "bank_city": "重庆",
+        "bank_province": "直辖市",
+        "encryptedPaypass": "$2a$10$IZawAsMJUWKqDK.h2k0AHuGsZ38ZPL5op6jeHxyMscote4d1lKh8W"
       },
       {
-        "name": "质押",
-        "createdAt": "2014-01-18T06:52:42.122Z",
-        "updatedAt": "2014-01-18T06:52:42.122Z",
-        "id": 2
-      }
-    ],
-    "clienttype": [
-      {
-        "name": "个人",
-        "_csrf": "22t1zUh8t0ZKeNCUYhe5BNU6RY3XnDm5ER/WY=",
-        "createdAt": "2014-01-18T12:21:39.918Z",
-        "updatedAt": "2014-01-18T12:21:39.918Z",
-        "id": 1
+        "user_name": "haha104",
+        "name": "刘玮2",
+        "id_card": "510105198406132533",
+        "email": "wliu2721@163.com",
+        "admin": false,
+        "online": false,
+        "activated": true,
+        "bank_binded": true,
+        "reg_completed": true,
+        "balance": 3070000,
+        "encryptedPassword": "$2a$10$YauLjy8QEb7GPfNYjDkiHu3n.IJGkgjKl/NjYDTrCrXizvCmhkEhu",
+        "createdAt": "2014-03-21T15:03:09.975Z",
+        "updatedAt": "2014-04-04T14:57:52.034Z",
+        "id": 2,
+        "bank_name": "浦发银行成都分行营业部",
+        "bank_account": "6110000023456789",
+        "bank_city": "成都市",
+        "bank_province": "四川省",
+        "encryptedPaypass": "$2a$10$1GvS1XsxQAlFDP06dtGpiu1pKU0pLRoBNGLbwSV7A6so3zywhTJJO"
       },
       {
-        "name": "企业",
-        "_csrf": "j6YItppgXxEOYNZDJ/Wkn+KIfSn7cLujBpCS4=",
-        "createdAt": "2014-01-18T12:21:49.484Z",
-        "updatedAt": "2014-01-18T12:21:49.484Z",
-        "id": 2
-      }
-    ],
-    "creditpurpose": [
-      {
-        "name": "项目投资",
-        "createdAt": "2014-01-24T15:06:26.940Z",
-        "updatedAt": "2014-01-24T15:06:26.940Z",
-        "id": 1
-      },
-      {
-        "name": "流动资金",
-        "createdAt": "2014-01-24T15:07:22.365Z",
-        "updatedAt": "2014-01-24T15:07:22.365Z",
-        "id": 2
-      },
-      {
-        "name": "综合授信",
-        "createdAt": "2014-01-24T15:07:35.049Z",
-        "updatedAt": "2014-01-24T15:07:35.049Z",
-        "id": 3
-      },
-      {
-        "name": "信用证开证",
-        "createdAt": "2014-01-24T15:07:47.253Z",
-        "updatedAt": "2014-01-24T15:07:47.253Z",
-        "id": 4
-      },
-      {
-        "name": "承对汇票",
-        "createdAt": "2014-01-24T15:08:05.644Z",
-        "updatedAt": "2014-01-24T15:08:05.644Z",
-        "id": 5
-      },
-      {
-        "name": "购置固定资产",
-        "createdAt": "2014-01-24T15:08:32.115Z",
-        "updatedAt": "2014-01-24T15:08:32.115Z",
-        "id": 6
-      },
-      {
-        "name": "工程保证 - 投标保证",
-        "createdAt": "2014-01-24T15:09:09.489Z",
-        "updatedAt": "2014-01-24T15:09:09.489Z",
-        "id": 7
-      },
-      {
-        "name": "工程保证 - 预付款保证",
-        "createdAt": "2014-01-24T15:09:40.427Z",
-        "updatedAt": "2014-01-24T15:09:40.427Z",
-        "id": 8
-      },
-      {
-        "name": "工程保证 - 工程履约保证",
-        "createdAt": "2014-01-24T15:09:54.432Z",
-        "updatedAt": "2014-01-24T15:09:54.432Z",
-        "id": 9
-      },
-      {
-        "name": "工程保证 - 工程维修质量保证",
-        "createdAt": "2014-01-24T15:10:09.499Z",
-        "updatedAt": "2014-01-24T15:10:09.499Z",
-        "id": 10
-      },
-      {
-        "name": "工程保证 - 业主支付保证",
-        "createdAt": "2014-01-24T15:10:21.512Z",
-        "updatedAt": "2014-01-24T15:10:21.512Z",
-        "id": 11
-      },
-      {
-        "name": "工程保证 - 工程完工保证",
-        "createdAt": "2014-01-24T15:10:38.903Z",
-        "updatedAt": "2014-01-24T15:10:38.903Z",
-        "id": 12
-      },
-      {
-        "name": "工程保证 - 业主延期付款担保",
-        "createdAt": "2014-01-24T15:10:55.060Z",
-        "updatedAt": "2014-01-24T15:10:55.060Z",
-        "id": 13
-      },
-      {
-        "name": "贸易履约担保 - 保理业务",
-        "createdAt": "2014-01-24T15:11:33.582Z",
-        "updatedAt": "2014-01-24T15:11:33.582Z",
-        "id": 14
-      },
-      {
-        "name": "贸易履约担保 - 投标保证",
-        "createdAt": "2014-01-24T15:11:44.908Z",
-        "updatedAt": "2014-01-24T15:11:44.908Z",
-        "id": 15
-      },
-      {
-        "name": "贸易履约担保 - 预付款保证",
-        "createdAt": "2014-01-24T15:11:56.341Z",
-        "updatedAt": "2014-01-24T15:11:56.341Z",
-        "id": 16
-      },
-      {
-        "name": "贸易履约担保 - 供货履约保证",
-        "createdAt": "2014-01-24T15:12:12.350Z",
-        "updatedAt": "2014-01-24T15:12:12.350Z",
-        "id": 17
-      },
-      {
-        "name": "贸易履约担保 - 产品维修质量保证",
-        "createdAt": "2014-01-24T15:12:28.694Z",
-        "updatedAt": "2014-01-24T15:12:28.694Z",
-        "id": 18
-      },
-      {
-        "name": "贸易履约担保 - 买方延期付款担保",
-        "createdAt": "2014-01-24T15:12:51.023Z",
-        "updatedAt": "2014-01-24T15:12:51.023Z",
-        "id": 19
-      },
-      {
-        "name": "贸易履约担保 - 政府采购履约保证",
-        "createdAt": "2014-01-24T15:13:07.733Z",
-        "updatedAt": "2014-01-24T15:13:07.733Z",
-        "id": 20
-      },
-      {
-        "name": "司法担保 - 执行担保",
-        "createdAt": "2014-01-24T15:13:22.998Z",
-        "updatedAt": "2014-01-24T15:13:22.998Z",
-        "id": 21
-      },
-      {
-        "name": "司法担保 - 财产保全担保",
-        "createdAt": "2014-01-24T15:13:44.859Z",
-        "updatedAt": "2014-01-24T15:13:44.859Z",
-        "id": 22
-      }
-    ],
-    "credittype": [
-      {
-        "name": "融资担保",
-        "createdAt": "2014-01-24T15:02:50.061Z",
-        "updatedAt": "2014-01-24T15:02:50.061Z",
-        "id": 1
-      },
-      {
-        "name": "非融资担保",
-        "createdAt": "2014-01-24T15:03:01.833Z",
-        "updatedAt": "2014-01-24T15:03:01.833Z",
-        "id": 2
-      },
-      {
-        "name": "再担保",
-        "createdAt": "2014-01-24T15:03:15.334Z",
-        "updatedAt": "2014-01-24T15:03:15.334Z",
-        "id": 3
-      },
-      {
-        "name": "委托贷款",
-        "createdAt": "2014-01-24T15:03:27.665Z",
-        "updatedAt": "2014-01-24T15:03:27.665Z",
-        "id": 4
-      }
-    ],
-    "partner": [
-      {
-        "name": "成都市政府",
-        "createdAt": "2014-01-25T12:55:05.216Z",
-        "updatedAt": "2014-01-25T12:55:05.216Z",
-        "id": 1
-      },
-      {
-        "name": "四川省国资委",
-        "createdAt": "2014-01-25T12:55:23.579Z",
-        "updatedAt": "2014-01-25T12:55:23.579Z",
-        "id": 2
-      }
-    ],
-    "guarantor": [
-      {
-        "name": "ali group",
-        "legal_person": "mayun",
-        "registered_capital": 2222,
-        "total_asset": 222222,
-        "net_asset": 22222,
-        "bonding_amount": 222,
-        "application": 5,
-        "createdAt": "2014-02-02T12:57:10.674Z",
-        "updatedAt": "2014-02-02T12:57:10.674Z",
-        "id": 1
-      }
-    ],
-    "workflow": [
-      {
-        "name": "完整流程",
-        "definition": {
-          "APPLICATION": {
-            "init_state": true,
-            "next_states": [
-              "INVESTIGATION",
-              "CLOSED"
-            ]
-          },
-          "INVESTIGATION": {
-            "next_states": [
-              "RISK_ASSESSMENT",
-              "CLOSED"
-            ]
-          },
-          "RISK_ASSESSMENT": {
-            "next_states": [
-              "INVESTIGATION",
-              "REVIEW",
-              "CLOSED"
-            ]
-          },
-          "REVIEW": {
-            "next_states": [
-              "RISK_ASSESSMENT",
-              "CLOSED",
-              "CONTRACTING"
-            ]
-          },
-          "CONTRACTING": {
-            "next_states": [
-              "PAY",
-              "REVIEW"
-            ]
-          },
-          "PAY": {
-            "next_states": [
-              "CONTRACTING",
-              "MONITORING"
-            ]
-          },
-          "MONITORING": {
-            "next_states": [
-              "CLOSED",
-              "CONTINGENCY_PROC"
-            ]
-          },
-          "CONTINGENCY_PROC": {
-            "next_states": [
-              "RISK_CONTROL",
-              "MONITORING"
-            ]
-          },
-          "RISK_CONTROL": {
-            "next_states": [
-              "CLOSED"
-            ]
-          },
-          "CLOSED": {
-            "end_state": true
-          }
-        },
-        "createdAt": "2014-02-02T03:17:45.082Z",
-        "updatedAt": "2014-02-02T03:17:45.082Z",
-        "id": 4
-      }
-    ],
-    "investigation": [
-      {
-        "application": 5,
-        "credit_rating": 5,
-        "avg_score": 8,
-        "case_summary": "简介1",
-        "actual_owner": "涛哥",
-        "actual_owner_phone": "0100000001",
-        "actual_owner_addr": "中南海1号",
-        "national_tax_id": "00000001",
-        "local_tax_id": "00000001",
-        "legal_person_addr": "中南海1号",
-        "last_year_inspected": true,
-        "licence": "AAA00000001",
-        "bank_card": "1234123412341234",
-        "require_certs": "",
-        "has_certs": "",
-        "registration_others": "无",
-        "createdAt": "2014-02-06T12:06:20.732Z",
-        "updatedAt": "2014-02-06T12:06:20.738Z",
-        "id": 3,
-        "bank_accounts": [
-          3
-        ]
-      }
-    ],
-    "blacklist": [
-      {
-        "name": "工商",
-        "createdAt": "2014-02-04T13:55:09.191Z",
-        "updatedAt": "2014-02-04T13:55:09.191Z",
-        "id": 1
-      },
-      {
-        "name": "银行",
-        "createdAt": "2014-02-04T13:55:18.819Z",
-        "updatedAt": "2014-02-04T13:55:18.819Z",
-        "id": 2
-      },
-      {
-        "name": "税务",
-        "createdAt": "2014-02-04T13:55:36.568Z",
-        "updatedAt": "2014-02-04T13:55:36.568Z",
-        "id": 3
-      },
-      {
-        "name": "海关",
-        "createdAt": "2014-02-04T13:55:44.598Z",
-        "updatedAt": "2014-02-04T13:55:44.598Z",
-        "id": 4
-      }
-    ],
-    "clientbankaccount": [
-      {
-        "bank": "工行",
-        "account": "12345678",
-        "basic_account": true,
-        "client": 2,
-        "application": 5,
-        "investigation": 3,
-        "createdAt": "2014-02-06T12:06:20.736Z",
-        "updatedAt": "2014-02-06T12:06:20.736Z",
+        "user_name": "haha105",
+        "name": "刘玮3",
+        "id_card": "510105198406132535",
+        "email": "wliu272@164.com",
+        "admin": false,
+        "online": false,
+        "activated": true,
+        "bank_binded": false,
+        "reg_completed": false,
+        "balance": 0,
+        "encryptedPassword": "$2a$10$LMGFXI.g0lcXd28MnRGSWOK5L0VTRj08cdfWRv/G3jdR.HMV3mq.C",
+        "createdAt": "2014-04-02T13:26:27.138Z",
+        "updatedAt": "2014-04-04T14:57:52.034Z",
         "id": 3
       }
     ],
-    "riskassessment": [
-      {
-        "application": 5,
-        "fact_basics": "aaa",
-        "fact_finance": "bbb",
-        "fact_background": "ccc",
-        "fact_misc": "ddd",
-        "analysis_purpose_and_amount": "eee",
-        "analysis_repay_src": "fff",
-        "analysis_risk_items": "ggg",
-        "analysis_guarantee": "hhh",
-        "analysis_risk_control": "iii",
-        "analysis_materials": "jjj",
-        "overall_comment": "ok",
-        "createdAt": "2014-02-08T17:29:15.051Z",
-        "updatedAt": "2014-02-08T17:29:15.051Z",
-        "id": 1
-      }
-    ],
-    "review": []
+    "workflow": []
   },
   "schema": {
     "application": {
-      "applicant": {
+      "workflow": {
         "type": "integer"
       },
       "type": {
         "type": "integer"
       },
-      "form": {
+      "applicant": {
         "type": "integer"
       },
-      "purposes": {
-        "type": "integer"
-      },
-      "mortgages": {
-        "type": "integer"
+      "state": {
+        "type": "string"
       },
       "amount": {
         "type": "integer"
       },
-      "length": {
-        "type": "integer"
+      "due": {
+        "type": "date"
+      },
+      "payment_source": {
+        "type": "string"
+      },
+      "partners": {
+        "type": "array"
+      },
+      "credit_types": {
+        "type": "array"
+      },
+      "credit_purposes": {
+        "type": "array"
+      },
+      "guarantors": {
+        "type": "array"
+      },
+      "mortgages": {
+        "type": "array"
       },
       "id": {
         "type": "integer",
@@ -833,21 +345,52 @@
         "default": "NOW"
       }
     },
-    "client": {
-      "type": {
+    "bank": {
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "blacklist": {
+      "name": {
         "type": "string"
       },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "client": {
       "pid": {
         "type": "string",
         "unique": true
       },
-      "first_name": {
-        "type": "string"
+      "type": {
+        "type": "integer"
       },
-      "last_name": {
-        "type": "string"
-      },
-      "email": {
+      "name": {
         "type": "string"
       },
       "phone": {
@@ -856,16 +399,19 @@
       "address": {
         "type": "string"
       },
-      "loans": {
+      "domains": {
         "type": "array"
       },
-      "domains": {
+      "email": {
+        "type": "string"
+      },
+      "loans": {
         "type": "array"
       },
       "education": {
         "type": "string"
       },
-      "employeer": {
+      "employer": {
         "type": "string"
       },
       "title": {
@@ -874,6 +420,9 @@
       "yearly_income": {
         "type": "integer"
       },
+      "legal_person": {
+        "type": "string"
+      },
       "contact": {
         "type": "string"
       },
@@ -881,10 +430,10 @@
         "type": "string"
       },
       "founded": {
-        "type": "string"
+        "type": "date"
       },
       "products": {
-        "type": "array"
+        "type": "string"
       },
       "registered_capital": {
         "type": "integer"
@@ -938,11 +487,43 @@
         "default": "NOW"
       }
     },
-    "clientbonding": {
-      "warrantee_first_name": {
+    "clientbankaccount": {
+      "client": {
+        "type": "integer"
+      },
+      "application": {
+        "type": "integer"
+      },
+      "investigation": {
+        "type": "integer"
+      },
+      "basic_account": {
+        "type": "boolean"
+      },
+      "bank": {
         "type": "string"
       },
-      "warrantee_last_name": {
+      "account": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "clientbonding": {
+      "warrantee": {
         "type": "string"
       },
       "start": {
@@ -955,7 +536,13 @@
         "type": "integer"
       },
       "loaner": {
-        "type": "string"
+        "type": "integer"
+      },
+      "warrantor": {
+        "type": "integer"
+      },
+      "warrantee_type": {
+        "type": "integer"
       },
       "id": {
         "type": "integer",
@@ -983,6 +570,9 @@
       "end": {
         "type": "date"
       },
+      "loanee": {
+        "type": "integer"
+      },
       "loaner": {
         "type": "integer"
       },
@@ -1006,17 +596,80 @@
       }
     },
     "clientshareholder": {
-      "first_name": {
-        "type": "string"
-      },
-      "last_name": {
+      "name": {
         "type": "string"
       },
       "share": {
         "type": "float"
       },
+      "amount": {
+        "type": "float"
+      },
       "form": {
         "type": "integer"
+      },
+      "company": {
+        "type": "integer"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "clienttype": {
+      "name": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "creditpurpose": {
+      "name": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "credittype": {
+      "name": {
+        "type": "string"
       },
       "id": {
         "type": "integer",
@@ -1037,6 +690,135 @@
     "domain": {
       "name": {
         "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "guaranteecompany": {
+      "name": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "guarantor": {
+      "application": {
+        "type": "integer"
+      },
+      "name": {
+        "type": "string"
+      },
+      "legal_person": {
+        "type": "string"
+      },
+      "registered_capital": {
+        "type": "integer"
+      },
+      "total_asset": {
+        "type": "integer"
+      },
+      "net_asset": {
+        "type": "integer"
+      },
+      "bonding_amount": {
+        "type": "integer"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "investigation": {
+      "application": {
+        "type": "integer"
+      },
+      "blacklisted": {
+        "type": "array"
+      },
+      "credit_rating": {
+        "type": "integer"
+      },
+      "avg_score": {
+        "type": "integer"
+      },
+      "case_summary": {
+        "type": "string"
+      },
+      "bank_card": {
+        "type": "string"
+      },
+      "actual_owner": {
+        "type": "string"
+      },
+      "last_year_inspected": {
+        "type": "boolean"
+      },
+      "licence": {
+        "type": "string"
+      },
+      "national_tax_id": {
+        "type": "string"
+      },
+      "local_tax_id": {
+        "type": "string"
+      },
+      "require_certs": {
+        "type": "string"
+      },
+      "has_certs": {
+        "type": "string"
+      },
+      "legal_person_addr": {
+        "type": "string"
+      },
+      "actual_owner_addr": {
+        "type": "string"
+      },
+      "actual_owner_phone": {
+        "type": "string"
+      },
+      "registration_others": {
+        "type": "string"
+      },
+      "bank_accounts": {
+        "type": "array"
       },
       "id": {
         "type": "integer",
@@ -1098,124 +880,15 @@
       "type": {
         "type": "integer"
       },
+      "application": {
+        "type": "integer"
+      },
       "name": {
         "type": "string"
       },
       "value": {
         "type": "integer"
       },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "purpose": {
-      "name": {
-        "type": "string"
-      },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "shareholderform": {
-      "name": {
-        "type": "string"
-      },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "user": {
-      "name": {
-        "type": "string"
-      },
-      "title": {
-        "type": "string"
-      },
-      "email": {
-        "type": "string",
-        "unique": true
-      },
-      "admin": {
-        "type": "boolean",
-        "defaultsTo": false
-      },
-      "online": {
-        "type": "boolean",
-        "defaultsTo": false
-      },
-      "encryptedPassword": {
-        "type": "string"
-      },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "object": {
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "obj": {
       "id": {
         "type": "integer",
         "autoIncrement": true,
@@ -1252,47 +925,7 @@
         "default": "NOW"
       }
     },
-    "clienttype": {
-      "name": {
-        "type": "string"
-      },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "creditpurpose": {
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "credittype": {
-      "name": {
-        "type": "string"
-      },
+    "obj": {
       "id": {
         "type": "integer",
         "autoIncrement": true,
@@ -1329,122 +962,143 @@
         "default": "NOW"
       }
     },
-    "guarantor": {
-      "application": {
+    "platform": {
+      "key": {
+        "type": "string"
+      },
+      "sval": {
+        "type": "string"
+      },
+      "ival": {
         "type": "integer"
       },
+      "fval": {
+        "type": "float"
+      },
+      "bval": {
+        "type": "boolean"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "product": {
+      "contract": {
+        "type": "string"
+      },
+      "needed_amount": {
+        "type": "integer"
+      },
+      "current_amount": {
+        "type": "integer",
+        "defaultsTo": 0
+      },
+      "return_amount": {
+        "type": "integer"
+      },
+      "returned_amount": {
+        "type": "integer",
+        "defaultsTo": 0
+      },
+      "returned_investor_amount": {
+        "type": "integer",
+        "defaultsTo": 0
+      },
+      "interest": {
+        "type": "float"
+      },
+      "duration_from": {
+        "type": "date"
+      },
+      "duration_to": {
+        "type": "date"
+      },
+      "status": {
+        "type": "string"
+      },
+      "guarantee_company": {
+        "type": "string"
+      },
+      "guarantee_letter_code": {
+        "type": "string"
+      },
+      "guarantee_letter_scan": {
+        "type": "string"
+      },
+      "invest_receiver": {
+        "type": "string"
+      },
+      "invest_purpose": {
+        "type": "string"
+      },
+      "payment_method": {
+        "type": "string"
+      },
+      "invest_started": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "productguarantee": {
+      "product": {
+        "type": "integer"
+      },
+      "guarantee_company": {
+        "type": "integer"
+      },
+      "guarantee_letter_code": {
+        "type": "string"
+      },
+      "guarantee_letter_scan": {
+        "type": "array"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "purpose": {
       "name": {
         "type": "string"
       },
-      "legal_person": {
-        "type": "string"
-      },
-      "registered_capital": {
-        "type": "integer"
-      },
-      "total_asset": {
-        "type": "integer"
-      },
-      "net_asset": {
-        "type": "integer"
-      },
-      "bonding_amount": {
-        "type": "integer"
-      },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "workflow": {
-      "name": {
-        "type": "string"
-      },
-      "definition": {
-        "type": "json"
-      },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "investigation": {
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "blacklist": {
-      "name": {
-        "type": "string"
-      },
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "clientbankaccount": {
-      "id": {
-        "type": "integer",
-        "autoIncrement": true,
-        "defaultsTo": "AUTO_INCREMENT",
-        "primaryKey": true,
-        "unique": true
-      },
-      "createdAt": {
-        "type": "datetime",
-        "default": "NOW"
-      },
-      "updatedAt": {
-        "type": "datetime",
-        "default": "NOW"
-      }
-    },
-    "riskassessment": {
       "id": {
         "type": "integer",
         "autoIncrement": true,
@@ -1516,81 +1170,281 @@
         "type": "datetime",
         "default": "NOW"
       }
+    },
+    "riskassessment": {
+      "application": {
+        "type": "integer"
+      },
+      "fact_basics": {
+        "type": "string"
+      },
+      "fact_finance": {
+        "type": "string"
+      },
+      "fact_background": {
+        "type": "string"
+      },
+      "fact_misc": {
+        "type": "string"
+      },
+      "analysis_purpose_and_amount": {
+        "type": "string"
+      },
+      "analysis_repay_src": {
+        "type": "string"
+      },
+      "analysis_risk_items": {
+        "type": "string"
+      },
+      "analysis_guarantee": {
+        "type": "string"
+      },
+      "analysis_risk_control": {
+        "type": "string"
+      },
+      "analysis_materials": {
+        "type": "string"
+      },
+      "overall_comment": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "shareholderform": {
+      "name": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "transaction": {
+      "user_id": {
+        "type": "integer"
+      },
+      "type": {
+        "type": "string"
+      },
+      "amount": {
+        "type": "float"
+      },
+      "recharge_from_bank_account": {
+        "type": "string"
+      },
+      "invest_product": {
+        "type": "integer"
+      },
+      "invest_bank_account": {
+        "type": "integer"
+      },
+      "withdraw_bank_account": {
+        "type": "string"
+      },
+      "transfer_to_user_id": {
+        "type": "integer"
+      },
+      "transfer_to_bank_account": {
+        "type": "string"
+      },
+      "product": {
+        "type": "integer"
+      },
+      "target_user_id": {
+        "type": "integer"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "user": {
+      "name": {
+        "type": "string"
+      },
+      "id_card": {
+        "type": "string"
+      },
+      "user_name": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "unique": true
+      },
+      "admin": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "online": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "encryptedPassword": {
+        "type": "string"
+      },
+      "encryptedPaypass": {
+        "type": "string"
+      },
+      "activated": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "bank_binded": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "bank_province": {
+        "type": "string"
+      },
+      "bank_city": {
+        "type": "string"
+      },
+      "bank_account": {
+        "type": "string"
+      },
+      "bank_name": {
+        "type": "string"
+      },
+      "reg_completed": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "phone": {
+        "type": "string"
+      },
+      "city": {
+        "type": "string"
+      },
+      "province": {
+        "type": "string"
+      },
+      "address": {
+        "type": "string"
+      },
+      "balance": {
+        "type": "float",
+        "defaultsTo": 0
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    },
+    "workflow": {
+      "name": {
+        "type": "string",
+        "unique": true
+      },
+      "definition": {
+        "type": "json"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
     }
   },
   "counters": {
-    "application": {
-      "id": 5
-    },
-    "applicationtype": {
-      "id": 2
-    },
-    "client": {
-      "id": 5
-    },
-    "clientbonding": {
+    "application": {},
+    "applicationtype": {},
+    "bank": {},
+    "blacklist": {},
+    "client": {},
+    "clientbankaccount": {},
+    "clientbonding": {},
+    "clientloan": {},
+    "clientshareholder": {},
+    "clienttype": {},
+    "creditpurpose": {},
+    "credittype": {},
+    "domain": {},
+    "guaranteecompany": {
       "id": 3
     },
-    "clientloan": {
-      "id": 3
-    },
-    "clientshareholder": {
-      "id": 2
-    },
-    "domain": {
-      "id": 4
-    },
-    "loanform": {
-      "id": 2
-    },
-    "loaner": {
+    "guarantor": {},
+    "investigation": {},
+    "loanform": {},
+    "loaner": {},
+    "mortgage": {},
+    "mortgagetype": {},
+    "obj": {},
+    "partner": {},
+    "platform": {
       "id": 1
     },
-    "mortgage": {
-      "id": 5
+    "product": {
+      "id": 3
     },
+    "productguarantee": {},
     "purpose": {},
-    "shareholderform": {
-      "id": 5
+    "review": {},
+    "riskassessment": {},
+    "shareholderform": {},
+    "transaction": {
+      "id": 9
     },
     "user": {
-      "id": 1
-    },
-    "object": {},
-    "obj": {},
-    "mortgagetype": {
-      "id": 2
-    },
-    "clienttype": {
-      "id": 2
-    },
-    "creditpurpose": {
-      "id": 22
-    },
-    "credittype": {
-      "id": 4
-    },
-    "partner": {
-      "id": 2
-    },
-    "guarantor": {
-      "id": 1
-    },
-    "workflow": {
-      "id": 4
-    },
-    "investigation": {
       "id": 3
     },
-    "blacklist": {
-      "id": 4
-    },
-    "clientbankaccount": {
-      "id": 3
-    },
-    "riskassessment": {
-      "id": 1
-    },
-    "review": {}
+    "workflow": {}
   }
 }
