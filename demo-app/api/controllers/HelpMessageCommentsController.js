@@ -17,7 +17,23 @@
 
 module.exports = {
     
-  
+  create: function(req, res, next) {
+		var comment = {
+			message: req.param("message"),
+			user: req.session.User.id,
+			content: req.param("newmessagecomment_content")
+		};
+
+		HelpMessageComments.create(comment).done(function(err, c) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+		});
+		
+		console.log(comment);
+		res.redirect(req.param("previousurl"));
+	},
 
 
   /**

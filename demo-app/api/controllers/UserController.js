@@ -294,8 +294,9 @@ module.exports = {
 							if (err) { console.log(err); return; }
 							messagescount = ms.length;
 					});
-					
-					res.view({
+
+
+					var viewparams = {
 						user: user,
 						subpage: subpage,
 						display_name: display_name,
@@ -316,7 +317,27 @@ module.exports = {
 						messagescount: messagescount,
 						HelpMessageHelper: HelpMessageHelper,
 						UserHelper: UserHelper
-					});
+					};
+					
+					switch(subpage) {
+					case "messagehelpcomments":
+						var messageid = req.param("messageid");
+						var message = null;
+						HelpMessage.findOne(messageid).done(function(err, m) {
+							if (err) { console.log(err); return; }
+							if (!m) { console.log("no message found!"); return; }
+							message = m;
+							HelpMessageComments.find({ message: m.id }).done(function(err, mcs) {
+								if (err) { console.log(err); return; }
+								if (!mcs || mcs.length == 0) { console.log("no comments found for message: " + m.id); }
+								message.comments = mcs;
+							});
+						});
+						viewparams.message = message;
+					default:
+						break;
+					}
+					res.view(viewparams);
 				});
       }
 		});

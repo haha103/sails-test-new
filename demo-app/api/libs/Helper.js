@@ -89,7 +89,13 @@ var self = {
 	updateUrlQuery: function(req, field, newval) {
 		var baseurl = req._parsedUrl.pathname;
 		var query = _.clone(req.query);
-		query[field] = newval;
+		if (Array.isArray(field)) {
+			for (var i = 0; i <  field.length; ++i) {
+				query[field[i]] = newval[i];
+			}
+		} else {
+			query[field] = newval;
+		}
 		var query_str = _.map(query, (function(v, k) { return k + "=" + v; })).join("&");
 		var url = baseurl + "?" + query_str;
 		return url;

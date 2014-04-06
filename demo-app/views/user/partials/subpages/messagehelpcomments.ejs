@@ -1,0 +1,51 @@
+<ol class="breadcrumb">
+  <li><a href="/user/show/1?subpage=messagehelp">所有留言</a></li>
+  <li class="active"><%= message.title %></li>
+</ol>
+
+<h3><%= message.title %> &nbsp;<small><%= UserHelper.getUserNameById(message.user) %> 发表于 <%= message.createdAt %></small></h3>
+
+<hr class="haha-hr-compact"/>
+<div class="panel-group">
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<%= message.desc %>
+		</div>
+	</div>
+
+	<% if (message.comments.length > 0) { %>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			所有回复
+		</div>
+		<div class="panel-body">
+			<% for (var i = 0; i < message.comments.length; ++i) { %>
+				<% var c = message.comments[i]; %>
+				<small><%= UserHelper.getUserNameById(c.user) %> 发表于 <%= c.createdAt %></small>
+				<hr class="haha-hr-compact2 haha-hr-bcompact2"/>
+        <p><%= c.content %></p>
+				<% if (i != message.comments.length - 1) { %>
+				  <br/>
+				<% } %>
+			<% } %>
+		</div>
+	</div>
+	<% } %>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			新回复
+		</div>
+		<div class="panel-body">
+			<form role='form' action="/helpmessagecomments/create" method="POST" class="form" id="haha-form-newmessagecomment">
+				<div class='form-group' style="margin-bottom:10px;">
+					<textarea rows="5" class='form-control' name='newmessagecomment_content'></textarea>
+        </div>
+				<button type="submit" class="btn btn-primary btn-sm" style="float:right;">发表新回复</button>
+        <input class="hidden" type="text" name="message" value="<%= message.id %>"/>
+        <input class="hidden" type="text" name="previousurl" value="<%= req.url %>"/>
+        <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+      </form>
+		</div>
+	</div>
+</div>

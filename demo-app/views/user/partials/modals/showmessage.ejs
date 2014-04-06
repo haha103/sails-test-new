@@ -1,0 +1,26 @@
+<div class="modal fade" id="showmessage-modal" tabindex="-1" role="dialog" aria-labelledby="showmessage-modal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+			<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<%= __m.title %>
+      </div>
+      <div class="modal-body">
+				本帖内容
+        <hr/>
+				回复....
+			</div>
+			<div class="modal-footer haha-modal-footer-compact">
+        <form action="/helpmessagecomments/create" method="POST" class="form-horizontal" id="haha-form-newmessagecomment">
+					<div class='form-group'>
+            <label class='control-label col-md-2' for="showmessage_content">留言标题</label>
+            <div class="col-md-10">
+							<textarea rows="5" class='form-control' name='showmessage_content'></textarea>
+            </div>
+          </div>
+					<input class='hidden' name='_csrf' value='<%= _csrf %>' />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
