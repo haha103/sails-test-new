@@ -189,6 +189,18 @@ module.exports = {
 		res.json(data);
 	},
 
+	validatepassword: function(req, res) {
+		var data = { result: false };
+		if (req.session.User) {
+			User.findOne({ id: req.session.User.id }).done(function(err, u) {
+				if (!err && bcrypt.compareSync(req.param("password"), u.encryptedPassword)) {
+					data.result = true;
+				}
+			});
+		}
+		res.json(data);
+	},
+
 	'create': function (req, res, next) {
     User.create(req.params.all(), function userCreated(err, user) {
       if (err) {

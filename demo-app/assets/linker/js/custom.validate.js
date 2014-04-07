@@ -11,6 +11,10 @@ $(document).ready(function () {
     return this.optional(element) || ajax_validate("user", "paypass", value);
   }, "支付密码错误");
 
+	$.validator.addMethod("validPassword", function(value, element) {
+    return this.optional(element) || ajax_validate("user", "password", value);
+  }, "密码错误");
+
 	$.validator.addMethod("validBalance", function(value, element) {
     return this.optional(element) || ajax_validate("user", "balance", value);
   }, "钱不够啦");
@@ -19,6 +23,17 @@ $(document).ready(function () {
     return this.optional(element) || ajax_validaterefundbalance(value);
   }, "您确定到账了这么多钱");
 
+	jquery_validate(
+		"#haha-form-password-update", {
+			old_password: { required: true, validPassword: true },
+      password: { required: true, minlength: 6 },
+      confirmation: { equalTo: "#password" },
+    }, {
+			old_password: { required: "请输入旧密码", validPassword: "旧密码输入错误" },
+      password: { required: "请输入密码", minlength: "密码长度至少{0}位" },
+      confirmation: { equalTo: "两次输入的密码不匹配" },
+    }
+	);
 
 	jquery_validate(
 		"#haha-form-paypass-update", {
