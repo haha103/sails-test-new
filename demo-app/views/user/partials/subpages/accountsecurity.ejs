@@ -1,0 +1,66 @@
+<div class="panel panel-default" style="margin-bottom: 5px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">修改登录密码</h4>
+	</div>
+  <div class="panel-body">
+		<form role='form' action="/user/updatepassword" method="POST" class="form-horizontal" id="haha-form-password-update">
+			<div class='form-group'>
+				<label class='control-label col-md-2' for="old_password">旧支付密码</label>
+				<div class="col-md-4">
+					<input type='password' class='form-control' id='old_password' name='old_password'></input>
+				</div>
+			</div>
+      <div class='form-group'>
+        <label class='control-label col-md-2' for="password">新支付密码</label>
+        <div class="col-md-4">
+          <input type='password' class='form-control' id='password' name='password'></input>
+        </div>
+      </div>
+			<div class='form-group'>
+        <label class='control-label col-md-2' for="confirmation">新密码确认</label>
+        <div class="col-md-4">
+          <input type='password' class='form-control' id='confirmation' name='confirmation'></input>
+        </div>
+      </div>
+      <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+			<div class='row'>
+				<div class="col-md-2 col-md-offset-2">
+					<button type="submit" class="btn btn-primary btn-block btn-sm">修改</button>
+				</div>
+			</div>
+    </form>
+	</div>
+</div>
+<div class="panel panel-default" style="margin-bottom: 5px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">修改支付密码</h4>
+	</div>
+  <div class="panel-body">
+		<form role='form' action="/user/updatepaypass" method="POST" class="form-horizontal" id="haha-form-paypass-update">
+			<div class='form-group'>
+				<label class='control-label col-md-2' for="old_paypass">旧支付密码</label>
+				<div class="col-md-4">
+					<input type='password' class='form-control' id='old_paypass' name='old_paypass'></input>
+				</div>
+			</div>
+      <div class='form-group'>
+        <label class='control-label col-md-2' for="paypass">新支付密码</label>
+        <div class="col-md-4">
+          <input type='password' class='form-control' id='paypass' name='paypass'></input>
+        </div>
+      </div>
+			<div class='form-group'>
+        <label class='control-label col-md-2' for="confirmation">新密码确认</label>
+        <div class="col-md-4">
+          <input type='password' class='form-control' id='paypass_confirm' name='paypass_confirm'></input>
+        </div>
+      </div>
+      <input class='hidden' name='_csrf' value='<%= _csrf %>' />
+			<div class='row'>
+				<div class="col-md-2 col-md-offset-2">
+					<button type="submit" class="btn btn-primary btn-block btn-sm">修改</button>
+				</div>
+			</div>
+    </form>
+	</div>
+</div>

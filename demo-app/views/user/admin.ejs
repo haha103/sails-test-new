@@ -1,5 +1,6 @@
 <div class="container">
   <br/>
+	<%- partial("../partials/flash.ejs") %>
 	<h3 style="margin-bottom:5px;">
 		<span class="glyphicon glyphicon-user"></span> 用户管理
 	</h3>
@@ -42,7 +43,7 @@
 					<td><%= u.email %></td>
 					<td><%= u.phone == undefined ? "N/A" : u.phone %></td>
 					<td style="width:70px;"><a class="btn btn-primary btn-xs btn-block" href=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-					<td style="width:70px;"><a class="btn btn-warning btn-xs btn-block" href=""><span class="glyphicon glyphicon-lock"></span></a></td>
+					<td style="width:70px;"><a class="btn btn-warning btn-xs btn-block" href="/user/resetpassword?type=password&user=<%= u.id %>"><span class="glyphicon glyphicon-lock"></span></a></td>
 					<td style="width:70px;"><a class="btn btn-danger btn-xs btn-block" href=""><span class="glyphicon glyphicon-trash"></span></a></td>
           
 				</tr>

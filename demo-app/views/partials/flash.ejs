@@ -1,0 +1,14 @@
+<% if (flash) { %>
+	<% _.each(["info", "err"], function(type) { %>
+		<% if (flash[type]) { %>
+      <div class="alert alert-<%= type == "err" ? "danger" : "success" %>">
+				<dl class="dl-horizontal" style="margin-bottom:0px;">
+				<% _.each(flash[type], function(entry) { %>
+					<dt><%= entry.name %></dt>
+					<dd><%= entry.message %></dd>
+				<% }); %>
+				</dl>
+			</div>
+		<% } %>
+	<% }); %>
+<% } %>

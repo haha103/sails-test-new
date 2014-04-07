@@ -60,6 +60,62 @@ var cities = CityHelper.get_cities();
 
 module.exports = {
 
+	updatepassword: function(req, res, next) {
+		var oldpass = req.param("old_password");
+		var errs = [];
+		if (bcrypt.compareSync(oldpass, req.session.User.encryptedPassword)) {
+			var newpass = req.param("password");
+			if(!update_password(req.session.User.id, newpass)) {
+				errs.push({ name: "操作失败", message: "密码更新失败！" });
+			}
+		} else {
+			errs.push({ name: "认证错误", message: "旧密码错误" });
+		}
+		if (errs.length == 0) {
+			req.session.flash = { info: [ { name: "操作成功", message: "密码重置成功!" }]}
+		} else {
+			req.session.flash = { err: errs };
+		}
+		res.redirect(req.headers.referer);
+	},
+
+	updatepaypass: function(req, res, next) {
+		
+	},
+
+	resetpassword: function(req, res, next) {
+		var errs = [];
+		var user = req.param("user");
+		if (user) {
+			var reset_status = false;
+			switch(req.param("type")) {
+			case "password":
+				reset_status = update_password(user, "12345678");
+				break;
+			case "paypass":
+				reset_status = update_paypass(user, "12345678");
+				break;
+			default:
+				errs.push({
+					name: "类型错误",
+					message: "非法密码类型: '" + req.param("type") + "'"
+				});
+				break;
+			}
+			if (!reset_status) {
+				errs.push({ name: "用户更新失败", message: "重置密码失败！" });
+			}
+		} else {
+			errs.push({ name: "未指定用户", message: "用户ID为空！" });
+		}
+		if (errs.length == 0) {
+			req.session.flash = { info: [ { name: "操作成功", message: "密码重置成功!" }]}
+		} else {
+			req.session.flash = { err: errs };
+		}
+		res.redirect(req.headers.referer);
+	},
+
 	admin: function(req, res, next) {
 		var page = req.param('page') ? parseInt(req.param('page')) : 0;
 		var page_max = 10;
@@ -436,4 +492,20 @@ function dayDiff(d1, d2)
 
 function to_ten_thousand(n) {
   return (n / 10000).toFixed(0) + "万";
+}
+
+function update_password(uid, newpass) {
+	var ok = true;
+	User.update({ id: uid }, { password: newpass, confirmation: newpass }, function(err, user) {
+		if (err) { ok = false; console.log(err); return; }
+	});
+	return ok;
+}
+
+function update_paypass(uid, newpass) {
+	var ok = true;
+	User.update({ id: uid }, { paypass: newpass, paypass_confirm: newpass }, function(err, user) {
+		if (err) { ok = false; console.log(err); return; }
+	});
+	return ok;
 }

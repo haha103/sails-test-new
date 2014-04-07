@@ -30,6 +30,9 @@ module.exports.policies = {
 
   user: {
     'admin': ['flash', 'product_access'],
+		'resetpassword': ['flash', 'product_access'],
+		'updatepassword': ['flash', 'user_access'],
+		'updatepaypass': ['flash', 'user_access'],
     'show': ['flash', 'user_access'],
 		'update': ['flash', 'user_access'],
     '*': ['flash']
