@@ -1,13 +1,14 @@
 <% var query = req.query; %>
+<% if (typeof qfield == "undefined") { qfield = "page"; } %>
 <div class="text-right">
 	<ul class="pagination pagination-sm haha-pagination-bcompact haha-pagination-tcompact">
-		<% query.page = page - 1; %>
+		<% query[qfield] = page - 1; %>
 		<li class="<%= page == 0 ? "disabled" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>">&laquo;</a></li>
-			<% for (var i = 0; i < page_count / page_max; ++i) { %>
-				<% query.page = i; %>
+			<% for (var i = 0; i < Math.ceil(page_count / page_max); ++i) { %>
+				<% query[qfield] = i; %>
 				<li class="<%= page == i ? "active" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>"><%= i + 1 %></a></li>
 				<% } %>
-				<% query.page = page + 1; %>
-				<li class="<%= page == Math.floor(page_count / page_max) ? "disabled" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>">&raquo;</a></li>
+				<% query[qfield] = page + 1; %>
+				<li class="<%= page == Math.ceil(page_count / page_max) - 1 ? "disabled" : "" %>"><a href="<%= req._parsedUrl.pathname + "?" + _.map(query, (function(v, k) { return k + "=" + v; })).join("&") %>">&raquo;</a></li>
 		</ul>
 </div>

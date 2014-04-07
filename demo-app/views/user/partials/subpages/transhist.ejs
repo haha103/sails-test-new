@@ -54,15 +54,8 @@
         </tbody>
       </table>
 			<% if (pagination) { %>
-				<div class="text-right">
-					<ul class="pagination pagination-sm haha-pagination-bcompact">
-						<li class="<%= transpage == 0 ? "disabled" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + (transpage - 1) %>">&laquo;</a></li>
-						<% for (var i = 0; i < transcount / transpage_max; ++i) { %>
-							<li class="<%= transpage == i ? "active" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + i %>"><%= i + 1 %></a></li>
-						<% } %>
-						<li class="<%= transpage == (transcount / transpage_max).toFixed(0) ? "disabled" : "" %>"><a href="<%= req.originalUrl.replace(/([?&]transpage)=[^&]+/, "") + "&transpage=" + (transpage + 1) %>">&raquo;</a></li>
-					</ul>
-				</div>
+        <br/>
+				<%- partial("../pager.ejs", { page: transpage, page_max: transpage_max, page_count: transcount, qfield: "transpage" }) %>
 			<% } %>
     </div>
   </div>
