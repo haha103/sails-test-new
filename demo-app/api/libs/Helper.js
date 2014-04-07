@@ -107,6 +107,9 @@ var self = {
 		var query_str = _.map(query, (function(v, k) { return k + "=" + v; })).join("&");
 		var url = baseurl + "?" + query_str;
 		return url;
+	},
+	formatBankAccount: function(s) {
+		return s.match(/.{1,4}/g).join(' ');
 	}
 };
 

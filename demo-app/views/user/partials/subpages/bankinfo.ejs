@@ -44,33 +44,19 @@
           <div class='form-group'>
             <label class='control-label col-md-2' for="bank_name"><%= display_name["bank_name"] %></label>
             <div class="col-md-4">
-              <input type='text' class='form-control' name='bank_name' placeholder="<%= user.bank_name %>" value="<%= user.bank_name %>"></input>
+              <input type='text' class='form-control' name='bank_name' placeholder="<%= user.bank_name %>"></input>
             </div>
           </div>
           <div class='form-group'>
             <label class='control-label col-md-2' for="bank_account"><%= display_name["bank_account"] %></label>
             <div class="col-md-4">
-              <input type='text' class='form-control' name='bank_account' placeholder="<%= user.bank_account %>" value="<%= user.bank_account %>"></input>
+              <input type='text' class='form-control' name='bank_account' placeholder="<%= Helper.formatBankAccount(user.bank_account) %>"></input>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-target="#more-info" href="#more-info">
-            更多信息
-          </a>
-        </h4>
-      </div>
-      <div id="more-info" class="panel-collapse collapse">
-        <div class="panel-body">
-        </div>
-      </div>
-    </div>
   </div>
-  <br/>
   <div class='row'>
     <div class="col-md-2 col-md-offset-10">
       <button type="submit" class="btn btn-primary btn-block btn-sm" onclick="handle_submit_btn(this)">保存</button>
