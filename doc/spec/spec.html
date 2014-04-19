@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>spec</title>
+<!-- 2014-04-19 Sat 10:33 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Liu Wei" />
+<style type="text/css">
+<!--/*--><![CDATA[/*><!--*/
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden] {
+  display: none;
+}
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+h1 {
+  font-size: 2em;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 0;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0;
+  padding: 0;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+button,
+input {
+  line-height: normal;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: auto;
+  width: 90%;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.left {
+  text-align: left;
+}
+html {
+  font-family: 'PT Sans', sans-serif;
+}
+pre,
+code {
+  font-family: 'Inconsolata', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 700;
+}
+html {
+  background-color: #eee8d5;
+  color: #657b83;
+  margin: 1em;
+}
+body {
+  background-color: #fdf6e3;
+  margin: 0 auto;
+  max-width: 23cm;
+  border: 1pt solid #93a1a1;
+  padding: 1em;
+}
+code {
+  background-color: #eee8d5;
+  padding: 2px;
+}
+a {
+  color: #b58900;
+}
+a:visited {
+  color: #cb4b16;
+}
+a:hover {
+  color: #cb4b16;
+}
+h1 {
+  color: #d33682;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #859900;
+}
+pre {
+  background-color: #fdf6e3;
+  color: #657b83;
+  border: 1pt solid #93a1a1;
+  padding: 1em;
+  box-shadow: 5pt 5pt 8pt #eee8d5;
+}
+pre code {
+  background-color: #fdf6e3;
+}
+h1 {
+  font-size: 2.8em;
+}
+h2 {
+  font-size: 2.4em;
+}
+h3 {
+  font-size: 1.8em;
+}
+h4 {
+  font-size: 1.4em;
+}
+h5 {
+  font-size: 1.3em;
+}
+h6 {
+  font-size: 1.15em;
+}
+.tag {
+  background-color: #eee8d5;
+  color: #d33682;
+  padding: 0 0.2em;
+}
+.todo,
+.next,
+.done {
+  color: #fdf6e3;
+  background-color: #dc322f;
+  padding: 0 0.2em;
+}
+.tag {
+  -webkit-border-radius: 0.35em;
+  -moz-border-radius: 0.35em;
+  border-radius: 0.35em;
+}
+.TODO {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #2aa198;
+}
+.NEXT {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #268bd2;
+}
+.ACTIVE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #268bd2;
+}
+.DONE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #859900;
+}
+.WAITING {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #cb4b16;
+}
+.HOLD {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #d33682;
+}
+.NOTE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #d33682;
+}
+.CANCELLED {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #859900;
+}
+div#postamble {
+	margin-left: auto;
+	margin-right: auto;
+}
+/*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">spec</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 引言</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 背景</a></li>
+<li><a href="#sec-1-2">1.2. 产品愿景</a></li>
+<li><a href="#sec-1-3">1.3. 参考文档</a></li>
+<li><a href="#sec-1-4">1.4. 外部依赖</a>
+<ul>
+<li><a href="#sec-1-4-1">1.4.1. 第三方支付</a></li>
+<li><a href="#sec-1-4-2">1.4.2. 短信解决方案</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2. 功能性需求</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 用户模块</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. 注册</a></li>
+<li><a href="#sec-2-1-2">2.1.2. 登录</a></li>
+<li><a href="#sec-2-1-3">2.1.3. 主页</a></li>
+<li><a href="#sec-2-1-4">2.1.4. 安全</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. 产品模块</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. 权限控制</a></li>
+<li><a href="#sec-2-2-2">2.2.2. 新建 &amp; 修改</a></li>
+<li><a href="#sec-2-2-3">2.2.3. 查看</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">2.3. 平台交易模块</a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1. 用户投资</a></li>
+<li><a href="#sec-2-3-2">2.3.2. 到期兑付</a></li>
+<li><a href="#sec-2-3-3">2.3.3. 平台内转账</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">2.4. 在线支付模块</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1. 充值</a></li>
+<li><a href="#sec-2-4-2">2.4.2. 提现</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">2.5. 字典模块</a>
+<ul>
+<li><a href="#sec-2-5-1">2.5.1. 用户角色</a></li>
+<li><a href="#sec-2-5-2">2.5.2. 地区字典</a></li>
+<li><a href="#sec-2-5-3">2.5.3. 贷款人</a></li>
+<li><a href="#sec-2-5-4">2.5.4. 担保公司</a></li>
+<li><a href="#sec-2-5-5">2.5.5. 产品状态</a></li>
+<li><a href="#sec-2-5-6">2.5.6. 到期兑付方式</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-6">2.6. 统计模块</a></li>
+<li><a href="#sec-2-7">2.7. 帮助模块</a></li>
+<li><a href="#sec-2-8">2.8. 公告模块</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 非功能性需求</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 平台</a></li>
+<li><a href="#sec-3-2">3.2. 安全</a></li>
+<li><a href="#sec-3-3">3.3. 性能</a></li>
+<li><a href="#sec-3-4">3.4. 兼容性</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 引言</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 背景</h3>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 产品愿景</h3>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 参考文档</h3>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 外部依赖</h3>
+<div class="outline-text-3" id="text-1-4">
+</div><div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> 第三方支付</h4>
+</div>
+
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> 短信解决方案</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+短信验证功能所需的服务器发短信的功能有多种实现方式，各有利弊：
+</p>
+
+<ol class="org-ol">
+<li>服务器连接一台安卓手机，使用ADB发短信
+</li>
+<li>服务器连接一个GSM模块，使用该模块提供的接口发短信
+</li>
+<li>购买电信服务商的短信网关服务
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 功能性需求</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 用户模块</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> 注册</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li>注册过程分为两步：
+<ol class="org-ol">
+<li>填写基本资料
+</li>
+<li>邮箱验证
+</li>
+</ol>
+</li>
+<li>注册时需要填写的基本资料包括：
+<ol class="org-ol">
+<li>用户名（登录名）：唯一
+</li>
+<li>真实姓名
+</li>
+<li>身份证号码：唯一
+</li>
+<li>省份和城市
+</li>
+<li>电子邮箱：唯一
+</li>
+<li>登录密码
+</li>
+<li>默认注册用户为普通用户
+</li>
+</ol>
+</li>
+<li>注册提交需要输入正确的验证码
+</li>
+<li>客户端验证：
+<ol class="org-ol">
+<li>所有字段都做基本的简单格式检查
+</li>
+<li>用户名、身份证号码、电子邮箱都应是唯一存在：AJAX异步从服务器端验证
+</li>
+<li>登录密码需要重复输入验证
+</li>
+<li>验证码也需要用AJAX异步验证
+</li>
+</ol>
+</li>
+<li>提交注册基本资料之后，系统将会给注册时提供的电子邮箱发邮件，邮件内容包括：
+<ol class="org-ol">
+<li>标题大意：欢迎及完成注册邮件
+</li>
+<li>内容大意：欢迎及邮箱验证地址链接。
+</li>
+</ol>
+</li>
+<li>用户点击邮箱验证链接之后完成注册
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> 登录</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>登录需要输入用户名、登录密码及验证码
+</li>
+<li>用户名和验证码需要作客户端验证
+<ul class="org-ul">
+<li>纯客户端验证
+</li>
+<li>AJAX异步验证
+</li>
+</ul>
+</li>
+<li>出于安全考虑，不能保存登录状态：即使说，用户重开浏览器之后就必须重新登录。
+</li>
+<li>提供“找回密码”流程的入口链接
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> 主页</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<ul class="org-ul">
+<li>账户余额
+<ul class="org-ul">
+<li>显示当前账户余额。
+</li>
+<li>并提供充值、提现、转账按钮或者链接跳转到支付或者交易模块。
+</li>
+</ul>
+</li>
+<li>账户安全状态
+<ul class="org-ul">
+<li>简单明了的告知用户每个安全任务是否都已完成。
+</li>
+<li>并提供链接以便用户跳转到安全模块来完成或者修改安全任务。
+</li>
+</ul>
+</li>
+<li>最近交易记录
+<ul class="org-ul">
+<li>最近的10-15个用户交易或者支付记录
+</li>
+<li>提供链接以便用户查看所有交易记录
+</li>
+<li>核心功能由交易模块提供，用户模块只负责调用及显示。
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-4" class="outline-4">
+<h4 id="sec-2-1-4"><span class="section-number-4">2.1.4</span> 安全</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<ul class="org-ul">
+<li>登录密码
+<ol class="org-ol">
+<li>如果用户的登录密码是简单密码，应该在用户登录后的醒目位置提醒用户使用强密码。
+</li>
+<li>注意：不能明文记录用户密码，所以用户是否使用强密码需要用单独字段来记录。
+</li>
+<li>用户每修改一次密码，都需要检查是否是强密码。
+</li>
+<li>修改登录密码需要提供正确的旧密码。
+</li>
+</ol>
+</li>
+<li>邮箱
+<ol class="org-ol">
+<li>注册时填写并且验证后的邮箱不能随意改动：如果实在需要改动，需要联系系统管理员来修改。
+</li>
+<li>为了安全考虑，任何地方都不会显示该邮箱的完整地址，应该将部分字符打码后显示。如：
+<ul class="org-ul">
+<li>假如邮箱地址是：wliu272@163.com
+</li>
+<li>那就应该显示成类似：w*****2@163.com的形式。
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>手机
+<ol class="org-ol">
+<li>如果用户没有绑定手机，应该在用户登录后的醒目位置提醒用户手机未绑定
+</li>
+<li>绑定手机用于需要更高安全性操作的短信验证
+</li>
+<li>短信验证成功后绑定手机
+</li>
+<li>需要考虑到短信发送成功率的因素，用户可以强制重发短信
+</li>
+<li>每条短信应该设置失效时间，通常为1分钟。
+</li>
+</ol>
+</li>
+<li>支付密码
+<ol class="org-ol">
+<li>必须为强密码
+</li>
+<li>不能和登录密码相同
+</li>
+<li>修改支付密码需要邮箱或者短信验证
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 产品模块</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> 权限控制</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li>只有系统管理员或者产品管理员才能新建或者修改产品
+</li>
+<li>所有人都能查看产品内容
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> 新建 &amp; 修改</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+每个新产品需要准确输入如下数据：
+</p>
+
+<ul class="org-ul">
+<li>合同编号
+</li>
+<li>贷款人：选择
+</li>
+<li>贷款用途
+</li>
+<li>贷款金额
+</li>
+<li>最低投资额
+</li>
+<li>投资者年化收益率
+</li>
+<li>平台年化收益率
+</li>
+<li>购买开始日期
+</li>
+<li>购买结束日期
+</li>
+<li>贷款期限：选择
+</li>
+<li>兑付方式：选择
+</li>
+<li>担保公司：选择
+</li>
+<li>担保函编号
+</li>
+<li>担保函扫描件：文件上传及预览
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> 查看</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<ul class="org-ul">
+<li>除了平台年化收益率，产品录入时的字段能被所有用户查看
+</li>
+<li>为普通用户提供链接跳转到平台交易投资模块
+</li>
+<li>平台年化收益率只能被系统管理员或者产品管理员查看
+</li>
+<li>产品到期还款进度
+<ul class="org-ul">
+<li>只有管理员才能查看
+</li>
+<li>提供链接或者按钮给管理员跳转到平台交易模块录入还款信息：还款金额，日期，流水号等重要银行字据信息。
+</li>
+</ul>
+</li>
+<li>产品还款完成后的给投资者的兑付进度
+<ul class="org-ul">
+<li>只有管理员才能查看
+</li>
+<li>提供链接或者按钮给管理员跳转到平台交易模块兑付给投资者
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 平台交易模块</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+所有交易将生成并记录流水号以便以后查对。
+</p>
+</div>
+
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> 用户投资</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<ul class="org-ul">
+<li>确认投资的产品信息
+</li>
+<li>输入投资金额：金额必须大于等于对应产品的最小投资额。
+</li>
+<li>如果目标投资金额小于用户账户余额，引入支付模块功能共同完成投资。
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> 到期兑付</h4>
+</div>
+
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3"><span class="section-number-4">2.3.3</span> 平台内转账</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 在线支付模块</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> 充值</h4>
+</div>
+
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2"><span class="section-number-4">2.4.2</span> 提现</h4>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 字典模块</h3>
+<div class="outline-text-3" id="text-2-5">
+</div><div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> 用户角色</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<ul class="org-ul">
+<li>普通用户
+</li>
+<li>系统管理员
+</li>
+<li>产品管理员
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-5-2" class="outline-4">
+<h4 id="sec-2-5-2"><span class="section-number-4">2.5.2</span> 地区字典</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<ul class="org-ul">
+<li>省份
+</li>
+<li>城市
+</li>
+<li>区
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-5-3" class="outline-4">
+<h4 id="sec-2-5-3"><span class="section-number-4">2.5.3</span> 贷款人</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<ul class="org-ul">
+<li>贷款人姓名或公司名称
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-5-4" class="outline-4">
+<h4 id="sec-2-5-4"><span class="section-number-4">2.5.4</span> 担保公司</h4>
+<div class="outline-text-4" id="text-2-5-4">
+<ul class="org-ul">
+<li>担保公司名称
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-5-5" class="outline-4">
+<h4 id="sec-2-5-5"><span class="section-number-4">2.5.5</span> 产品状态</h4>
+<div class="outline-text-4" id="text-2-5-5">
+<ul class="org-ul">
+<li>筹款中
+</li>
+<li>筹款结束
+</li>
+<li>到期还款中
+</li>
+<li>到期兑付中
+</li>
+<li>结束
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-5-6" class="outline-4">
+<h4 id="sec-2-5-6"><span class="section-number-4">2.5.6</span> 到期兑付方式</h4>
+<div class="outline-text-4" id="text-2-5-6">
+<ul class="org-ul">
+<li></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 统计模块</h3>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> 帮助模块</h3>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> 公告模块</h3>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 非功能性需求</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 平台</h3>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 安全</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>为了简便的保证用户所有敏感信息的安全，全应用都应使用SSL用以加密所有通信。这样会造成性能上的损失，但是基于现有的分析，应该不会大幅降低用户体验，所以暂时不对此进行优化。
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 性能</h3>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 兼容性</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Liu Wei</p>
+<p class="date">Created: 2014-04-19 Sat 10:33</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
