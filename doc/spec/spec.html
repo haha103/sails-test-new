@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
 <head>
-<title>spec</title>
-<!-- 2014-04-19 Sat 10:33 -->
+<title>需求说明书</title>
+<!-- 2014-04-20 Sun 21:54 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Liu Wei" />
 <style type="text/css">
 <!--/*--><![CDATA[/*><!--*/
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
@@ -324,10 +323,6 @@ h6 {
   border-radius: 0.2em;
   background-color: #859900;
 }
-div#postamble {
-	margin-left: auto;
-	margin-right: auto;
-}
 /*]]>*/-->
 </style>
 <script type="text/javascript">
@@ -379,9 +374,9 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">spec</h1>
+<h1 class="title">需求说明书</h1>
 <div id="table-of-contents">
-<h2>Table of Contents</h2>
+<h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">1. 引言</a>
@@ -417,14 +412,17 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-3">2.3. 平台交易模块</a>
 <ul>
 <li><a href="#sec-2-3-1">2.3.1. 用户投资</a></li>
-<li><a href="#sec-2-3-2">2.3.2. 到期兑付</a></li>
-<li><a href="#sec-2-3-3">2.3.3. 平台内转账</a></li>
+<li><a href="#sec-2-3-2">2.3.2. 产品还款</a></li>
+<li><a href="#sec-2-3-3">2.3.3. 到期兑付</a></li>
+<li><a href="#sec-2-3-4">2.3.4. 平台内转账</a></li>
 </ul>
 </li>
 <li><a href="#sec-2-4">2.4. 在线支付模块</a>
 <ul>
 <li><a href="#sec-2-4-1">2.4.1. 充值</a></li>
 <li><a href="#sec-2-4-2">2.4.2. 提现</a></li>
+<li><a href="#sec-2-4-3">2.4.3. 安全</a></li>
+<li><a href="#sec-2-4-4">2.4.4. 人工服务</a></li>
 </ul>
 </li>
 <li><a href="#sec-2-5">2.5. 字典模块</a>
@@ -438,8 +436,20 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#sec-2-6">2.6. 统计模块</a></li>
-<li><a href="#sec-2-7">2.7. 帮助模块</a></li>
-<li><a href="#sec-2-8">2.8. 公告模块</a></li>
+<li><a href="#sec-2-7">2.7. 帮助模块</a>
+<ul>
+<li><a href="#sec-2-7-1">2.7.1. 联系方式</a></li>
+<li><a href="#sec-2-7-2">2.7.2. 留言</a></li>
+<li><a href="#sec-2-7-3">2.7.3. 在线帮助</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-8">2.8. 公告模块</a>
+<ul>
+<li><a href="#sec-2-8-1">2.8.1. 主页公告</a></li>
+<li><a href="#sec-2-8-2">2.8.2. 所有公告</a></li>
+<li><a href="#sec-2-8-3">2.8.3. 公告管理</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-3">3. 非功能性需求</a>
@@ -453,6 +463,7 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> 引言</h2>
 <div class="outline-text-2" id="text-1">
@@ -494,6 +505,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> 功能性需求</h2>
 <div class="outline-text-2" id="text-2">
@@ -755,16 +767,21 @@ for the JavaScript code in this tag.
 <div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3"><span class="section-number-3">2.3</span> 平台交易模块</h3>
 <div class="outline-text-3" id="text-2-3">
-<p>
-所有交易将生成并记录流水号以便以后查对。
-</p>
+<ul class="org-ul">
+<li>所有交易将生成并记录流水号以便以后查对。
+</li>
+<li>交易模块的所有操作都要求用户输入正确的支付密码。
+</li>
+</ul>
 </div>
 
 <div id="outline-container-sec-2-3-1" class="outline-4">
 <h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> 用户投资</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
-<li>确认投资的产品信息
+<li>仅有普通用户能够投资产品。
+</li>
+<li>确认投资的产品信息。
 </li>
 <li>输入投资金额：金额必须大于等于对应产品的最小投资额。
 </li>
@@ -774,23 +791,98 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="outline-container-sec-2-3-2" class="outline-4">
-<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> 到期兑付</h4>
+<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> 产品还款</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<ul class="org-ul">
+<li>产品管理员操作。
+</li>
+<li>人工确认借款人还款之后，产品管理员将还款信息记录在系统中。
+</li>
+<li>还款信息包括：
+<ul class="org-ul">
+<li>确认还款对应产品
+</li>
+<li>金额
+</li>
+<li>日期
+</li>
+<li>其他银行还款字据上的重要信息。
+</li>
+</ul>
+</li>
+</ul>
 </div>
-
+</div>
 <div id="outline-container-sec-2-3-3" class="outline-4">
-<h4 id="sec-2-3-3"><span class="section-number-4">2.3.3</span> 平台内转账</h4>
+<h4 id="sec-2-3-3"><span class="section-number-4">2.3.3</span> 到期兑付</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<ul class="org-ul">
+<li>产品管理员操作。
+</li>
+<li>产品还款完成后，就能兑付给投资者本金及利息。
+</li>
+<li>注：这里需要输入管理员的支付密码。
+</li>
+<li>兑付之后的资金将直接进入投资者的余额，之后投资者可以通过支付模块的提现功能取出资金。
+</li>
+<li>兑付操作涉及的信息包括
+<ul class="org-ul">
+<li>本次兑付的目标投资者名单（单个，多个或者所有）
+</li>
+<li>兑付金额确认（不同投资者的金额不尽相同，但是都应按照约定的年化利率兑付）
+</li>
+<li>流水号生成（每个流水号对应一个投资者）
+</li>
+<li>完成后验证及反馈兑付是否成功。
+</li>
+<li>其他信息？
+</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
-
+<div id="outline-container-sec-2-3-4" class="outline-4">
+<h4 id="sec-2-3-4"><span class="section-number-4">2.3.4</span> 平台内转账</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+首期低重要性功能。
+</p>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4"><span class="section-number-3">2.4</span> 在线支付模块</h3>
 <div class="outline-text-3" id="text-2-4">
-</div><div id="outline-container-sec-2-4-1" class="outline-4">
-<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> 充值</h4>
+<ul class="org-ul">
+<li>平台账户
+</li>
+</ul>
 </div>
 
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> 充值</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<ol class="org-ol">
+<li>确认充值金额 &amp; 确认支付密码
+</li>
+<li>跳转到第三方支付服务商的页面完成支付
+</li>
+<li>平台需要确认支付是否成功：用户支付的金额是否到帐
+</li>
+</ol>
+</div>
+</div>
 <div id="outline-container-sec-2-4-2" class="outline-4">
 <h4 id="sec-2-4-2"><span class="section-number-4">2.4.2</span> 提现</h4>
+</div>
+
+<div id="outline-container-sec-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3"><span class="section-number-4">2.4.3</span> 安全</h4>
+</div>
+
+<div id="outline-container-sec-2-4-4" class="outline-4">
+<h4 id="sec-2-4-4"><span class="section-number-4">2.4.4</span> 人工服务</h4>
 </div>
 </div>
 <div id="outline-container-sec-2-5" class="outline-3">
@@ -872,14 +964,44 @@ for the JavaScript code in this tag.
 
 <div id="outline-container-sec-2-7" class="outline-3">
 <h3 id="sec-2-7"><span class="section-number-3">2.7</span> 帮助模块</h3>
+<div class="outline-text-3" id="text-2-7">
+</div><div id="outline-container-sec-2-7-1" class="outline-4">
+<h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> 联系方式</h4>
 </div>
 
+<div id="outline-container-sec-2-7-2" class="outline-4">
+<h4 id="sec-2-7-2"><span class="section-number-4">2.7.2</span> 留言</h4>
+<div class="outline-text-4" id="text-2-7-2">
+<p>
+首期低重要性功能。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-7-3" class="outline-4">
+<h4 id="sec-2-7-3"><span class="section-number-4">2.7.3</span> 在线帮助</h4>
+<div class="outline-text-4" id="text-2-7-3">
+<p>
+首期低重要性功能。
+</p>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-2-8" class="outline-3">
 <h3 id="sec-2-8"><span class="section-number-3">2.8</span> 公告模块</h3>
-</div>
+<div class="outline-text-3" id="text-2-8">
+</div><div id="outline-container-sec-2-8-1" class="outline-4">
+<h4 id="sec-2-8-1"><span class="section-number-4">2.8.1</span> 主页公告</h4>
 </div>
 
+<div id="outline-container-sec-2-8-2" class="outline-4">
+<h4 id="sec-2-8-2"><span class="section-number-4">2.8.2</span> 所有公告</h4>
+</div>
 
+<div id="outline-container-sec-2-8-3" class="outline-4">
+<h4 id="sec-2-8-3"><span class="section-number-4">2.8.3</span> 公告管理</h4>
+</div>
+</div>
+</div>
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> 非功能性需求</h2>
 <div class="outline-text-2" id="text-3">
@@ -892,6 +1014,14 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>为了简便的保证用户所有敏感信息的安全，全应用都应使用SSL用以加密所有通信。这样会造成性能上的损失，但是基于现有的分析，应该不会大幅降低用户体验，所以暂时不对此进行优化。
+</li>
+<li>必须保证数据一致性和完整性：
+<ul class="org-ul">
+<li>对于一次性多个数据库操作，全面事务处理
+</li>
+<li>重点设计所有涉及交易和支付操作的异常处理
+</li>
+</ul>
 </li>
 </ul>
 </div>
@@ -906,9 +1036,7 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Liu Wei</p>
-<p class="date">Created: 2014-04-19 Sat 10:33</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="date">Created: 2014-04-20 Sun 21:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
