@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
 <head>
 <title>需求说明书</title>
-<!-- 2014-04-20 Sun 21:54 -->
+<!-- 2014-04-24 Thu 22:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <style type="text/css">
@@ -167,8 +167,11 @@ textarea {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  margin: auto;
-  width: 90%;
+  margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+  width: 100%;
 }
 .right {
   text-align: right;
@@ -421,8 +424,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-2-4-1">2.4.1. 充值</a></li>
 <li><a href="#sec-2-4-2">2.4.2. 提现</a></li>
-<li><a href="#sec-2-4-3">2.4.3. 安全</a></li>
-<li><a href="#sec-2-4-4">2.4.4. 人工服务</a></li>
+<li><a href="#sec-2-4-3">2.4.3. 人工服务</a></li>
 </ul>
 </li>
 <li><a href="#sec-2-5">2.5. 字典模块</a>
@@ -435,7 +437,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-5-6">2.5.6. 到期兑付方式</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-6">2.6. 统计模块</a></li>
+<li><a href="#sec-2-6">2.6. 统计模块</a>
+<ul>
+<li><a href="#sec-2-6-1">2.6.1. 用户统计模块</a></li>
+<li><a href="#sec-2-6-2">2.6.2. 管理统计模块</a></li>
+</ul>
+</li>
 <li><a href="#sec-2-7">2.7. 帮助模块</a>
 <ul>
 <li><a href="#sec-2-7-1">2.7.1. 联系方式</a></li>
@@ -443,21 +450,20 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-7-3">2.7.3. 在线帮助</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-8">2.8. 公告模块</a>
-<ul>
-<li><a href="#sec-2-8-1">2.8.1. 主页公告</a></li>
-<li><a href="#sec-2-8-2">2.8.2. 所有公告</a></li>
-<li><a href="#sec-2-8-3">2.8.3. 公告管理</a></li>
-</ul>
-</li>
+<li><a href="#sec-2-8">2.8. 公告模块</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">3. 非功能性需求</a>
 <ul>
-<li><a href="#sec-3-1">3.1. 平台</a></li>
+<li><a href="#sec-3-1">3.1. 平台及框架</a></li>
 <li><a href="#sec-3-2">3.2. 安全</a></li>
 <li><a href="#sec-3-3">3.3. 性能</a></li>
-<li><a href="#sec-3-4">3.4. 兼容性</a></li>
+<li><a href="#sec-3-4">3.4. 兼容性</a>
+<ul>
+<li><a href="#sec-3-4-1">3.4.1. PC &amp; Mac</a></li>
+<li><a href="#sec-3-4-2">3.4.2. Mobile Devices</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -729,7 +735,7 @@ for the JavaScript code in this tag.
 </li>
 <li>担保函编号
 </li>
-<li>担保函扫描件：文件上传及预览
+<li>担保函扫描件：多个文件上传及预览
 </li>
 </ul>
 </div>
@@ -855,7 +861,7 @@ for the JavaScript code in this tag.
 <h3 id="sec-2-4"><span class="section-number-3">2.4</span> 在线支付模块</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
-<li>平台账户
+<li>所有在线支付操作都需要尽量详细的记录所有支付细节，以便查阅。
 </li>
 </ul>
 </div>
@@ -870,19 +876,36 @@ for the JavaScript code in this tag.
 </li>
 <li>平台需要确认支付是否成功：用户支付的金额是否到帐
 </li>
+<li>反馈成功信息给用户：成功后用户余额应立即增加相应金额
+</li>
 </ol>
 </div>
 </div>
 <div id="outline-container-sec-2-4-2" class="outline-4">
 <h4 id="sec-2-4-2"><span class="section-number-4">2.4.2</span> 提现</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<ol class="org-ol">
+<li>确认充值金额 &amp; 确认支付密码
+</li>
+<li>提示用户提现资金应该会在1-2个（？）工作日到帐，若还没到帐请马上联系我们。
+</li>
+<li>平台账户转账到用户绑定的银行卡上，需要用到用户的真实姓名。所以还需提醒用户，如果他们没有提供实名，提现操作将不会成功。
+</li>
+<li>提现之后，账户余额立即减少相应金额，但是提现操作详细信息需要记录在
+</li>
+</ol>
 </div>
-
+</div>
 <div id="outline-container-sec-2-4-3" class="outline-4">
-<h4 id="sec-2-4-3"><span class="section-number-4">2.4.3</span> 安全</h4>
+<h4 id="sec-2-4-3"><span class="section-number-4">2.4.3</span> 人工服务</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<ol class="org-ol">
+<li>管理员可以查阅尽量所有的平台交易及支付记录
+</li>
+<li>以便在用户支付操作遇到困难时，可以提供人工的确认，尽快保证用户资金安全。
+</li>
+</ol>
 </div>
-
-<div id="outline-container-sec-2-4-4" class="outline-4">
-<h4 id="sec-2-4-4"><span class="section-number-4">2.4.4</span> 人工服务</h4>
 </div>
 </div>
 <div id="outline-container-sec-2-5" class="outline-3">
@@ -960,55 +983,113 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-2-6" class="outline-3">
 <h3 id="sec-2-6"><span class="section-number-3">2.6</span> 统计模块</h3>
+<div class="outline-text-3" id="text-2-6">
+</div><div id="outline-container-sec-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> 用户统计模块</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<ul class="org-ul">
+<li></li>
+</ul>
 </div>
-
+</div>
+<div id="outline-container-sec-2-6-2" class="outline-4">
+<h4 id="sec-2-6-2"><span class="section-number-4">2.6.2</span> 管理统计模块</h4>
+</div>
+</div>
 <div id="outline-container-sec-2-7" class="outline-3">
 <h3 id="sec-2-7"><span class="section-number-3">2.7</span> 帮助模块</h3>
 <div class="outline-text-3" id="text-2-7">
 </div><div id="outline-container-sec-2-7-1" class="outline-4">
 <h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> 联系方式</h4>
-</div>
+<div class="outline-text-4" id="text-2-7-1">
+<p>
+留下联系方式以便用户有疑问或困难时能联系我们：
+</p>
 
+<ul class="org-ul">
+<li>联系电话
+</li>
+<li>电子邮箱
+</li>
+</ul>
+</div>
+</div>
 <div id="outline-container-sec-2-7-2" class="outline-4">
 <h4 id="sec-2-7-2"><span class="section-number-4">2.7.2</span> 留言</h4>
 <div class="outline-text-4" id="text-2-7-2">
-<p>
-首期低重要性功能。
-</p>
+<ul class="org-ul">
+<li>首期低重要性功能。
+</li>
+<li>类似于简单的论坛，用户留言，管理员回复。所有人都能看到别人的留言及回复。
+</li>
+<li>需要提供简单的过滤功能：如找出所有自己的留言、全文搜索等。
+</li>
+</ul>
 </div>
 </div>
 <div id="outline-container-sec-2-7-3" class="outline-4">
 <h4 id="sec-2-7-3"><span class="section-number-4">2.7.3</span> 在线帮助</h4>
 <div class="outline-text-4" id="text-2-7-3">
-<p>
-首期低重要性功能。
-</p>
+<ul class="org-ul">
+<li>首期低重要性功能。
+</li>
+<li>实时在线帮助。
+</li>
+<li>需要有历史记录。
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div id="outline-container-sec-2-8" class="outline-3">
 <h3 id="sec-2-8"><span class="section-number-3">2.8</span> 公告模块</h3>
 <div class="outline-text-3" id="text-2-8">
-</div><div id="outline-container-sec-2-8-1" class="outline-4">
-<h4 id="sec-2-8-1"><span class="section-number-4">2.8.1</span> 主页公告</h4>
+<ul class="org-ul">
+<li>主页显示最新5-10个公告标题列表。
+</li>
+<li>单独页面显示所有公告（分页）
+<ul class="org-ul">
+<li>公告详细信息的链接：所有用户可见
+</li>
+<li>公告管理链接（删除，修改等）：管理员可见
+</li>
+</ul>
+</li>
+<li>公告内容包括：
+<ul class="org-ul">
+<li>发布日期
+</li>
+<li>标题
+</li>
+<li>发布者
+</li>
+<li>详细内容
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 </div>
 
-<div id="outline-container-sec-2-8-2" class="outline-4">
-<h4 id="sec-2-8-2"><span class="section-number-4">2.8.2</span> 所有公告</h4>
-</div>
-
-<div id="outline-container-sec-2-8-3" class="outline-4">
-<h4 id="sec-2-8-3"><span class="section-number-4">2.8.3</span> 公告管理</h4>
-</div>
-</div>
-</div>
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> 非功能性需求</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 平台</h3>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 平台及框架</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Linux平台
+</li>
+<li>任何成熟的MVC框架皆可
+</li>
+<li>成熟可靠的RDBMS：MySQL或者PostgreSQL
+</li>
+<li>部署在成熟可靠的web server（Apache或者Nginx）或者app server上。
+</li>
+</ul>
 </div>
-
+</div>
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2"><span class="section-number-3">3.2</span> 安全</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -1028,15 +1109,66 @@ for the JavaScript code in this tag.
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3"><span class="section-number-3">3.3</span> 性能</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+没有特殊性能需求
+</p>
 </div>
-
+</div>
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4"><span class="section-number-3">3.4</span> 兼容性</h3>
+<div class="outline-text-3" id="text-3-4">
+</div><div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> PC &amp; Mac</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">Microsoft Internet Explorer</td>
+<td class="right">8+</td>
+</tr>
+
+<tr>
+<td class="left">Firefox</td>
+<td class="right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Chrome</td>
+<td class="right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Safari</td>
+<td class="right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sec-3-4-2" class="outline-4">
+<h4 id="sec-3-4-2"><span class="section-number-4">3.4.2</span> Mobile Devices</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<ul class="org-ul">
+<li>平板电脑
+</li>
+<li>手机
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2014-04-20 Sun 21:54</p>
+<p class="date">Created: 2014-04-24 Thu 22:18</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
